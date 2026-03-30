@@ -9,7 +9,6 @@ spring:
   application:
     name: treatment-service
 
-  # Configuration par défaut (sans profil)
   datasource:
     url: jdbc:mysql://localhost:3306/treatment_test_db?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
     username: ${DB_USERNAME:pharmacare}
@@ -30,27 +29,20 @@ spring:
     locations: classpath:db/migration
     baseline-on-migrate: true
 
-# Configuration spécifique au profil "dev"
----
-spring:
-  config:
-    activate:
-      on-profile: dev
+  # ← AJOUT : Kafka producer
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        spring.json.add.type.headers: false
 
-  jpa:
-    show-sql: true  # Plus de logs SQL en dev
-
-logging:
-  level:
-    com.pharmaApp.treatement.infrastructure.adapter.out.client: DEBUG
-    org.springframework.web: DEBUG
-
-# Le reste de votre configuration...
 pharmaApp:
   services:
-    medication-service: ${MEDICATION_SERVICE_URL:http://localhost:8083}
+    medication-service:   ${MEDICATION_SERVICE_URL:http://localhost:8083}
     notification-service: ${NOTIFICATION_SERVICE_URL:http://localhost:8087}
-    adherence-service: ${ADHERENCE_SERVICE_URL:http://localhost:8086}
+    adherence-service:    ${ADHERENCE_SERVICE_URL:http://localhost:8086}
 
 management:
   endpoints:
@@ -60,3 +52,21 @@ management:
   endpoint:
     health:
       show-details: always
+
+# =============================================================
+# Profil "dev"
+# =============================================================
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+
+  jpa:
+    show-sql: true
+
+logging:
+  level:
+    com.pharmaApp.treatement: DEBUG
+    org.springframework.web: DEBUG
+    org.springframework.kafka: INFO

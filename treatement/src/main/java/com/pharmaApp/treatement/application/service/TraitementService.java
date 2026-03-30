@@ -6,6 +6,7 @@ import com.pharmaApp.treatement.application.port.out.*;
 import com.pharmaApp.treatement.domain.event.*;
 import com.pharmaApp.treatement.domain.model.*;
 import com.pharmaApp.treatement.infrastructure.mapper.TraitementMapper;
+import com.pharmaApp.treatement.infrastructure.messaging.kafka.producer.TraitementKafkaProducer; // ← AJOUT
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -45,6 +46,7 @@ public class TraitementService implements
     private final MedicationClientPort     medicationClient;
     private final NotificationClientPort   notificationClient;
     private final AdherenceClientPort      adherenceClient;
+    private final TraitementKafkaProducer  kafkaProducer;  // ← AJOUT
     private final TraitementMapper mapper;
 
     public TraitementService(
@@ -53,6 +55,7 @@ public class TraitementService implements
             MedicationClientPort     medicationClient,
             NotificationClientPort   notificationClient,
             AdherenceClientPort      adherenceClient,
+            TraitementKafkaProducer  kafkaProducer,         // ← AJOUT
             TraitementMapper         mapper) {
 
         this.traitementRepository = traitementRepository;
@@ -60,6 +63,7 @@ public class TraitementService implements
         this.medicationClient     = medicationClient;
         this.notificationClient   = notificationClient;
         this.adherenceClient      = adherenceClient;
+        this.kafkaProducer        = kafkaProducer;          // ← AJOUT
         this.mapper               = mapper;
     }
 
@@ -240,6 +244,11 @@ public class TraitementService implements
             else if (event instanceof PriseConfirmeeEvent) {
                 PriseConfirmeeEvent e = (PriseConfirmeeEvent) event;
                 log.info("Event PriseConfirmee — prise={}", e.priseId());
+
+                // ← AJOUT : publie sur Kafka → adherence-service le consomme
+                //            via PriseEventConsumer sur le topic treatment.prise-confirmee
+                kafkaProducer.publierPriseConfirmee(e);
+
                 int taux = adherenceClient.enregistrerEntree(
                         e.patientUserId(), e.priseId(),
                         e.medicamentNom(), "CONFIRMEE"
@@ -250,6 +259,10 @@ public class TraitementService implements
                 PriseManqueeEvent e = (PriseManqueeEvent) event;
                 log.warn("Event PriseManquee — prise={} patient={}",
                         e.priseId(), e.patientUserId());
+
+                // ← AJOUT : publie sur Kafka → adherence-service le consomme
+                //            via PriseEventConsumer sur le topic treatment.prise-manquee
+                kafkaProducer.publierPriseManquee(e);
 
                 int taux = adherenceClient.enregistrerEntree(
                         e.patientUserId(), e.priseId(),
