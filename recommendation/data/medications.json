@@ -1,0 +1,502 @@
+[
+  {
+    "id": "med001", "name": "Paracétamol 500mg", "dci": "Paracétamol",
+    "category": "Antalgique / Antipyrétique", "dosage": "500mg",
+    "frequency": "1 comprimé toutes les 6h (max 4/jour)",
+    "indications": ["fièvre", "maux de tête", "céphalée", "douleur légère", "grippe", "rhume", "mal de gorge", "fatigue", "courbatures", "حمى", "صداع"],
+    "contraindications": ["insuffisance hépatique sévère"],
+    "side_effects": ["rare: allergie cutanée"],
+    "prescription_required": false, "price_tnd": 0.800,
+    "description": "Antalgique et antipyrétique de référence palier 1. Premier choix pour fièvre et douleurs légères."
+  },
+  {
+    "id": "med002", "name": "Ibuprofène 400mg", "dci": "Ibuprofène",
+    "category": "Anti-inflammatoire AINS", "dosage": "400mg",
+    "frequency": "1 comprimé toutes les 8h avec repas",
+    "indications": ["inflammation", "douleur", "fièvre", "maux de tête", "douleur musculaire", "arthrite", "règles douloureuses", "tendinite"],
+    "contraindications": ["ulcère gastrique", "insuffisance rénale", "grossesse 3e trimestre", "allergie AINS"],
+    "side_effects": ["douleur gastrique", "nausées"],
+    "prescription_required": false, "price_tnd": 1.200,
+    "description": "Anti-inflammatoire non stéroïdien. Efficace contre inflammation, douleur et fièvre."
+  },
+  {
+    "id": "med003", "name": "Amoxicilline 500mg", "dci": "Amoxicilline",
+    "category": "Antibiotique pénicilline", "dosage": "500mg",
+    "frequency": "1 gélule toutes les 8h pendant 7 jours",
+    "indications": ["infection bactérienne", "angine bactérienne", "otite", "sinusite", "bronchite bactérienne"],
+    "contraindications": ["allergie pénicilline", "allergie amoxicilline"],
+    "side_effects": ["diarrhée", "nausées", "éruption cutanée"],
+    "prescription_required": true, "price_tnd": 2.500,
+    "description": "Antibiotique à large spectre famille pénicillines. Sur ordonnance uniquement."
+  },
+  {
+    "id": "med004", "name": "Oméprazole 20mg", "dci": "Oméprazole",
+    "category": "Inhibiteur pompe à protons", "dosage": "20mg",
+    "frequency": "1 gélule par jour avant repas du matin",
+    "indications": ["brûlures estomac", "reflux gastrique", "acidité", "ulcère gastrique", "gastrite", "douleur épigastrique", "حموضة المعدة"],
+    "contraindications": ["allergie oméprazole"],
+    "side_effects": ["maux de tête", "diarrhée"],
+    "prescription_required": false, "price_tnd": 1.800,
+    "description": "IPP réduisant la sécrétion acide gastrique. Traitement de référence du reflux."
+  },
+  {
+    "id": "med005", "name": "Cétirizine 10mg", "dci": "Cétirizine",
+    "category": "Antihistaminique H1", "dosage": "10mg",
+    "frequency": "1 comprimé par jour le soir",
+    "indications": ["allergie", "rhinite allergique", "urticaire", "démangeaisons", "éternuements", "yeux qui coulent", "حساسية"],
+    "contraindications": ["insuffisance rénale sévère"],
+    "side_effects": ["somnolence légère"],
+    "prescription_required": false, "price_tnd": 1.500,
+    "description": "Antihistaminique 2e génération peu sédatif. Traitement allergies saisonnières."
+  },
+  {
+    "id": "med006", "name": "Dompéridone 10mg", "dci": "Dompéridone",
+    "category": "Antiémétique prokinétique", "dosage": "10mg",
+    "frequency": "1 comprimé 3 fois par jour avant repas",
+    "indications": ["nausées", "vomissements", "digestion lente", "ballonnements", "غثيان", "قيء"],
+    "contraindications": ["tumeur hypophysaire", "hémorragie gastrique"],
+    "side_effects": ["sécheresse buccale"],
+    "prescription_required": false, "price_tnd": 1.200,
+    "description": "Antiémétique et prokinétique. Réduit nausées et vomissements."
+  },
+  {
+    "id": "med007", "name": "Smecta 3g", "dci": "Dioctite de smectite",
+    "category": "Antidiarrhéique", "dosage": "3g",
+    "frequency": "1 sachet 3 fois par jour dilué dans eau",
+    "indications": ["diarrhée", "gastroentérite", "selles molles", "douleur intestinale", "إسهال"],
+    "contraindications": ["occlusion intestinale"],
+    "side_effects": ["constipation légère"],
+    "prescription_required": false, "price_tnd": 0.900,
+    "description": "Adsorbant intestinal naturel. Protège muqueuse intestinale."
+  },
+  {
+    "id": "med008", "name": "Spasfon 80mg", "dci": "Phloroglucinol",
+    "category": "Antispasmodique", "dosage": "80mg",
+    "frequency": "2 comprimés 3 fois par jour",
+    "indications": ["crampes abdominales", "spasme digestif", "colon irritable", "douleur intestinale", "coliques", "مغص"],
+    "contraindications": [],
+    "side_effects": ["rare: allergie"],
+    "prescription_required": false, "price_tnd": 1.100,
+    "description": "Antispasmodique musculotrope. Soulage spasmes digestifs."
+  },
+  {
+    "id": "med009", "name": "Bromhexine 8mg", "dci": "Bromhexine",
+    "category": "Mucolytique", "dosage": "8mg",
+    "frequency": "1 comprimé 3 fois par jour",
+    "indications": ["toux grasse", "bronchite", "mucosités", "toux productive", "encombrement bronchique", "سعال بلغمي"],
+    "contraindications": ["ulcère gastrique"],
+    "side_effects": ["nausées légères"],
+    "prescription_required": false, "price_tnd": 1.300,
+    "description": "Mucolytique fluidifiant les sécrétions bronchiques."
+  },
+  {
+    "id": "med010", "name": "Fosfomycine 3g", "dci": "Fosfomycine",
+    "category": "Antibiotique urinaire", "dosage": "3g",
+    "frequency": "1 sachet dose unique le soir",
+    "indications": ["cystite", "infection urinaire", "brûlures urinaires", "envie fréquente uriner", "التهاب المثانة"],
+    "contraindications": ["insuffisance rénale sévère"],
+    "side_effects": ["diarrhée", "nausées"],
+    "prescription_required": true, "price_tnd": 5.200,
+    "description": "Antibiotique dose unique pour cystite non compliquée."
+  },
+  {
+    "id": "med011", "name": "Sumatriptan 50mg", "dci": "Sumatriptan",
+    "category": "Antimigraineux triptan", "dosage": "50mg",
+    "frequency": "1 comprimé au début de la crise",
+    "indications": ["migraine", "céphalée sévère", "migraine avec aura", "crise migraineuse", "صداع نصفي"],
+    "contraindications": ["maladie coronarienne", "HTA non contrôlée", "grossesse"],
+    "side_effects": ["vertiges", "fatigue"],
+    "prescription_required": true, "price_tnd": 8.500,
+    "description": "Triptan spécifique des crises migraineuses."
+  },
+  {
+    "id": "med012", "name": "Metformine 500mg", "dci": "Metformine",
+    "category": "Antidiabétique oral", "dosage": "500mg",
+    "frequency": "1 comprimé 2 à 3 fois par jour avec repas",
+    "indications": ["diabète type 2", "hyperglycémie", "glycémie élevée", "سكري النوع الثاني"],
+    "contraindications": ["insuffisance rénale", "insuffisance hépatique"],
+    "side_effects": ["diarrhée", "nausées"],
+    "prescription_required": true, "price_tnd": 1.500,
+    "description": "Antidiabétique oral de référence pour diabète type 2."
+  },
+  {
+    "id": "med013", "name": "Amlodipine 5mg", "dci": "Amlodipine",
+    "category": "Antihypertenseur", "dosage": "5mg",
+    "frequency": "1 comprimé par jour",
+    "indications": ["hypertension artérielle", "tension élevée", "HTA", "ضغط الدم"],
+    "contraindications": ["choc cardiogénique"],
+    "side_effects": ["oedème chevilles", "palpitations"],
+    "prescription_required": true, "price_tnd": 2.200,
+    "description": "Inhibiteur calcique traitement hypertension."
+  },
+  {
+    "id": "med014", "name": "Atorvastatine 20mg", "dci": "Atorvastatine",
+    "category": "Hypolipémiant statine", "dosage": "20mg",
+    "frequency": "1 comprimé par jour le soir",
+    "indications": ["cholestérol élevé", "hypercholestérolémie", "triglycérides élevés", "كوليسترول"],
+    "contraindications": ["maladie hépatique active", "grossesse"],
+    "side_effects": ["douleur musculaire"],
+    "prescription_required": true, "price_tnd": 3.500,
+    "description": "Statine réduisant cholestérol LDL."
+  },
+  {
+    "id": "med015", "name": "Salbutamol inhalateur", "dci": "Salbutamol",
+    "category": "Bronchodilatateur", "dosage": "100mcg/dose",
+    "frequency": "1 à 2 bouffées en cas de crise",
+    "indications": ["asthme", "crise asthme", "essoufflement", "sifflement respiratoire", "ربو"],
+    "contraindications": ["allergie salbutamol"],
+    "side_effects": ["tremblement", "tachycardie"],
+    "prescription_required": true, "price_tnd": 7.500,
+    "description": "Bronchodilatateur de secours pour crises d'asthme."
+  },
+  {
+    "id": "med016", "name": "Vitamine D3 1000UI", "dci": "Cholécalciférol",
+    "category": "Supplément vitaminique", "dosage": "1000 UI",
+    "frequency": "1 comprimé par jour avec repas",
+    "indications": ["carence vitamine D", "douleur osseuse", "fatigue", "faiblesse musculaire", "نقص فيتامين د"],
+    "contraindications": ["hypercalcémie"],
+    "side_effects": ["nausées si surdosage"],
+    "prescription_required": false, "price_tnd": 3.500,
+    "description": "Supplément vitamine D3 pour santé osseuse."
+  },
+  {
+    "id": "med017", "name": "Fer + Acide folique", "dci": "Sulfate ferreux",
+    "category": "Supplément hématologique", "dosage": "200mg",
+    "frequency": "1 comprimé par jour à jeun",
+    "indications": ["anémie", "fatigue intense", "manque fer", "pâleur", "grossesse", "فقر الدم"],
+    "contraindications": ["hémochromatose"],
+    "side_effects": ["constipation", "selles noires"],
+    "prescription_required": false, "price_tnd": 2.200,
+    "description": "Supplément fer pour anémie ferriprive."
+  },
+  {
+    "id": "med018", "name": "Bisacodyl 5mg", "dci": "Bisacodyl",
+    "category": "Laxatif", "dosage": "5mg",
+    "frequency": "1 à 2 comprimés le soir",
+    "indications": ["constipation", "selles dures", "difficulté défécation", "intestin paresseux", "إمساك"],
+    "contraindications": ["occlusion intestinale"],
+    "side_effects": ["crampes abdominales"],
+    "prescription_required": false, "price_tnd": 1.100,
+    "description": "Laxatif stimulant pour constipation occasionnelle."
+  },
+  {
+    "id": "med019", "name": "Magnésium B6", "dci": "Magnésium + Vitamine B6",
+    "category": "Complément minéral", "dosage": "300mg Mg",
+    "frequency": "2 comprimés par jour avec repas",
+    "indications": ["crampes musculaires", "fatigue chronique", "stress", "anxiété légère", "irritabilité", "إجهاد"],
+    "contraindications": ["insuffisance rénale sévère"],
+    "side_effects": ["diarrhée légère"],
+    "prescription_required": false, "price_tnd": 4.500,
+    "description": "Supplément magnésium. Réduit crampes et fatigue."
+  },
+  {
+    "id": "med020", "name": "Mélatonine 1mg", "dci": "Mélatonine",
+    "category": "Régulateur du sommeil", "dosage": "1mg",
+    "frequency": "1 comprimé 30 minutes avant coucher",
+    "indications": ["insomnie", "troubles du sommeil", "difficulté endormissement", "sommeil perturbé", "أرق"],
+    "contraindications": ["maladies auto-immunes"],
+    "side_effects": ["somnolence matinale"],
+    "prescription_required": false, "price_tnd": 3.200,
+    "description": "Hormone naturelle régulatrice du sommeil."
+  },
+  {
+    "id": "med021", "name": "Azithromycine 500mg", "dci": "Azithromycine",
+    "category": "Antibiotique macrolide", "dosage": "500mg",
+    "frequency": "1 comprimé par jour pendant 3 jours",
+    "indications": ["infection respiratoire", "pneumonie", "bronchite bactérienne", "sinusite", "allergie pénicilline avec infection"],
+    "contraindications": ["allergie macrolides"],
+    "side_effects": ["diarrhée", "nausées"],
+    "prescription_required": true, "price_tnd": 6.500,
+    "description": "Antibiotique macrolide courte durée."
+  },
+  {
+    "id": "med022", "name": "Prednisolone 5mg", "dci": "Prednisolone",
+    "category": "Corticoïde", "dosage": "5mg",
+    "frequency": "Selon prescription médicale",
+    "indications": ["inflammation sévère", "allergie sévère", "asthme sévère", "maladie auto-immune"],
+    "contraindications": ["infection active non traitée", "ulcère gastrique"],
+    "side_effects": ["prise de poids", "hyperglycémie"],
+    "prescription_required": true, "price_tnd": 1.800,
+    "description": "Corticoïde systémique pour inflammations sévères."
+  },
+  {
+    "id": "med023", "name": "Tramadol 50mg", "dci": "Tramadol",
+    "category": "Antalgique opioïde", "dosage": "50mg",
+    "frequency": "1 gélule toutes les 6h",
+    "indications": ["douleur modérée à sévère", "douleur chronique intense", "lombalgie sévère"],
+    "contraindications": ["épilepsie", "insuffisance respiratoire", "grossesse"],
+    "side_effects": ["nausées", "somnolence", "risque dépendance"],
+    "prescription_required": true, "price_tnd": 3.800,
+    "description": "Opioïde faible pour douleurs modérées à sévères."
+  },
+  {
+    "id": "med024", "name": "Colchicine 1mg", "dci": "Colchicine",
+    "category": "Antigoutteux", "dosage": "1mg",
+    "frequency": "1mg puis 0.5mg 1h après",
+    "indications": ["crise de goutte", "arthrite goutteuse", "douleur articulaire cristaux", "نقرس"],
+    "contraindications": ["insuffisance rénale sévère"],
+    "side_effects": ["diarrhée", "nausées"],
+    "prescription_required": true, "price_tnd": 2.900,
+    "description": "Traitement de référence des crises de goutte."
+  },
+  {
+    "id": "med025", "name": "Sérum physiologique", "dci": "Chlorure sodium 0.9%",
+    "category": "Solution isotonique", "dosage": "0.9%",
+    "frequency": "Rinçage nasal 2 à 3 fois par jour",
+    "indications": ["congestion nasale", "nez bouché", "rhinite", "rhume", "nez sec", "احتقان الأنف"],
+    "contraindications": [],
+    "side_effects": [],
+    "prescription_required": false, "price_tnd": 0.500,
+    "description": "Solution saline pour lavage nasal."
+  },
+  {
+    "id": "med026", "name": "Diclofénac 50mg", "dci": "Diclofénac sodique",
+    "category": "Anti-inflammatoire AINS puissant", "dosage": "50mg",
+    "frequency": "1 comprimé 2 à 3 fois par jour avec repas",
+    "indications": ["douleur inflammatoire", "arthrose", "lombalgie", "sciatique", "tendinite sévère", "rhumatisme"],
+    "contraindications": ["ulcère gastrique", "insuffisance cardiaque", "grossesse 3e trimestre"],
+    "side_effects": ["ulcère gastrique", "risque cardiovasculaire"],
+    "prescription_required": true, "price_tnd": 1.900,
+    "description": "AINS puissant pour douleurs rhumatismales."
+  },
+  {
+    "id": "med027", "name": "Gabapentine 300mg", "dci": "Gabapentine",
+    "category": "Antiépileptique antialgique", "dosage": "300mg",
+    "frequency": "1 gélule 3 fois par jour",
+    "indications": ["douleur neuropathique", "névralgie", "zona douloureux", "sciatique chronique", "douleur nerveuse"],
+    "contraindications": ["insuffisance rénale"],
+    "side_effects": ["somnolence", "vertiges"],
+    "prescription_required": true, "price_tnd": 5.500,
+    "description": "Efficace contre douleurs neuropathiques."
+  },
+  {
+    "id": "med028", "name": "Vitamine C 500mg", "dci": "Acide ascorbique",
+    "category": "Supplément vitaminique", "dosage": "500mg",
+    "frequency": "1 comprimé par jour",
+    "indications": ["carence vitamine C", "immunité faible", "fatigue", "convalescence", "نقص فيتامين سي"],
+    "contraindications": ["lithiase rénale"],
+    "side_effects": ["diarrhée si fortes doses"],
+    "prescription_required": false, "price_tnd": 1.800,
+    "description": "Antioxydant essentiel immunité et cicatrisation."
+  },
+  {
+    "id": "med029", "name": "Zinc 15mg", "dci": "Gluconate de zinc",
+    "category": "Oligo-élément", "dosage": "15mg",
+    "frequency": "1 comprimé par jour",
+    "indications": ["déficit immunitaire", "cicatrisation lente", "perte goût", "acné", "convalescence", "نقص الزنك"],
+    "contraindications": [],
+    "side_effects": ["nausées si pris à jeun"],
+    "prescription_required": false, "price_tnd": 2.800,
+    "description": "Oligo-élément essentiel immunité."
+  },
+  {
+    "id": "med030", "name": "Probiotiques Lactobacillus", "dci": "Lactobacillus acidophilus",
+    "category": "Probiotique", "dosage": "10 milliards UFC",
+    "frequency": "1 gélule par jour",
+    "indications": ["diarrhée sous antibiotiques", "déséquilibre flore", "ballonnements", "colon irritable", "توازن الأمعاء"],
+    "contraindications": ["immunodépression sévère"],
+    "side_effects": ["flatulences légères"],
+    "prescription_required": false, "price_tnd": 8.500,
+    "description": "Probiotique restaurant la flore intestinale."
+  },
+  {
+    "id": "med031", "name": "Clotrimazole crème 1%", "dci": "Clotrimazole",
+    "category": "Antifongique topique", "dosage": "1%",
+    "frequency": "Appliquer 2 fois par jour",
+    "indications": ["mycose cutanée", "pied athlète", "intertrigo", "champignon peau", "فطريات الجلد"],
+    "contraindications": ["allergie imidazolés"],
+    "side_effects": ["irritation locale"],
+    "prescription_required": false, "price_tnd": 2.500,
+    "description": "Antifongique topique pour mycoses cutanées."
+  },
+  {
+    "id": "med032", "name": "Acétylcystéine 600mg", "dci": "N-Acétylcystéine",
+    "category": "Mucolytique puissant", "dosage": "600mg",
+    "frequency": "1 sachet par jour",
+    "indications": ["toux grasse sévère", "bronchite chronique", "mucosités épaisses", "BPCO", "سعال مزمن"],
+    "contraindications": ["ulcère gastrique actif"],
+    "side_effects": ["nausées"],
+    "prescription_required": false, "price_tnd": 3.200,
+    "description": "Mucolytique puissant double action."
+  },
+  {
+    "id": "med033", "name": "Furosémide 40mg", "dci": "Furosémide",
+    "category": "Diurétique", "dosage": "40mg",
+    "frequency": "1 comprimé le matin",
+    "indications": ["oedème", "rétention eau", "insuffisance cardiaque", "gonflements membres"],
+    "contraindications": ["anurie", "déshydratation"],
+    "side_effects": ["hypokaliémie", "crampes"],
+    "prescription_required": true, "price_tnd": 0.800,
+    "description": "Diurétique puissant pour oedèmes."
+  },
+  {
+    "id": "med034", "name": "Aciclovir 400mg", "dci": "Aciclovir",
+    "category": "Antiviral", "dosage": "400mg",
+    "frequency": "1 comprimé 3 fois par jour pendant 5 jours",
+    "indications": ["herpès", "bouton fièvre", "zona", "varicelle adulte", "هرپس"],
+    "contraindications": ["insuffisance rénale sévère"],
+    "side_effects": ["nausées", "céphalées"],
+    "prescription_required": true, "price_tnd": 7.200,
+    "description": "Antiviral spécifique herpès et zona."
+  },
+  {
+    "id": "med035", "name": "Hydroxyzine 25mg", "dci": "Hydroxyzine",
+    "category": "Anxiolytique", "dosage": "25mg",
+    "frequency": "1 comprimé 3 fois par jour",
+    "indications": ["anxiété", "tension nerveuse", "insomnie légère", "stress sévère", "قلق"],
+    "contraindications": ["grossesse", "glaucome"],
+    "side_effects": ["somnolence", "sécheresse buccale"],
+    "prescription_required": true, "price_tnd": 1.700,
+    "description": "Anxiolytique non benzodiazépine."
+  },
+  {
+    "id": "med036", "name": "Lévothyroxine 50mcg", "dci": "Lévothyroxine",
+    "category": "Hormone thyroïdienne", "dosage": "50mcg",
+    "frequency": "1 comprimé par jour à jeun",
+    "indications": ["hypothyroïdie", "thyroïde lente", "fatigue thyroïdienne", "prise de poids inexpliquée", "قصور الغدة الدرقية"],
+    "contraindications": ["hyperthyroïdie"],
+    "side_effects": ["palpitations si surdosage"],
+    "prescription_required": true, "price_tnd": 2.800,
+    "description": "Hormone thyroïdienne de substitution."
+  },
+  {
+    "id": "med037", "name": "Chlorhexidine buccale", "dci": "Chlorhexidine 0.12%",
+    "category": "Antiseptique buccal", "dosage": "0.12%",
+    "frequency": "Gargarisme 2 fois par jour",
+    "indications": ["gingivite", "infection buccale", "aphte", "mal de dents", "douleur gencive", "التهاب اللثة"],
+    "contraindications": ["allergie chlorhexidine"],
+    "side_effects": ["coloration dents si usage prolongé"],
+    "prescription_required": false, "price_tnd": 3.200,
+    "description": "Antiseptique buccal pour gingivites."
+  },
+  {
+    "id": "med038", "name": "Codéine 30mg", "dci": "Phosphate codéine",
+    "category": "Antitussif opioïde", "dosage": "30mg",
+    "frequency": "1 comprimé toutes les 6h",
+    "indications": ["toux sèche sévère", "toux irritative", "toux nocturne", "toux rebelle"],
+    "contraindications": ["enfant moins 12 ans", "asthme", "grossesse"],
+    "side_effects": ["constipation", "somnolence"],
+    "prescription_required": true, "price_tnd": 2.100,
+    "description": "Antitussif opioïde pour toux sèche sévère."
+  },
+  {
+    "id": "med039", "name": "Fluconazole 150mg", "dci": "Fluconazole",
+    "category": "Antifongique systémique", "dosage": "150mg",
+    "frequency": "1 comprimé dose unique",
+    "indications": ["mycose vaginale", "candidose", "champignon", "infection fongique"],
+    "contraindications": ["grossesse"],
+    "side_effects": ["nausées", "céphalées"],
+    "prescription_required": true, "price_tnd": 4.800,
+    "description": "Antifongique dose unique pour candidose."
+  },
+  {
+    "id": "med040", "name": "Pantoprazole 40mg", "dci": "Pantoprazole",
+    "category": "Inhibiteur pompe à protons fort", "dosage": "40mg",
+    "frequency": "1 comprimé par jour avant repas",
+    "indications": ["ulcère gastrique", "reflux sévère", "oesophagite", "brûlures estomac sévères"],
+    "contraindications": ["allergie IPP"],
+    "side_effects": ["céphalées", "diarrhée"],
+    "prescription_required": true, "price_tnd": 2.500,
+    "description": "IPP puissant pour ulcères et reflux sévères."
+  },
+  {
+    "id": "med041", "name": "Ibuprofène gel 5%", "dci": "Ibuprofène topique",
+    "category": "Anti-inflammatoire topique", "dosage": "5%",
+    "frequency": "Appliquer 3 à 4 fois par jour",
+    "indications": ["douleur musculaire locale", "entorse", "contusion", "tendinite", "muscle contracturé"],
+    "contraindications": ["plaie ouverte", "allergie AINS"],
+    "side_effects": ["irritation cutanée"],
+    "prescription_required": false, "price_tnd": 3.800,
+    "description": "Anti-inflammatoire topique sans effets systémiques."
+  },
+  {
+    "id": "med042", "name": "Loratadine 10mg", "dci": "Loratadine",
+    "category": "Antihistaminique non sédatif", "dosage": "10mg",
+    "frequency": "1 comprimé par jour",
+    "indications": ["rhinite allergique", "urticaire", "allergie chronique", "démangeaisons"],
+    "contraindications": ["insuffisance hépatique sévère"],
+    "side_effects": ["céphalées"],
+    "prescription_required": false, "price_tnd": 1.400,
+    "description": "Antihistaminique non sédatif longue durée."
+  },
+  {
+    "id": "med043", "name": "Ciprofloxacine 500mg", "dci": "Ciprofloxacine",
+    "category": "Antibiotique fluoroquinolone", "dosage": "500mg",
+    "frequency": "1 comprimé 2 fois par jour pendant 7 jours",
+    "indications": ["infection urinaire compliquée", "prostatite", "infection digestive", "diarrhée bactérienne"],
+    "contraindications": ["grossesse", "enfant moins 18 ans"],
+    "side_effects": ["tendinite", "photosensibilité"],
+    "prescription_required": true, "price_tnd": 4.200,
+    "description": "Fluoroquinolone pour infections modérées à sévères."
+  },
+  {
+    "id": "med044", "name": "Ondansétron 4mg", "dci": "Ondansétron",
+    "category": "Antiémétique puissant", "dosage": "4mg",
+    "frequency": "1 comprimé 3 fois par jour",
+    "indications": ["nausées chimio", "vomissements post-opératoires", "nausées sévères"],
+    "contraindications": ["QT long congénital"],
+    "side_effects": ["céphalées", "constipation"],
+    "prescription_required": true, "price_tnd": 12.500,
+    "description": "Antiémétique puissant pour nausées chimio."
+  },
+  {
+    "id": "med045", "name": "Ibuprofène pédiatrique 200mg", "dci": "Ibuprofène pédiatrique",
+    "category": "Antalgique pédiatrique", "dosage": "200mg",
+    "frequency": "Selon poids enfant toutes les 6-8h",
+    "indications": ["fièvre enfant", "douleur enfant", "otite enfant", "poussée dentaire"],
+    "contraindications": ["moins de 3 mois", "allergie AINS"],
+    "side_effects": ["douleur gastrique"],
+    "prescription_required": false, "price_tnd": 1.500,
+    "description": "Ibuprofène dose pédiatrique pour enfants."
+  },
+  {
+    "id": "med046", "name": "Insuline rapide", "dci": "Insuline humaine",
+    "category": "Antidiabétique insuline", "dosage": "100 UI/ml",
+    "frequency": "Selon glycémie et protocole médical",
+    "indications": ["diabète type 1", "diabète insulino-requérant", "hyperglycémie urgente", "السكري بالأنسولين"],
+    "contraindications": ["hypoglycémie"],
+    "side_effects": ["hypoglycémie"],
+    "prescription_required": true, "price_tnd": 12.000,
+    "description": "Insuline rapide pour diabète type 1."
+  },
+  {
+    "id": "med047", "name": "Acide acétylsalicylique 100mg", "dci": "Aspirine faible dose",
+    "category": "Antiagrégant plaquettaire", "dosage": "100mg",
+    "frequency": "1 comprimé par jour avec repas",
+    "indications": ["prévention cardiovasculaire", "antécédent AVC", "antécédent infarctus", "stent coronaire"],
+    "contraindications": ["ulcère gastrique", "allergie aspirine", "grossesse"],
+    "side_effects": ["saignement gastrique"],
+    "prescription_required": true, "price_tnd": 0.600,
+    "description": "Aspirine faible dose antiagrégant cardiovasculaire."
+  },
+  {
+    "id": "med048", "name": "Hyoscine 10mg", "dci": "Hyoscine butylbromure",
+    "category": "Antispasmodique fort", "dosage": "10mg",
+    "frequency": "1 comprimé 3 fois par jour",
+    "indications": ["colique biliaire", "colique rénale", "spasme digestif sévère", "crampe intestinale intense"],
+    "contraindications": ["glaucome", "rétention urinaire"],
+    "side_effects": ["sécheresse buccale", "tachycardie"],
+    "prescription_required": false, "price_tnd": 2.100,
+    "description": "Antispasmodique puissant pour coliques."
+  },
+  {
+    "id": "med049", "name": "Diazépam 5mg", "dci": "Diazépam",
+    "category": "Anxiolytique benzodiazépine", "dosage": "5mg",
+    "frequency": "1 comprimé 2 à 3 fois par jour",
+    "indications": ["anxiété sévère", "trouble anxieux sévère", "contracture musculaire", "insomnie sévère"],
+    "contraindications": ["insuffisance respiratoire", "grossesse", "apnée du sommeil"],
+    "side_effects": ["somnolence", "dépendance"],
+    "prescription_required": true, "price_tnd": 1.200,
+    "description": "Benzodiazépine anxiolytique. Risque dépendance."
+  },
+  {
+    "id": "med050", "name": "Paracétamol 1000mg", "dci": "Paracétamol fort",
+    "category": "Antalgique fort", "dosage": "1000mg",
+    "frequency": "1 comprimé toutes les 8h (max 3/jour)",
+    "indications": ["douleur modérée", "fièvre élevée", "douleur post-opératoire", "migraine légère", "mal de dos"],
+    "contraindications": ["insuffisance hépatique"],
+    "side_effects": ["hépatotoxicité si surdosage"],
+    "prescription_required": false, "price_tnd": 1.200,
+    "description": "Paracétamol forte dose pour douleurs modérées."
+  }
+]
