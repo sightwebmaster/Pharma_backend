@@ -1,0 +1,54 @@
+server:
+  port: 8083
+
+spring:
+  application:
+    name: user-service
+
+  datasource:
+    url: jdbc:mysql://localhost:3307/pharma_user_db?useSSL=false&serverTimezone=UTC&createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true
+    username: root
+    password: benchahmed123A!
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+    open-in-view: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        format_sql: true
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8090/realms/pharma-realm      # ✅ 8081
+          jwk-set-uri: http://localhost:8090/realms/pharma-realm/protocol/openid-connect/certs  # ✅ 8081
+
+keycloak:
+  admin:
+    server-url: http://localhost:8090          # ✅ 8081
+    realm: pharma-realm
+    client-id: pharma-backend
+    client-secret: UDXK0VKFpfHsigMj1hTZtf8IgIbFC5yU
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info, metrics
+  endpoint:
+    health:
+      show-details: always
+
+logging:
+  level:
+    com.pharmaApp.user: DEBUG
+    org.springframework.web.client: DEBUG  # Pour voir les appels REST
+    org.springframework.web: DEBUG
+    org.springframework.security: DEBUG
+    org.hibernate.SQL: DEBUG
+    org.hibernate.orm.jdbc.bind: TRACE
