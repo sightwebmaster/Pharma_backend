@@ -1,0 +1,74 @@
+server:
+  port: 8086
+
+spring:
+  application:
+    name: adherence-service
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/adherence_db?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    username: root
+    password: rootpassword
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+        format_sql: true
+
+  # Keycloak JWT validation (même realm que les autres services)
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8090/realms/pharma-realm
+          jwk-set-uri: http://localhost:8090/realms/pharma-realm/protocol/openid-connect/certs
+
+  # Kafka — publication des événements DDD
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        spring.json.add.type.headers: false
+    consumer:
+      group-id: adherence-service-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: "*"
+
+# Feign — appel treatment-service
+treatment:
+  service:
+    url: http://localhost:8084
+
+# Règles métier adherence
+adherence:
+  rules:
+    # Seuil critique : en dessous → AlerteObservanceCritique publiée
+    critical-threshold: 70
+    # Nombre de prises manquées consécutives → alerte proche
+    consecutive-missed-limit: 3
+    # Fenêtres de calcul du taux d'observance (jours)
+    windows: [7, 30, 90]
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: always
+
+logging:
+  level:
+    com.pharmaApp.adherence: DEBUG
+    org.springframework.kafka: INFO
