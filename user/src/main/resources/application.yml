@@ -8,12 +8,12 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:3307/pharma_user_db?useSSL=false&serverTimezone=UTC&createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true
     username: root
-    password: benchahmed123A!
+    password: rootpassword
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
     hibernate:
-      ddl-auto: validate
+      ddl-auto: update
     show-sql: true
     open-in-view: false
     properties:
@@ -33,7 +33,7 @@ keycloak:
     server-url: http://localhost:8090          # ✅ 8081
     realm: pharma-realm
     client-id: pharma-backend
-    client-secret: UDXK0VKFpfHsigMj1hTZtf8IgIbFC5yU
+    client-secret: tIho4JSC3vjFaOUIzNF4Eiowerbn45Nb
 
 management:
   endpoints:
@@ -52,3 +52,9 @@ logging:
     org.springframework.security: DEBUG
     org.hibernate.SQL: DEBUG
     org.hibernate.orm.jdbc.bind: TRACE
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    prefer-ip-address: true
