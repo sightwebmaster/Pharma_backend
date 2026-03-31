@@ -1,0 +1,5 @@
+com\pharmaApp\gateway\filter\UserContextFilter.class
+com\pharmaApp\gateway\filter\RateLimitingFilter.class
+com\pharmaApp\gateway\filter\LoggingFilter.class
+com\pharmaApp\gateway\GatewayApplication.class
+com\pharmaApp\gateway\config\SecurityConfig.class

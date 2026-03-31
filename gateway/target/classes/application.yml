@@ -1,0 +1,78 @@
+# =============================================================
+# PharmaCare — gateway-service
+# application.yml
+# =============================================================
+
+spring:
+  application:
+    name: gateway-service
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8090/realms/pharma-realm
+          jwk-set-uri: http://localhost:8090/realms/pharma-realm/protocol/openid-connect/certs
+
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: 6379
+
+  cloud:
+    gateway:
+      routes:
+        - id: user-service
+          uri: lb://user-service
+          predicates:
+            - Path=/api/users/**,/api/patients/**,/api/pharmaciens/**,/api/proches/**
+
+        - id: treatment-service
+          uri: lb://treatment-service
+          predicates:
+            - Path=/api/treatments/**,/api/traitements/**,/api/prises/**
+
+        - id: adherence-service
+          uri: lb://adherence-service
+          predicates:
+            - Path=/api/adherence/**,/api/observance/**
+
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins:
+              - "http://localhost:3000"
+              - "http://localhost:4200"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - OPTIONS
+            allowedHeaders: "*"
+            allowCredentials: true
+
+server:
+  port: 8085
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_URL:http://localhost:8761/eureka}
+  instance:
+    prefer-ip-address: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info, metrics, gateway
+  endpoint:
+    health:
+      show-details: always
+
+logging:
+  level:
+    org.springframework.cloud.gateway: INFO
+    com.pharmaApp.gateway: DEBUG
+    org.springframework.security: INFO
