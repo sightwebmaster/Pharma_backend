@@ -1,0 +1,71 @@
+# =============================================================
+# PharmaCare — adherence-service
+# application.yml
+# =============================================================
+
+server:
+  port: 8086
+
+spring:
+  application:
+    name: adherence-service
+
+  datasource:
+    url: jdbc:mysql://localhost:3309/adherence_db?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    username: pharmacare
+    password: secret
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+        format_sql: true
+
+  # ── Kafka ──────────────────────────────────────────────────
+  kafka:
+    bootstrap-servers: ${KAFKA_URL:localhost:9092}
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        spring.json.add.type.headers: false
+    consumer:
+      group-id: adherence-service-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: "com.pharmaApp.*"
+
+# ── Eureka ──────────────────────────────────────────────────
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_URL:http://localhost:8761/eureka}
+  instance:
+    prefer-ip-address: true
+
+# Règles métier
+adherence:
+  rules:
+    critical-threshold: 70
+    consecutive-missed-limit: 3
+    windows: [7, 30, 90]
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info, metrics
+  endpoint:
+    health:
+      show-details: always
+
+logging:
+  level:
+    com.pharmaApp.adherence: DEBUG
+    org.springframework.kafka: INFO

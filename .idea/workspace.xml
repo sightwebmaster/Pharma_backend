@@ -4,7 +4,263 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3be9e4d8-d4bd-45ea-a33a-94e9e97408b3" name="Changes" comment="add adherence changes" />
+    <list default="true" id="3be9e4d8-d4bd-45ea-a33a-94e9e97408b3" name="Changes" comment="add adherence changes">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Notification/src/main/java/com/pharmaApp/Notification/application/dto/FcmResult.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Notification/src/main/java/com/pharmaApp/Notification/application/port/out/FcmClientPort.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Notification/src/main/java/com/pharmaApp/Notification/application/service/NotificationService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Notification/src/main/java/com/pharmaApp/Notification/infrastructure/adapter/input/kafka/PriseConfirmeeConsumer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Notification/src/main/java/com/pharmaApp/Notification/infrastructure/adapter/input/kafka/PriseManqueeConsumer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Notification/src/main/java/com/pharmaApp/Notification/infrastructure/adapter/input/kafka/TraitementCreeConsumer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Notification/src/main/java/com/pharmaApp/Notification/infrastructure/adapter/input/rest/NotificationController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Notification/src/main/java/com/pharmaApp/Notification/infrastructure/adapter/output/fcm/FcmClientAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Notification/src/main/java/com/pharmaApp/Notification/infrastructure/adapter/output/fcm/MockFcmClientAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Notification/src/main/java/com/pharmaApp/Notification/infrastructure/adapter/output/persistence/entity/NotificationEnvoyeeEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Notification/src/main/java/com/pharmaApp/Notification/infrastructure/adapter/output/persistence/entity/RappelEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Notification/src/main/java/com/pharmaApp/Notification/infrastructure/adapter/output/persistence/entity/TokenFcmEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Notification/src/main/java/com/pharmaApp/Notification/infrastructure/adapter/output/persistence/repository/NotificationEnvoyeeJpaRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Notification/src/main/java/com/pharmaApp/Notification/infrastructure/adapter/output/persistence/repository/RappelJpaRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Notification/src/main/java/com/pharmaApp/Notification/infrastructure/adapter/output/persistence/repository/TokenFcmJpaRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Notification/src/main/java/com/pharmaApp/Notification/infrastructure/config/BeanConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Notification/src/main/java/com/pharmaApp/Notification/infrastructure/config/FcmConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Notification/src/main/java/com/pharmaApp/Notification/infrastructure/config/KafkaConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Notification/src/main/java/com/pharmaApp/Notification/infrastructure/config/SecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Notification/src/main/resources/db/migration/V1__create_notification_tables.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Notification/src/main/resources/firebase/service-account.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/adherence/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/adherence/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/adherence/docker-compose.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/adherence/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/adherence/src/main/java/com/pharmaApp/adherence/AdherenceServiceApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/adherence/src/main/java/com/pharmaApp/adherence/application/dto/request/EnregistrerPriseRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/adherence/src/main/java/com/pharmaApp/adherence/application/dto/response/AdherenceRecordResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/adherence/src/main/java/com/pharmaApp/adherence/application/dto/response/AdherenceSummaryResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/adherence/src/main/java/com/pharmaApp/adherence/application/dto/response/HistoriqueEntryResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/adherence/src/main/java/com/pharmaApp/adherence/application/mapper/AdherenceMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/adherence/src/main/java/com/pharmaApp/adherence/application/service/AdherenceService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/adherence/src/main/java/com/pharmaApp/adherence/domain/event/AlerteConsecutiveMissedEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/adherence/src/main/java/com/pharmaApp/adherence/domain/event/AlerteObservanceCritiqueEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/adherence/src/main/java/com/pharmaApp/adherence/domain/event/HistoriqueEnregistreEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/adherence/src/main/java/com/pharmaApp/adherence/domain/event/PriseStatusEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/adherence/src/main/java/com/pharmaApp/adherence/domain/exception/AdherenceRecordNotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/adherence/src/main/java/com/pharmaApp/adherence/domain/model/AdherenceRecord.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/adherence/src/main/java/com/pharmaApp/adherence/domain/model/HistoriqueEntry.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/adherence/src/main/java/com/pharmaApp/adherence/domain/model/StatutPrise.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/adherence/src/main/java/com/pharmaApp/adherence/domain/port/input/AdherenceUseCase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/adherence/src/main/java/com/pharmaApp/adherence/domain/port/output/AdherenceRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/adherence/src/main/java/com/pharmaApp/adherence/domain/port/output/EventPublisher.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/adherence/src/main/java/com/pharmaApp/adherence/infrastructure/adapter/input/messaging/PriseEventConsumer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/adherence/src/main/java/com/pharmaApp/adherence/infrastructure/adapter/input/rest/handler/GlobalExceptionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/adherence/src/main/java/com/pharmaApp/adherence/infrastructure/adapter/output/messaging/KafkaEventPublisher.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/adherence/src/main/java/com/pharmaApp/adherence/infrastructure/adapter/output/persistence/AdherenceRepositoryAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/adherence/src/main/java/com/pharmaApp/adherence/infrastructure/adapter/output/persistence/entity/AdherenceRecordEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/adherence/src/main/java/com/pharmaApp/adherence/infrastructure/adapter/output/persistence/entity/HistoriqueEntryEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/adherence/src/main/java/com/pharmaApp/adherence/infrastructure/adapter/output/persistence/mapper/AdherenceEntityMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/adherence/src/main/java/com/pharmaApp/adherence/infrastructure/adapter/output/persistence/repository/AdherenceRecordJpaRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/adherence/src/main/java/com/pharmaApp/adherence/infrastructure/config/KafkaConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/adherence/src/main/java/com/pharmaApp/adherence/infrastructure/config/SecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/adherence/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/adherence/src/test/java/com/pharmaApp/adherence/AdherenceServiceTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docker-compose.infra.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/.gitattributes" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/mvnw" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/mvnw.cmd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/src/main/java/com/pharmaApp/gateway/GatewayApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/src/main/java/com/pharmaApp/gateway/config/SecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/src/main/java/com/pharmaApp/gateway/exception/GatewayExceptionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/src/main/java/com/pharmaApp/gateway/filter/LoggingFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/src/main/java/com/pharmaApp/gateway/filter/RateLimitingFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/src/main/java/com/pharmaApp/gateway/filter/UserContextFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kafka/.gitattributes" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kafka/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kafka/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kafka/mvnw" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kafka/mvnw.cmd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kafka/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kafka/src/main/java/com/pharmaApp/kafka/KafkaApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kafka/src/main/java/com/pharmaApp/kafka/event/AlerteObservanceEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kafka/src/main/java/com/pharmaApp/kafka/event/PriseConfirmeeEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kafka/src/main/java/com/pharmaApp/kafka/event/PriseManqueeEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kafka/src/main/java/com/pharmaApp/kafka/event/TraitementCreeEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kafka/src/main/resources/application.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kafka/src/test/java/com/pharmaApp/kafka/KafkaApplicationTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/keycloak/pharma-realm-export.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/medication/src/main/java/com/pharmaApp/medication/application/dto/request/SymptomesRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/medication/src/main/java/com/pharmaApp/medication/application/dto/response/ContreIndicationRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/medication/src/main/java/com/pharmaApp/medication/application/dto/response/ContreIndicationResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/medication/src/main/java/com/pharmaApp/medication/application/dto/response/MedicamentResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/medication/src/main/java/com/pharmaApp/medication/infrastructure/adapter/input/rest/MedicamentController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/medication/src/main/java/com/pharmaApp/medication/infrastructure/adapter/output/openfda/OpenFdaClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/medication/src/main/java/com/pharmaApp/medication/infrastructure/adapter/output/persistence/entity/MedicamentEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/medication/src/main/java/com/pharmaApp/medication/infrastructure/adapter/output/persistence/repository/MedicamentJpaRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service-registry/.gitattributes" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service-registry/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service-registry/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service-registry/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service-registry/mvnw" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service-registry/mvnw.cmd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service-registry/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service-registry/src/main/java/com/pharmaApp/eureka/EurekaServerApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service-registry/src/main/java/com/pharmaApp/service_registry/ServiceRegistryApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service-registry/src/main/resources/application.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/treatement/.gitattributes" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/treatement/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/treatement/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/treatement/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/treatement/HELP.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/treatement/mvnw" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/treatement/mvnw.cmd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/treatement/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/TreatementApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/application/dto/ConfirmerPriseCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/application/dto/ModifierTraitementCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/application/dto/PlanifierTraitementCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/application/dto/PriseResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/application/dto/TraitementResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/application/port/in/ConfirmerPriseUseCase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/application/port/in/GetTraitementActifUseCase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/application/port/in/ModifierTraitementUseCase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/application/port/in/PlanifierTraitementUseCase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/application/port/out/AdherenceClientPort.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/application/port/out/MedicationClientPort.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/application/port/out/NotificationClientPort.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/application/port/out/PriseRepositoryPort.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/application/port/out/TraitementRepositoryPort.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/application/service/TraitementService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/domain/event/PriseConfirmeeEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/domain/event/PriseManqueeEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/domain/event/TraitementCreeEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/domain/event/TraitementModifieEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/domain/exception/AccesDeniedDomainException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/domain/exception/ConflitTraitementException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/domain/exception/TransitionStatutInvalideException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/domain/model/LigneMedicament.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/domain/model/PrisePlanifiee.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/domain/model/PriseStatut.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/domain/model/Traitement.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/domain/model/TraitementStatut.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/infrastructure/adapter/in/rest/PriseController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/infrastructure/adapter/in/rest/TraitementController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/infrastructure/adapter/in/scheduler/PriseManqueeScheduler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/infrastructure/adapter/out/client/AdherenceClientAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/infrastructure/adapter/out/client/AdherenceRestClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/infrastructure/adapter/out/client/MedicationClientAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/infrastructure/adapter/out/client/MedicationRestClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/infrastructure/adapter/out/client/NotificationClientAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/infrastructure/adapter/out/client/NotificationRestClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/infrastructure/adapter/out/persistence/TraitementJpaAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/infrastructure/adapter/out/persistence/entity/LigneMedicamentEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/infrastructure/adapter/out/persistence/entity/OutboxEventEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/infrastructure/adapter/out/persistence/entity/PrisePlanifieeEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/infrastructure/adapter/out/persistence/entity/TraitementEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/infrastructure/adapter/out/persistence/repository/OutboxEventJpaRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/infrastructure/adapter/out/persistence/repository/PrisePlanifieeJpaRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/infrastructure/adapter/out/persistence/repository/TraitementJpaRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/infrastructure/config/BeanConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/infrastructure/config/KafkaTopicConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/infrastructure/config/SecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/infrastructure/mapper/TraitementMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/infrastructure/messaging/kafka/producer/TraitementKafkaProducer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/treatement/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/treatement/src/main/resources/db/migration/V1__init_schema.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/CREATE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/HELP.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/backend" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/exit" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/mvnw" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/mvnw.cmd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/java/com/pharmaApp/user/UserApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/java/com/pharmaApp/user/application/dto/request/AddProcheByEmailRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/java/com/pharmaApp/user/application/dto/request/AddProcheByQrCodeRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/java/com/pharmaApp/user/application/dto/request/CreatePatientByPharmacienRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/java/com/pharmaApp/user/application/dto/request/CreatePatientProfileRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/java/com/pharmaApp/user/application/dto/request/CreatePharmacienProfileRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/java/com/pharmaApp/user/application/dto/request/LoginRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/java/com/pharmaApp/user/application/dto/request/RegisterPatientRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/java/com/pharmaApp/user/application/dto/request/UpdatePatientProfileRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/java/com/pharmaApp/user/application/dto/response/AuthResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/java/com/pharmaApp/user/application/dto/response/PatientProfileResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/java/com/pharmaApp/user/application/dto/response/PharmacienProfileResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/java/com/pharmaApp/user/application/dto/response/ProcheResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/java/com/pharmaApp/user/application/mapper/PatientProfileMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/java/com/pharmaApp/user/application/mapper/PharmacienProfileMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/java/com/pharmaApp/user/application/mapper/ProcheMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/java/com/pharmaApp/user/application/service/AuthService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/java/com/pharmaApp/user/application/service/PatientProfileService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/java/com/pharmaApp/user/application/service/PharmacienProfileService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/java/com/pharmaApp/user/domain/exception/ProfileAlreadyExistsException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/java/com/pharmaApp/user/domain/exception/ProfileNotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/java/com/pharmaApp/user/domain/exception/UnauthorizedAccessException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/java/com/pharmaApp/user/domain/model/PatientProfile.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/java/com/pharmaApp/user/domain/model/PharmacienProfile.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/java/com/pharmaApp/user/domain/model/Proche.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/java/com/pharmaApp/user/domain/port/input/AuthUseCase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/java/com/pharmaApp/user/domain/port/input/PatientProfileUseCase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/java/com/pharmaApp/user/domain/port/input/PharmacienProfileUseCase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/java/com/pharmaApp/user/domain/port/output/KeycloakUserCreationPort.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/java/com/pharmaApp/user/domain/port/output/PatientProfileRepositoryPort.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/java/com/pharmaApp/user/domain/port/output/PharmacienProfileRepositoryPort.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/java/com/pharmaApp/user/domain/port/output/ProcheRepositoryPort.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/java/com/pharmaApp/user/domain/port/output/QRCodeGeneratorPort.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/java/com/pharmaApp/user/infrastructure/adapter/input/rest/AuthController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/java/com/pharmaApp/user/infrastructure/adapter/input/rest/PatientController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/java/com/pharmaApp/user/infrastructure/adapter/input/rest/PharmacienController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/java/com/pharmaApp/user/infrastructure/adapter/output/keycloak/KeycloakAdminClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/java/com/pharmaApp/user/infrastructure/adapter/output/keycloak/KeycloakLoginClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/java/com/pharmaApp/user/infrastructure/adapter/output/keycloak/dto/KeycloakCredential.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/java/com/pharmaApp/user/infrastructure/adapter/output/keycloak/dto/KeycloakUserRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/java/com/pharmaApp/user/infrastructure/adapter/output/persistence/adapter/PatientProfileJpaAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/java/com/pharmaApp/user/infrastructure/adapter/output/persistence/adapter/PharmacienProfileJpaAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/java/com/pharmaApp/user/infrastructure/adapter/output/persistence/adapter/ProcheJpaAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/java/com/pharmaApp/user/infrastructure/adapter/output/persistence/entity/PatientProfileEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/java/com/pharmaApp/user/infrastructure/adapter/output/persistence/entity/PharmacienProfileEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/java/com/pharmaApp/user/infrastructure/adapter/output/persistence/entity/ProcheEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/java/com/pharmaApp/user/infrastructure/adapter/output/persistence/mapper/PatientProfileEntityMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/java/com/pharmaApp/user/infrastructure/adapter/output/persistence/mapper/PharmacienProfileEntityMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/java/com/pharmaApp/user/infrastructure/adapter/output/persistence/mapper/ProcheEntityMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/java/com/pharmaApp/user/infrastructure/adapter/output/persistence/repository/PatientProfileJpaRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/java/com/pharmaApp/user/infrastructure/adapter/output/persistence/repository/PharmacienProfileJpaRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/java/com/pharmaApp/user/infrastructure/adapter/output/persistence/repository/ProcheJpaRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/java/com/pharmaApp/user/infrastructure/adapter/output/qrcode/QRCodeGeneratorAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/java/com/pharmaApp/user/infrastructure/config/BeanConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/java/com/pharmaApp/user/infrastructure/config/GlobalExceptionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/java/com/pharmaApp/user/infrastructure/config/KeycloakAdminConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/java/com/pharmaApp/user/infrastructure/config/SecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/adherence/target/classes/com/pharmaApp/adherence/infrastructure/adapter/input/rest/controller/AdherenceController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/adherence/target/generated-sources/annotations/com/pharmaApp/adherence/application/mapper/AdherenceMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/adherence/target/generated-sources/annotations/com/pharmaApp/adherence/application/mapper/AdherenceMapperImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/adherence/target/generated-sources/annotations/com/pharmaApp/adherence/infrastructure/adapter/output/persistence/mapper/AdherenceEntityMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/adherence/target/generated-sources/annotations/com/pharmaApp/adherence/infrastructure/adapter/output/persistence/mapper/AdherenceEntityMapperImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/target/classes/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway/target/classes/com/pharmaApp/gateway/config/SecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/target/classes/com/pharmaApp/gateway/config/SecurityConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-registry/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/service-registry/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-registry/target/classes/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/treatement/target/generated-sources/annotations/com/pharmaApp/treatement/infrastructure/mapper/TraitementMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/treatement/target/generated-sources/annotations/com/pharmaApp/treatement/infrastructure/mapper/TraitementMapperImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treatement/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/treatement/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treatement/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/treatement/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/target/classes/com/pharmaApp/user/application/service/PharmacienProfileService.class" beforeDir="false" afterPath="$PROJECT_DIR$/user/target/classes/com/pharmaApp/user/application/service/PharmacienProfileService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/target/classes/com/pharmaApp/user/domain/port/input/PharmacienProfileUseCase.class" beforeDir="false" afterPath="$PROJECT_DIR$/user/target/classes/com/pharmaApp/user/domain/port/input/PharmacienProfileUseCase.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/target/classes/com/pharmaApp/user/infrastructure/adapter/input/rest/PharmacienController.class" beforeDir="false" afterPath="$PROJECT_DIR$/user/target/classes/com/pharmaApp/user/infrastructure/adapter/input/rest/PharmacienController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/target/classes/com/pharmaApp/user/infrastructure/adapter/output/keycloak/KeycloakLoginClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/user/target/classes/com/pharmaApp/user/infrastructure/adapter/output/keycloak/KeycloakLoginClient.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/target/classes/com/pharmaApp/user/infrastructure/adapter/output/persistence/repository/PatientProfileJpaRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/user/target/classes/com/pharmaApp/user/infrastructure/adapter/output/persistence/repository/PatientProfileJpaRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/target/generated-sources/annotations/com/pharmaApp/user/application/mapper/PatientProfileMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/user/target/generated-sources/annotations/com/pharmaApp/user/application/mapper/PatientProfileMapperImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/target/generated-sources/annotations/com/pharmaApp/user/application/mapper/PharmacienProfileMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/user/target/generated-sources/annotations/com/pharmaApp/user/application/mapper/PharmacienProfileMapperImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/target/generated-sources/annotations/com/pharmaApp/user/application/mapper/ProcheMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/user/target/generated-sources/annotations/com/pharmaApp/user/application/mapper/ProcheMapperImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/target/generated-sources/annotations/com/pharmaApp/user/infrastructure/adapter/output/persistence/mapper/PatientProfileEntityMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/user/target/generated-sources/annotations/com/pharmaApp/user/infrastructure/adapter/output/persistence/mapper/PatientProfileEntityMapperImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/target/generated-sources/annotations/com/pharmaApp/user/infrastructure/adapter/output/persistence/mapper/PharmacienProfileEntityMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/user/target/generated-sources/annotations/com/pharmaApp/user/infrastructure/adapter/output/persistence/mapper/PharmacienProfileEntityMapperImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/target/generated-sources/annotations/com/pharmaApp/user/infrastructure/adapter/output/persistence/mapper/ProcheEntityMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/user/target/generated-sources/annotations/com/pharmaApp/user/infrastructure/adapter/output/persistence/mapper/ProcheEntityMapperImpl.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -64,12 +320,15 @@
     &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;Spring Boot.AdherenceServiceApplication.executor&quot;: &quot;Run&quot;,
     &quot;Spring Boot.GatewayApplication.executor&quot;: &quot;Run&quot;,
     &quot;Spring Boot.ServiceRegistryApplication.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;Spring Boot.TreatementApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.UserApplication.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;ahmed&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Ahmed/Desktop/Eclips/Microservices/adherence&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Ahmed/Desktop/Eclips/Microservices/medication/pom.xml&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -91,6 +350,17 @@
         <option value="SpringBootApplicationConfigurationType" />
       </set>
     </option>
+    <option name="hiddenConfigurations">
+      <map>
+        <entry key="SpringBootApplicationConfigurationType">
+          <value>
+            <set>
+              <option value="TreatementApplication (1)" />
+            </set>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="RunManager" selected="Spring Boot.ServiceRegistryApplication">
     <configuration name="AdherenceServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
@@ -104,6 +374,14 @@
     <configuration name="GatewayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="gateway-service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.pharmaApp.gateway.GatewayApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="NotificationApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="Notification" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.pharmaApp.Notification.NotificationApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -164,7 +442,13 @@
       <workItem from="1774893053823" duration="3709000" />
       <workItem from="1774900637046" duration="6066000" />
       <workItem from="1774914698930" duration="934000" />
-      <workItem from="1774959379662" duration="332000" />
+      <workItem from="1774959379662" duration="3932000" />
+      <workItem from="1775076476817" duration="1920000" />
+      <workItem from="1775146162324" duration="947000" />
+      <workItem from="1775205079328" duration="1783000" />
+      <workItem from="1775240008873" duration="3859000" />
+      <workItem from="1775387863949" duration="8529000" />
+      <workItem from="1775484901717" duration="8760000" />
     </task>
     <servers />
   </component>

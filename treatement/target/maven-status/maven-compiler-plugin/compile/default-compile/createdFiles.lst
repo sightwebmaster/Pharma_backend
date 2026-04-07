@@ -16,6 +16,7 @@ com\pharmaApp\treatement\infrastructure\adapter\out\client\NotificationRestClien
 com\pharmaApp\treatement\infrastructure\adapter\out\persistence\TraitementJpaAdapter.class
 com\pharmaApp\treatement\infrastructure\mapper\TraitementMapperImpl.class
 com\pharmaApp\treatement\domain\model\TraitementStatut$1.class
+com\pharmaApp\treatement\infrastructure\adapter\out\client\AdherenceClientAdapter.class
 com\pharmaApp\treatement\domain\model\PriseStatut.class
 com\pharmaApp\treatement\infrastructure\adapter\out\persistence\entity\PrisePlanifieeEntity$PriseStatutJpa.class
 com\pharmaApp\treatement\infrastructure\config\BeanConfig.class
@@ -38,6 +39,7 @@ com\pharmaApp\treatement\application\port\out\MedicationClientPort.class
 com\pharmaApp\treatement\application\port\out\AdherenceClientPort.class
 com\pharmaApp\treatement\application\dto\TraitementResponse.class
 com\pharmaApp\treatement\domain\event\PriseManqueeEvent.class
+com\pharmaApp\treatement\infrastructure\adapter\out\client\NotificationClientAdapter.class
 com\pharmaApp\treatement\application\port\in\ModifierTraitementUseCase.class
 com\pharmaApp\treatement\application\service\TraitementService.class
 com\pharmaApp\treatement\infrastructure\adapter\out\persistence\entity\PrisePlanifieeEntity$SourceConfirmationJpa.class
@@ -54,6 +56,7 @@ com\pharmaApp\treatement\application\port\out\TraitementRepositoryPort.class
 com\pharmaApp\treatement\infrastructure\adapter\out\client\MedicationRestClient.class
 com\pharmaApp\treatement\infrastructure\config\SecurityConfig.class
 com\pharmaApp\treatement\domain\exception\TransitionStatutInvalideException.class
+com\pharmaApp\treatement\infrastructure\adapter\out\client\MedicationClientAdapter.class
 com\pharmaApp\treatement\infrastructure\adapter\out\persistence\entity\OutboxEventEntity$OutboxStatus.class
 com\pharmaApp\treatement\infrastructure\adapter\out\persistence\repository\TraitementJpaRepository.class
 com\pharmaApp\treatement\application\dto\PlanifierTraitementCommand.class
