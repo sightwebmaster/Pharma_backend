@@ -20,6 +20,9 @@ public class SecurityConfig {
     @Value("${spring.security.oauth2.resourceserver.jwt.jwk-set-uri}")
     private String jwkSetUri;
 
+
+
+
     @Bean
     public ReactiveJwtDecoder reactiveJwtDecoder() {
         // Force Netty à utiliser le resolver DNS du système
@@ -47,7 +50,8 @@ public class SecurityConfig {
                                 "/actuator/info",
                                 "/realms/**",
                                 "/api/v1/auth/register",
-                                "/api/v1/auth/login"
+                                "/api/v1/auth/login",
+                                "/api/v1/treatments/**"
                         ).permitAll()
                         .anyExchange().authenticated()
                 )
@@ -56,4 +60,5 @@ public class SecurityConfig {
                 )
                 .build();
     }
+
 }

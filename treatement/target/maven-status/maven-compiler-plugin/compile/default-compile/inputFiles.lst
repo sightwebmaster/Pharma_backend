@@ -1,3 +1,4 @@
+C:\Users\Ahmed\Desktop\Eclips\Microservices\treatement\src\main\java\com\pharmaApp\treatement\infrastructure\adapter\out\persistence\entity\TraitementAuditEntity.java
 C:\Users\Ahmed\Desktop\Eclips\Microservices\treatement\src\main\java\com\pharmaApp\treatement\infrastructure\messaging\kafka\producer\TraitementKafkaProducer.java
 C:\Users\Ahmed\Desktop\Eclips\Microservices\treatement\src\main\java\com\pharmaApp\treatement\infrastructure\adapter\out\client\AdherenceRestClient.java
 C:\Users\Ahmed\Desktop\Eclips\Microservices\treatement\src\main\java\com\pharmaApp\treatement\infrastructure\adapter\out\persistence\entity\PrisePlanifieeEntity.java
@@ -12,12 +13,12 @@ C:\Users\Ahmed\Desktop\Eclips\Microservices\treatement\src\main\java\com\pharmaA
 C:\Users\Ahmed\Desktop\Eclips\Microservices\treatement\src\main\java\com\pharmaApp\treatement\application\port\in\PlanifierTraitementUseCase.java
 C:\Users\Ahmed\Desktop\Eclips\Microservices\treatement\src\main\java\com\pharmaApp\treatement\application\port\out\PriseRepositoryPort.java
 C:\Users\Ahmed\Desktop\Eclips\Microservices\treatement\src\main\java\com\pharmaApp\treatement\infrastructure\adapter\out\client\NotificationRestClient.java
-C:\Users\Ahmed\Desktop\Eclips\Microservices\treatement\src\main\java\com\pharmaApp\treatement\infrastructure\adapter\out\client\MedicationClientAdapter.java
 C:\Users\Ahmed\Desktop\Eclips\Microservices\treatement\src\main\java\com\pharmaApp\treatement\domain\model\TraitementStatut.java
 C:\Users\Ahmed\Desktop\Eclips\Microservices\treatement\src\main\java\com\pharmaApp\treatement\infrastructure\adapter\in\scheduler\PriseManqueeScheduler.java
 C:\Users\Ahmed\Desktop\Eclips\Microservices\treatement\src\main\java\com\pharmaApp\treatement\application\dto\PriseResponse.java
 C:\Users\Ahmed\Desktop\Eclips\Microservices\treatement\src\main\java\com\pharmaApp\treatement\application\port\out\AdherenceClientPort.java
 C:\Users\Ahmed\Desktop\Eclips\Microservices\treatement\src\main\java\com\pharmaApp\treatement\application\port\in\ConfirmerPriseUseCase.java
+C:\Users\Ahmed\Desktop\Eclips\Microservices\treatement\src\main\java\com\pharmaApp\treatement\infrastructure\mapper\PrisePlanifieeMapperManual.java
 C:\Users\Ahmed\Desktop\Eclips\Microservices\treatement\src\main\java\com\pharmaApp\treatement\infrastructure\adapter\out\client\AdherenceClientAdapter.java
 C:\Users\Ahmed\Desktop\Eclips\Microservices\treatement\src\main\java\com\pharmaApp\treatement\infrastructure\adapter\out\client\MedicationRestClient.java
 C:\Users\Ahmed\Desktop\Eclips\Microservices\treatement\src\main\java\com\pharmaApp\treatement\infrastructure\config\KafkaTopicConfig.java
@@ -42,9 +43,11 @@ C:\Users\Ahmed\Desktop\Eclips\Microservices\treatement\src\main\java\com\pharmaA
 C:\Users\Ahmed\Desktop\Eclips\Microservices\treatement\src\main\java\com\pharmaApp\treatement\infrastructure\adapter\out\persistence\repository\TraitementJpaRepository.java
 C:\Users\Ahmed\Desktop\Eclips\Microservices\treatement\src\main\java\com\pharmaApp\treatement\domain\event\PriseManqueeEvent.java
 C:\Users\Ahmed\Desktop\Eclips\Microservices\treatement\src\main\java\com\pharmaApp\treatement\infrastructure\adapter\out\client\NotificationClientAdapter.java
+C:\Users\Ahmed\Desktop\Eclips\Microservices\treatement\src\main\java\com\pharmaApp\treatement\infrastructure\mapper\TraitementMapperManuel.java
 C:\Users\Ahmed\Desktop\Eclips\Microservices\treatement\src\main\java\com\pharmaApp\treatement\domain\exception\TransitionStatutInvalideException.java
 C:\Users\Ahmed\Desktop\Eclips\Microservices\treatement\src\main\java\com\pharmaApp\treatement\domain\model\LigneMedicament.java
 C:\Users\Ahmed\Desktop\Eclips\Microservices\treatement\src\main\java\com\pharmaApp\treatement\infrastructure\adapter\out\persistence\TraitementJpaAdapter.java
+C:\Users\Ahmed\Desktop\Eclips\Microservices\treatement\src\main\java\com\pharmaApp\treatement\application\port\in\GetPrisesAujourdhuiUseCase.java
 C:\Users\Ahmed\Desktop\Eclips\Microservices\treatement\src\main\java\com\pharmaApp\treatement\application\dto\PlanifierTraitementCommand.java
 C:\Users\Ahmed\Desktop\Eclips\Microservices\treatement\src\main\java\com\pharmaApp\treatement\domain\model\PriseStatut.java
 C:\Users\Ahmed\Desktop\Eclips\Microservices\treatement\src\main\java\com\pharmaApp\treatement\domain\model\Traitement.java

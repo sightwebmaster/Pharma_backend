@@ -1,5 +1,10 @@
 server:
   port: 8083
+  servlet:
+    session:
+      timeout: 8h
+      cookie:
+        max-age: 8h
 
 spring:
   application:

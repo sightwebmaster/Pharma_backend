@@ -17,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * TraitementKafkaProducer — Outbox Pattern
@@ -109,26 +110,21 @@ public class TraitementKafkaProducer {
         log.debug("Outbox → {} events à publier", pending.size());
 
         for (OutboxEventEntity event : pending) {
+            String topic = resolveTopic(event.getEventType());
             try {
-                String topic = resolveTopic(event.getEventType());
-                // La clé = aggregateId → même traitement va sur la même partition
                 kafkaTemplate.send(topic, event.getAggregateId(), event.getPayload())
-                        .whenComplete((result, ex) -> {
-                            if (ex != null) {
-                                log.error("Kafka send failed eventId={} : {}", event.getId(), ex.getMessage());
-                            }
-                        });
-
+                        .get(5, TimeUnit.SECONDS);  // bloque, throw si échec
                 event.setStatus(OutboxEventEntity.OutboxStatus.PROCESSED);
                 event.setProcessedAt(LocalDateTime.now());
-
+                log.debug("Event {} publié sur {}", event.getId(), topic);
             } catch (Exception e) {
-                log.error("Erreur publication eventId={} : {}", event.getId(), e.getMessage());
                 event.setRetryCount(event.getRetryCount() + 1);
                 if (event.getRetryCount() >= 3) {
                     event.setStatus(OutboxEventEntity.OutboxStatus.FAILED);
                     event.setErrorMessage(e.getMessage());
                 }
+                log.error("Publication échouée eventId={} retry={} : {}",
+                        event.getId(), event.getRetryCount(), e.getMessage());
             }
             outboxRepository.save(event);
         }

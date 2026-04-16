@@ -1,23 +1,15 @@
 package com.pharmaApp.treatement.domain.model;
 
 import com.pharmaApp.treatement.domain.exception.AccesDeniedDomainException;
+import com.pharmaApp.treatement.domain.model.PriseStatut;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.UUID;
 
-/**
- * Entity du domaine — PrisePlanifiee (version corrigée)
- *
- * Corrections :
- *  - getId(), getTraitementId(), getLigneMedicamentId() ajoutés
- *  - getPatientUserId(), getMedicamentNom() présents
- *  - getHeurePrevue(), getHeureReelle() présents
- *  - getStatut() présent
- */
 public class PrisePlanifiee {
 
-    private final String        id;
+    private  String        id;
     private final String        traitementId;
     private final String        ligneMedicamentId;
     private final String        patientUserId;
@@ -27,18 +19,14 @@ public class PrisePlanifiee {
     private PriseStatut   statut;
     private LocalDateTime heureReelle;
 
-    public PrisePlanifiee(
+    // ✅ Constructeur PRIVÉ — utilisé uniquement par creer()
+    private PrisePlanifiee(
             String        traitementId,
             String        ligneMedicamentId,
             String        patientUserId,
             String        medicamentNom,
-            LocalDateTime heurePrevue) {
-
-        Objects.requireNonNull(traitementId,      "traitementId obligatoire");
-        Objects.requireNonNull(ligneMedicamentId, "ligneMedicamentId obligatoire");
-        Objects.requireNonNull(patientUserId,     "patientUserId obligatoire");
-        Objects.requireNonNull(heurePrevue,       "heurePrevue obligatoire");
-
+            LocalDateTime heurePrevue
+    ) {
         this.id                = UUID.randomUUID().toString();
         this.traitementId      = traitementId;
         this.ligneMedicamentId = ligneMedicamentId;
@@ -48,6 +36,70 @@ public class PrisePlanifiee {
         this.statut            = PriseStatut.PLANIFIEE;
         this.heureReelle       = null;
     }
+
+    // ✅ Static factory — seul point d'entrée public pour créer une prise
+    public static PrisePlanifiee creer(
+            String        traitementId,
+            String        ligneMedicamentId,
+            String        patientUserId,
+            String        medicamentNom,
+            LocalDateTime heurePrevue
+    ) {
+        Objects.requireNonNull(traitementId,      "traitementId obligatoire");
+        Objects.requireNonNull(ligneMedicamentId, "ligneMedicamentId obligatoire");
+        Objects.requireNonNull(patientUserId,     "patientUserId obligatoire");
+        Objects.requireNonNull(heurePrevue,       "heurePrevue obligatoire");
+
+        return new PrisePlanifiee(  // ✅ return obligatoire
+                traitementId,
+                ligneMedicamentId,
+                patientUserId,
+                medicamentNom,
+                heurePrevue
+        );
+    }
+    // ✅ Nouveau constructeur de reconstitution
+    public PrisePlanifiee(
+            String id,
+            String traitementId,
+            String ligneMedicamentId,
+            String patientUserId,
+            String medicamentNom,
+            LocalDateTime heurePrevue,
+            LocalDateTime heureReelle,
+            PriseStatut statut) {
+        this.id = id;
+        this.traitementId = traitementId;
+        this.ligneMedicamentId = ligneMedicamentId;
+        this.patientUserId = patientUserId;
+        this.medicamentNom = medicamentNom;
+        this.heurePrevue = heurePrevue;
+        this.heureReelle = heureReelle;
+        this.statut = statut;
+    }
+
+
+    public static PrisePlanifiee reconstituer(
+            String id,
+            String traitementId,
+            String ligneMedicamentId,
+            String patientUserId,
+            String medicamentNom,
+            LocalDateTime heurePrevue,
+            LocalDateTime heureReelle,
+            PriseStatut statut) {
+
+        PrisePlanifiee p = new PrisePlanifiee(
+                traitementId, ligneMedicamentId, patientUserId,
+                medicamentNom, heurePrevue);
+        p.id = id;
+        p.statut = statut;
+        p.heureReelle = heureReelle;
+        return p;
+    }
+
+    // ... actions métier confirmer(), marquerManquee() inchangées ...
+    // ... getters inchangés ...
 
     // =================================================================
     // ACTIONS MÉTIER

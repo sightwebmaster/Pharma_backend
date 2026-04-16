@@ -55,4 +55,6 @@ public class EnregistrerPriseRequest {
 
     /** Optionnel */
     private String notePatient;
+
+    private Integer  delaiMinutes;
 }

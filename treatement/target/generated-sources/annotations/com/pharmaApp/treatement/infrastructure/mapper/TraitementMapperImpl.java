@@ -6,7 +6,6 @@ import com.pharmaApp.treatement.domain.model.LigneMedicament;
 import com.pharmaApp.treatement.domain.model.PrisePlanifiee;
 import com.pharmaApp.treatement.domain.model.Traitement;
 import com.pharmaApp.treatement.infrastructure.adapter.out.persistence.entity.LigneMedicamentEntity;
-import com.pharmaApp.treatement.infrastructure.adapter.out.persistence.entity.PrisePlanifieeEntity;
 import com.pharmaApp.treatement.infrastructure.adapter.out.persistence.entity.TraitementEntity;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -18,7 +17,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2026-04-03T19:23:58+0100",
+    date = "2026-04-15T13:56:44+0100",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 17.0.18 (BellSoft)"
 )
 @Component
@@ -57,32 +56,6 @@ public class TraitementMapperImpl implements TraitementMapper {
     }
 
     @Override
-    public TraitementResponse.LigneResponse toLigneResponse(LigneMedicament ligne) {
-        if ( ligne == null ) {
-            return null;
-        }
-
-        String medicamentNom = null;
-        String principeActif = null;
-        String dosage = null;
-        int dureeJours = 0;
-        List<LocalTime> heuresPrise = null;
-
-        medicamentNom = ligne.getMedicamentNom();
-        principeActif = ligne.getPrincipeActif();
-        dosage = ligne.getDosage();
-        dureeJours = ligne.getDureeJours();
-        List<LocalTime> list = ligne.getHeuresPrise();
-        if ( list != null ) {
-            heuresPrise = new ArrayList<LocalTime>( list );
-        }
-
-        TraitementResponse.LigneResponse ligneResponse = new TraitementResponse.LigneResponse( medicamentNom, principeActif, dosage, dureeJours, heuresPrise );
-
-        return ligneResponse;
-    }
-
-    @Override
     public PriseResponse toPriseResponse(PrisePlanifiee prise) {
         if ( prise == null ) {
             return null;
@@ -90,64 +63,18 @@ public class TraitementMapperImpl implements TraitementMapper {
 
         String id = null;
         String medicamentNom = null;
-        LocalDateTime heurePrevue = null;
         LocalDateTime heureReelle = null;
 
         id = prise.getId();
         medicamentNom = prise.getMedicamentNom();
-        heurePrevue = prise.getHeurePrevue();
         heureReelle = prise.getHeureReelle();
 
         String statut = prise.getStatut().name();
+        String idLigneMedicament = null;
 
-        PriseResponse priseResponse = new PriseResponse( id, medicamentNom, heurePrevue, heureReelle, statut );
+        PriseResponse priseResponse = new PriseResponse( id, idLigneMedicament, medicamentNom, heureReelle, statut );
 
         return priseResponse;
-    }
-
-    @Override
-    public Traitement toDomain(TraitementEntity entity) {
-        if ( entity == null ) {
-            return null;
-        }
-
-        Traitement traitement = creerTraitementDepuisEntity( entity );
-
-        traitement.setVersion( entity.getVersion() );
-        traitement.setNotesPharmacien( entity.getNotesPharmacien() );
-
-        traitement.setStatut( com.pharmaApp.treatement.domain.model.TraitementStatut.valueOf(entity.getStatut().name()) );
-
-        return traitement;
-    }
-
-    @Override
-    public LigneMedicament ligneToDomain(LigneMedicamentEntity entity) {
-        if ( entity == null ) {
-            return null;
-        }
-
-        String medicamentId = null;
-        String medicamentNom = null;
-        String principeActif = null;
-        String dosage = null;
-        int dureeJours = 0;
-        String instructions = null;
-
-        medicamentId = entity.getMedicamentId();
-        medicamentNom = entity.getMedicamentNom();
-        principeActif = entity.getPrincipeActif();
-        dosage = entity.getDosage();
-        if ( entity.getDureeJours() != null ) {
-            dureeJours = entity.getDureeJours();
-        }
-        instructions = entity.getInstructions();
-
-        List<LocalTime> heuresPrise = null;
-
-        LigneMedicament ligneMedicament = new LigneMedicament( medicamentId, medicamentNom, principeActif, dosage, dureeJours, heuresPrise, instructions );
-
-        return ligneMedicament;
     }
 
     @Override
@@ -166,7 +93,6 @@ public class TraitementMapperImpl implements TraitementMapper {
         traitementEntity.setMotif( traitement.getMotif() );
         traitementEntity.setNotesPharmacien( traitement.getNotesPharmacien() );
         traitementEntity.setVersion( traitement.getVersion() );
-        traitementEntity.setPrises( prisePlanifieeListToPrisePlanifieeEntityList( traitement.getPrises() ) );
 
         traitementEntity.setStatut( com.pharmaApp.treatement.infrastructure.adapter.out.persistence.entity.TraitementEntity.TraitementStatutJpa.valueOf(traitement.getStatut().name()) );
 
@@ -181,34 +107,46 @@ public class TraitementMapperImpl implements TraitementMapper {
 
         LigneMedicamentEntity ligneMedicamentEntity = new LigneMedicamentEntity();
 
+        ligneMedicamentEntity.setId( ligne.getId() );
         ligneMedicamentEntity.setMedicamentId( ligne.getMedicamentId() );
         ligneMedicamentEntity.setMedicamentNom( ligne.getMedicamentNom() );
         ligneMedicamentEntity.setPrincipeActif( ligne.getPrincipeActif() );
         ligneMedicamentEntity.setDosage( ligne.getDosage() );
         ligneMedicamentEntity.setDureeJours( ligne.getDureeJours() );
         ligneMedicamentEntity.setInstructions( ligne.getInstructions() );
+        List<LocalTime> list = ligne.getHeuresPrise();
+        if ( list != null ) {
+            ligneMedicamentEntity.setHeuresPrise( new ArrayList<LocalTime>( list ) );
+        }
 
         ligneMedicamentEntity.setFrequenceParJour( ligne.getHeuresPrise() != null ? ligne.getHeuresPrise().size() : 0 );
 
         return ligneMedicamentEntity;
     }
 
-    @Override
-    public PrisePlanifieeEntity priseToEntity(PrisePlanifiee prise) {
-        if ( prise == null ) {
+    protected TraitementResponse.LigneResponse ligneMedicamentToLigneResponse(LigneMedicament ligneMedicament) {
+        if ( ligneMedicament == null ) {
             return null;
         }
 
-        PrisePlanifieeEntity prisePlanifieeEntity = new PrisePlanifieeEntity();
+        String medicamentNom = null;
+        String principeActif = null;
+        String dosage = null;
+        int dureeJours = 0;
+        List<LocalTime> heuresPrise = null;
 
-        prisePlanifieeEntity.setId( prise.getId() );
-        prisePlanifieeEntity.setPatientUserId( prise.getPatientUserId() );
-        prisePlanifieeEntity.setHeurePrevue( prise.getHeurePrevue() );
-        prisePlanifieeEntity.setHeureReelle( prise.getHeureReelle() );
+        medicamentNom = ligneMedicament.getMedicamentNom();
+        principeActif = ligneMedicament.getPrincipeActif();
+        dosage = ligneMedicament.getDosage();
+        dureeJours = ligneMedicament.getDureeJours();
+        List<LocalTime> list = ligneMedicament.getHeuresPrise();
+        if ( list != null ) {
+            heuresPrise = new ArrayList<LocalTime>( list );
+        }
 
-        prisePlanifieeEntity.setStatut( com.pharmaApp.treatement.infrastructure.adapter.out.persistence.entity.PrisePlanifieeEntity.PriseStatutJpa.valueOf(prise.getStatut().name()) );
+        TraitementResponse.LigneResponse ligneResponse = new TraitementResponse.LigneResponse( medicamentNom, principeActif, dosage, dureeJours, heuresPrise );
 
-        return prisePlanifieeEntity;
+        return ligneResponse;
     }
 
     protected List<TraitementResponse.LigneResponse> ligneMedicamentListToLigneResponseList(List<LigneMedicament> list) {
@@ -218,20 +156,7 @@ public class TraitementMapperImpl implements TraitementMapper {
 
         List<TraitementResponse.LigneResponse> list1 = new ArrayList<TraitementResponse.LigneResponse>( list.size() );
         for ( LigneMedicament ligneMedicament : list ) {
-            list1.add( toLigneResponse( ligneMedicament ) );
-        }
-
-        return list1;
-    }
-
-    protected List<PrisePlanifieeEntity> prisePlanifieeListToPrisePlanifieeEntityList(List<PrisePlanifiee> list) {
-        if ( list == null ) {
-            return null;
-        }
-
-        List<PrisePlanifieeEntity> list1 = new ArrayList<PrisePlanifieeEntity>( list.size() );
-        for ( PrisePlanifiee prisePlanifiee : list ) {
-            list1.add( priseToEntity( prisePlanifiee ) );
+            list1.add( ligneMedicamentToLigneResponse( ligneMedicament ) );
         }
 
         return list1;

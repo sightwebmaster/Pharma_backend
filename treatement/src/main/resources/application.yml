@@ -30,6 +30,11 @@ spring:
     locations: classpath:db/migration
     baseline-on-migrate: true
 
+
+  pharmaApp:
+    scheduler:
+      detection-interval-ms: 10000
+      tolerance-minutes: 30
   # ── Kafka ──────────────────────────────────────────────────
   kafka:
     bootstrap-servers: ${KAFKA_URL:localhost:9092}
@@ -60,6 +65,7 @@ pharmaApp:
     user-service: ${USER_SERVICE_URL:http://localhost:8083}
     adherence-service: ${ADHERENCE_SERVICE_URL:http://localhost:8086}
     notification-service: ${NOTIFICATION_SERVICE_URL:http://localhost:8087}
+    medication-service: ${MEDICATION_SERVICE_URL:http://localhost:8088}
 
 # ── Actuator ────────────────────────────────────────────────
 management:

@@ -1,3 +1,69 @@
+# =============================================================
+# PharmaCare — medication-service
+# application.yml
+# =============================================================
+
+server:
+  port: 8088
+
 spring:
   application:
-    name: medication
+    name: medication-service
+
+  datasource:
+    url: jdbc:mysql://localhost:3311/medication_db?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    username: ${DB_USERNAME:pharmacare}
+    password: ${DB_PASSWORD:secret}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+        format_sql: true
+
+  # ── Redis Cache ────────────────────────────────────────────
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+      timeout: 2000ms
+
+  cache:
+    type: redis
+    redis:
+      time-to-live: 86400000   # 24h en ms
+
+# ── Eureka ──────────────────────────────────────────────────
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_URL:http://localhost:8761/eureka}
+  instance:
+    prefer-ip-address: true
+
+# ── OpenFDA ─────────────────────────────────────────────────
+pharmaApp:
+  openfda:
+    base-url: https://api.fda.gov/drug
+    api-key: ${OPENFDA_API_KEY:}      # vide = sans clé (40 req/min)
+    enabled: ${OPENFDA_ENABLED:true}  # false = DB interne uniquement
+
+# ── Actuator ────────────────────────────────────────────────
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info, metrics
+  endpoint:
+    health:
+      show-details: always
+
+# ── Logging ─────────────────────────────────────────────────
+logging:
+  level:
+    com.pharmaApp.medication: DEBUG
+    org.springframework.cache: DEBUG

@@ -30,7 +30,9 @@ spring:
         - id: treatment-service
           uri: lb://treatment-service
           predicates:
-            - Path=/api/treatments/**, /api/traitements/**, /api/prises/**
+            - Path=/api/treatments/**, /api/traitements/**, /api/prises/**, /api/v1/treatments/**
+          filters:
+            - TokenRelay
 
         - id: adherence-service
           uri: lb://adherence-service

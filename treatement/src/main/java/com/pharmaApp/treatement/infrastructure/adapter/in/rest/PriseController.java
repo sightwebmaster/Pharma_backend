@@ -35,15 +35,16 @@ public class PriseController {
     public ResponseEntity<Void> confirmerPrise(
             @PathVariable String traitementId,
             @PathVariable String priseId,
-            Authentication auth) {
+            @RequestHeader(value = "X-User-Id", required = false) String userId) {
 
-        // L'ID du patient vient du JWT — pas du body (sécurité)
-        String patientId = auth.getName();
+        if (userId == null) {
+            return ResponseEntity.status(401).build();
+        }
 
         confirmerUseCase.confirmer(new ConfirmerPriseCommand(
                 traitementId,
                 priseId,
-                patientId
+                userId
         ));
 
         return ResponseEntity.ok().build();

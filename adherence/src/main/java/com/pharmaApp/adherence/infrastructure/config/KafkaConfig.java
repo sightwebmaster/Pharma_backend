@@ -42,28 +42,25 @@ public class KafkaConfig {
 
     // ── Consumer ──────────────────────────────────────────────
     @Bean
-    public ConsumerFactory<String, PriseStatusEvent> consumerFactory() {
+    public ConsumerFactory<String, String> consumerFactory() {
         Map<String, Object> config = new HashMap<>();
-        config.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG,          bootstrapServers);
-        config.put(ConsumerConfig.GROUP_ID_CONFIG,                   "adherence-service-group");
-        config.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG,          "earliest");
-        config.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG,     StringDeserializer.class);
-        config.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG,   JsonDeserializer.class);
-        config.put(JsonDeserializer.TRUSTED_PACKAGES,                "*");
-        config.put(JsonDeserializer.VALUE_DEFAULT_TYPE,
-                PriseStatusEvent.class.getName());
-        return new DefaultKafkaConsumerFactory<>(config,
-                new StringDeserializer(),
-                new JsonDeserializer<>(PriseStatusEvent.class, false));
+        config.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
+        config.put(ConsumerConfig.GROUP_ID_CONFIG, "adherence-service-group");
+        config.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
+        config.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
+        config.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
+        return new DefaultKafkaConsumerFactory<>(config);
     }
 
     @Bean
-    public ConcurrentKafkaListenerContainerFactory<String, PriseStatusEvent>
+    public ConcurrentKafkaListenerContainerFactory<String, String>
     kafkaListenerContainerFactory() {
-        var factory = new ConcurrentKafkaListenerContainerFactory<String, PriseStatusEvent>();
+        var factory = new ConcurrentKafkaListenerContainerFactory<String, String>();
         factory.setConsumerFactory(consumerFactory());
         return factory;
     }
+
+
 
     // ── Topics publiés par adherence-service ──────────────────
     @Bean public NewTopic topicHistorique() {

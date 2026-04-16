@@ -10,6 +10,8 @@ public interface PriseRepositoryPort {
     /** Sauvegarde l'état d'une prise (CONFIRMEE ou MANQUEE) */
     PrisePlanifiee save(PrisePlanifiee prise);
 
+    List<PrisePlanifiee> findPrisesAujourdhui(String patientUserId);
+
     /**
      * Requête du Scheduler — retourne toutes les prises PLANIFIÉES
      * dont l'heure prévue est antérieure à la deadline.

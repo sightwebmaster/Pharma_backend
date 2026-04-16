@@ -6,6 +6,7 @@ import com.pharmaApp.treatement.application.port.out.*;
 import com.pharmaApp.treatement.domain.event.*;
 import com.pharmaApp.treatement.domain.model.*;
 import com.pharmaApp.treatement.infrastructure.mapper.TraitementMapper;
+import com.pharmaApp.treatement.infrastructure.messaging.kafka.producer.TraitementKafkaProducer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * TraitementService — couche Application
@@ -35,7 +37,8 @@ public class TraitementService implements
         PlanifierTraitementUseCase,
         ConfirmerPriseUseCase,
         ModifierTraitementUseCase,
-        GetTraitementActifUseCase {
+        GetTraitementActifUseCase,
+        GetPrisesAujourdhuiUseCase {
 
     private static final Logger log = LoggerFactory.getLogger(TraitementService.class);
 
@@ -43,45 +46,50 @@ public class TraitementService implements
     private final TraitementRepositoryPort traitementRepository;
     private final PriseRepositoryPort      priseRepository;
     private final MedicationClientPort     medicationClient;
-    private final NotificationClientPort   notificationClient;
-    private final AdherenceClientPort      adherenceClient;
     private final TraitementMapper mapper;
+    private final TraitementKafkaProducer kafkaProducer;
+
+
 
     public TraitementService(
             TraitementRepositoryPort traitementRepository,
             PriseRepositoryPort      priseRepository,
             MedicationClientPort     medicationClient,
-            NotificationClientPort   notificationClient,
-            AdherenceClientPort      adherenceClient,
-            TraitementMapper         mapper) {
+
+            TraitementMapper         mapper, TraitementKafkaProducer kafkaProducer) {
 
         this.traitementRepository = traitementRepository;
         this.priseRepository      = priseRepository;
         this.medicationClient     = medicationClient;
-        this.notificationClient   = notificationClient;
-        this.adherenceClient      = adherenceClient;
         this.mapper               = mapper;
+
+        this.kafkaProducer = kafkaProducer;
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<PriseResponse> getPrisesAujourdhui(String patientUserId) {
+        List<PrisePlanifiee> prises = priseRepository
+                .findPrisesAujourdhui(patientUserId);
+
+        return prises.stream()
+                .map(mapper::toPriseResponse)
+                .collect(java.util.stream.Collectors.toList());
     }
 
     // =================================================================
     // UC1 — PlanifierTraitement
     // =================================================================
-
+    @Transactional
     @Override
     public TraitementResponse planifier(PlanifierTraitementCommand cmd) {
         log.info("Planification traitement — patient={} pharmacien={}",
                 cmd.patientUserId(), cmd.acteurId());
 
-        // ── Étape 1 : construire les LigneMedicament du domaine ──────
-        // On appelle MedicationClient pour les contre-indications (Fail-Open)
         List<LigneMedicament> lignes = construireLignesDomaine(cmd.lignes());
-
-        // ── Étape 2 : récupérer principes actifs existants (R4 externe) ──
         Set<String> principesActifsActifs =
                 traitementRepository.findPrincipesActifsActifs(cmd.patientUserId());
 
-        // ── Étape 3 : créer l'Aggregate Root — toutes les règles R1→R4 ici ──
-        // Lève AccesDeniedDomainException (R1), ConflitTraitementException (R4)
         Traitement traitement = Traitement.creer(
                 cmd.acteurId(),
                 cmd.acteurRole(),
@@ -93,38 +101,53 @@ public class TraitementService implements
                 principesActifsActifs
         );
 
-        // ── Étape 4 : persister ──────────────────────────────────────
+        // ✅ Pull events AVANT save (sinon perdus par la reconstitution mapper)
+        List<Object> events = traitement.pullDomainEvents();
+
         Traitement saved = traitementRepository.save(traitement);
 
-        // ── Étape 5 : dépiler et traiter les Domain Events ───────────
-        traiterEvents(saved.pullDomainEvents());
+        // ✅ UN SEUL appel
+        traiterEvents(events);
 
-        // ── Étape 6 : mapper vers DTO et retourner ───────────────────
         return mapper.toResponse(saved);
     }
-
     // =================================================================
     // UC2 — ConfirmerPrise
     // =================================================================
 
     @Override
-    public void confirmer(ConfirmerPriseCommand cmd) {
-        log.info("Confirmation prise={} par patient={}", cmd.priseId(), cmd.patientId());
+    @Transactional
+    public PriseResponse confirmer(ConfirmerPriseCommand cmd) {
+        log.info("Confirmation prise — priseId={} patient={}", cmd.priseId(), cmd.patientId());
 
-        // ── Charger le traitement ────────────────────────────────────
-        Traitement traitement = chargerTraitement(cmd.traitementId());
+        Traitement traitement = traitementRepository
+                .findById(cmd.traitementId())
+                .orElseThrow(() -> new NoSuchElementException(
+                        "Traitement introuvable : " + cmd.traitementId()));
 
-        // ── Déléguer au domaine — R2 vérifiée dans PrisePlanifiee ────
-        // Lève AccesDeniedDomainException si mauvais patient
         PrisePlanifiee prise = traitement.confirmerPrise(cmd.priseId(), cmd.patientId());
 
-        // ── Persister la prise mise à jour ───────────────────────────
-        priseRepository.save(prise);
+        LigneMedicament ligne = traitement.getLignes().stream()
+                .filter(l -> l.getId().equals(prise.getLigneMedicamentId()))
+                .findFirst()
+                .orElseThrow(() -> new IllegalStateException(
+                        "Ligne introuvable pour prise " + prise.getId()));
 
-        // ── Dépiler events ───────────────────────────────────────────
-        traiterEvents(traitement.pullDomainEvents());
+        List<Object> events = traitement.pullDomainEvents();
+
+        // ✅ Update ciblé, pas save() complet
+        traitementRepository.updatePriseStatut(prise);
+
+        traiterEvents(events);
+
+        return new PriseResponse(
+                prise.getId(),
+                ligne.getId(),
+                prise.getMedicamentNom(),
+                prise.getHeureReelle(),
+                prise.getStatut().name()
+        );
     }
-
     // =================================================================
     // UC3 — ModifierTraitement
     // =================================================================
@@ -187,6 +210,7 @@ public class TraitementService implements
      *
      * @param toleranceMinutes délai après lequel une prise est considérée manquée
      */
+    @Transactional
     public void detecterEtMarquerPrisesManquees(int toleranceMinutes) {
         LocalDateTime deadline = LocalDateTime.now().minusMinutes(toleranceMinutes);
 
@@ -200,20 +224,45 @@ public class TraitementService implements
 
         log.info("Scheduler — {} prise(s) en retard détectée(s)", prisesEnRetard.size());
 
-        for (PrisePlanifiee prise : prisesEnRetard) {
+        // ── Grouper par traitementId pour ne charger chaque traitement qu'UNE fois ──
+        Map<String, List<PrisePlanifiee>> prisesParTraitement = prisesEnRetard.stream()
+                .collect(Collectors.groupingBy(PrisePlanifiee::getTraitementId));
 
-            // Charger le traitement parent pour accéder à l'Aggregate Root
-            Traitement traitement = chargerTraitement(prise.getTraitementId());
+        int totalMarquees = 0;
 
-            // Déléguer au domaine
-            traitement.marquerPriseManquee(prise.getId());
+        for (Map.Entry<String, List<PrisePlanifiee>> entry : prisesParTraitement.entrySet()) {
+            String traitementId = entry.getKey();
+            List<PrisePlanifiee> prisesDeCeTraitement = entry.getValue();
 
-            // Persister
-            priseRepository.save(prise);
+            try {
+                // Charger le traitement UNE fois (avec ses prises grâce au toDomain corrigé)
+                Traitement traitement = chargerTraitement(traitementId);
 
-            // Dépiler events (PriseManqueeEvent → Adherence → alerte si taux < 70%)
-            traiterEvents(traitement.pullDomainEvents());
+                // Marquer chaque prise comme manquée
+                for (PrisePlanifiee priseEnRetard : prisesDeCeTraitement) {
+                    PrisePlanifiee priseMarquee = traitement.marquerPriseManquee(priseEnRetard.getId());
+
+                    // Update DB ciblé (même méthode que pour confirmer)
+                    traitementRepository.updatePriseStatut(priseMarquee);
+
+                    totalMarquees++;
+                    log.info("Prise marquée MANQUEE — id={} traitement={}",
+                            priseMarquee.getId(), traitementId);
+                }
+
+                // Publier tous les events PriseManqueeEvent du traitement via outbox
+                List<Object> events = traitement.pullDomainEvents();
+                traiterEvents(events);
+
+            } catch (Exception e) {
+                log.error("Erreur traitement {} — prises non marquées : {}",
+                        traitementId, e.getMessage(), e);
+                // On continue avec les autres traitements
+            }
         }
+
+        log.info("Scheduler terminé — {} prise(s) marquée(s) MANQUEE sur {} détectée(s)",
+                totalMarquees, prisesEnRetard.size());
     }
 
     // =================================================================
@@ -229,49 +278,24 @@ public class TraitementService implements
      * Pour un PFE c'est acceptable — en prod on utiliserait un outbox pattern.
      */
     private void traiterEvents(List<Object> events) {
+        log.info("traiterEvents appelé avec {} events", events.size());
         for (Object event : events) {
-            if (event instanceof TraitementCreeEvent) {
-                TraitementCreeEvent e = (TraitementCreeEvent) event;
-                log.info("Event TraitementCree — {} prises planifiées", e.nombrePrises());
-                notificationClient.planifierRappels(
-                        e.traitementId(), e.patientUserId(), e.nombrePrises()
-                );
+            if (event instanceof TraitementCreeEvent e) {
+                log.info("Outbox ← TraitementCree — {} prises", e.nombrePrises());
+                kafkaProducer.saveToOutbox(e);
             }
-            else if (event instanceof PriseConfirmeeEvent) {
-                PriseConfirmeeEvent e = (PriseConfirmeeEvent) event;
-                log.info("Event PriseConfirmee — prise={}", e.priseId());
-                int taux = adherenceClient.enregistrerEntree(
-                        e.patientUserId(), e.priseId(),
-                        e.medicamentNom(), "CONFIRMEE"
-                );
-                log.debug("Taux observance après confirmation : {}%", taux);
+            else if (event instanceof PriseConfirmeeEvent e) {
+                log.info("Outbox ← PriseConfirmee — prise={}", e.priseId());
+                kafkaProducer.saveToOutbox(e);
             }
-            else if (event instanceof PriseManqueeEvent) {
-                PriseManqueeEvent e = (PriseManqueeEvent) event;
-                log.warn("Event PriseManquee — prise={} patient={}",
-                        e.priseId(), e.patientUserId());
-
-                int taux = adherenceClient.enregistrerEntree(
-                        e.patientUserId(), e.priseId(),
-                        e.medicamentNom(), "MANQUEE"
-                );
-
-                // Si taux critique → alerter le proche
-                if (taux < 70) {
-                    log.warn("Taux observance critique {}% — alerte proche envoyée",
-                            taux);
-                    notificationClient.envoyerAlerteProcheManquee(
-                            e.patientUserId(), e.medicamentNom()
-                    );
-                }
+            else if (event instanceof PriseManqueeEvent e) {
+                log.warn("Outbox ← PriseManquee — prise={}", e.priseId());
+                kafkaProducer.saveToOutbox(e);
             }
-            else if (event instanceof TraitementModifieEvent) {
-                TraitementModifieEvent e = (TraitementModifieEvent) event;
-                log.info("Event TraitementModifie — {} → {}",
+            else if (event instanceof TraitementModifieEvent e) {
+                log.info("Outbox ← TraitementModifie — {} → {}",
                         e.ancienStatut(), e.nouveauStatut());
-                notificationClient.mettreAJourRappels(
-                        e.traitementId(), e.nouveauStatut()
-                );
+                kafkaProducer.saveToOutbox(e);
             }
             else {
                 log.warn("Event non géré : {}", event.getClass().getSimpleName());
@@ -292,11 +316,14 @@ public class TraitementService implements
      * Le traitement sera créé — c'est un choix métier délibéré.
      */
     private List<LigneMedicament> construireLignesDomaine(
-            List<PlanifierTraitementCommand.LigneCommand> lignesCmds) {
+            List<PlanifierTraitementCommand.LigneMedicament> lignesCmds) {
 
         List<LigneMedicament> lignes = new ArrayList<>();
 
-        for (PlanifierTraitementCommand.LigneCommand cmd : lignesCmds) {
+        for (PlanifierTraitementCommand.LigneMedicament cmd : lignesCmds) {
+            log.debug("Contre-indications récupérées pour {} : {}",
+                    cmd.medicamentNom(), cmd.id());
+
 
             // Tentative de récupération des contre-indications (Fail-Open)
             List<String> contreIndications;
@@ -311,7 +338,9 @@ public class TraitementService implements
                 contreIndications = Collections.emptyList();
             }
 
+
             lignes.add(new LigneMedicament(
+                    UUID.randomUUID().toString(),
                     cmd.medicamentId(),
                     cmd.medicamentNom(),
                     cmd.principeActif(),

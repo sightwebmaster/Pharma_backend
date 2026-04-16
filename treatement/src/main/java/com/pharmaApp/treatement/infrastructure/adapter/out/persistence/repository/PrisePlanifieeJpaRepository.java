@@ -36,4 +36,11 @@ public interface PrisePlanifieeJpaRepository
     List<PrisePlanifieeEntity> findByPatientUserIdAndStatut(
             String patientUserId,
             PriseStatutJpa statut);
+    List<PrisePlanifieeEntity> findByPatientUserIdAndHeurePrevueBetween(
+            String patientUserId,
+            LocalDateTime debut,
+            LocalDateTime fin
+    );
+
+
 }

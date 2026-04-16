@@ -1,5 +1,6 @@
 package com.pharmaApp.adherence.infrastructure.adapter.input.messaging;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pharmaApp.adherence.application.dto.request.EnregistrerPriseRequest;
 import com.pharmaApp.adherence.domain.event.PriseStatusEvent;
 import com.pharmaApp.adherence.domain.port.input.AdherenceUseCase;
@@ -12,6 +13,7 @@ import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
  * PriseEventConsumer — Adaptateur d'entrée Kafka
@@ -25,16 +27,21 @@ import java.time.LocalDate;
 public class PriseEventConsumer {
 
     private final AdherenceUseCase adherenceUseCase;
+    private final ObjectMapper objectMapper;  // injecté par Spring Boot
 
-    @KafkaListener(
-            topics = "prise.confirmee",
-            groupId = "adherence-service-group",
-            containerFactory = "kafkaListenerContainerFactory"
-    )
+    @KafkaListener(topics = "prise.confirmee", groupId = "adherence-service-group")
     public void onPriseConfirmee(
-            @Payload PriseStatusEvent event,
+            @Payload String rawPayload,
             @Header(KafkaHeaders.RECEIVED_TOPIC) String topic,
-            @Header(KafkaHeaders.OFFSET) long offset) {
+            @Header(KafkaHeaders.OFFSET) long offset) throws Exception {
+
+        // ✅ Désérialisation manuelle — gère le double échappement
+        String json = rawPayload;
+        // Si double-échappé (commence par guillemet), on unescape
+        if (json.startsWith("\"") && json.endsWith("\"")) {
+            json = objectMapper.readValue(json, String.class);
+        }
+        PriseStatusEvent event = objectMapper.readValue(json, PriseStatusEvent.class);
 
         log.info("Kafka ← [{}] offset={} priseId={} patient={}",
                 topic, offset, event.priseId(), event.patientUserId());
@@ -42,29 +49,27 @@ public class PriseEventConsumer {
         try {
             adherenceUseCase.enregistrerPrise(toRequest(event, "CONFIRMEE"));
         } catch (Exception e) {
-            log.error("Erreur PriseConfirmee priseId={} : {}",
-                    event.priseId(), e.getMessage(), e);
+            log.error("Erreur PriseConfirmee priseId={} : {}", event.priseId(), e.getMessage(), e);
         }
     }
 
-    @KafkaListener(
-            topics = "prise.manquee",
-            groupId = "adherence-service-group",
-            containerFactory = "kafkaListenerContainerFactory"
-    )
+    @KafkaListener(topics = "prise.manquee", groupId = "adherence-service-group")
     public void onPriseManquee(
-            @Payload PriseStatusEvent event,
-            @Header(KafkaHeaders.RECEIVED_TOPIC) String topic,
-            @Header(KafkaHeaders.OFFSET) long offset) {
+            @Payload String rawPayload,
+            @Header(KafkaHeaders.OFFSET) long offset) throws Exception {
 
-        log.warn("Kafka ← [{}] offset={} priseId={} patient={}",
-                topic, offset, event.priseId(), event.patientUserId());
+        String json = rawPayload;
+        if (json.startsWith("\"") && json.endsWith("\"")) {
+            json = objectMapper.readValue(json, String.class);
+        }
+        PriseStatusEvent event = objectMapper.readValue(json, PriseStatusEvent.class);
+
+        log.warn("Kafka ← [prise.manquee] offset={} priseId={}", offset, event.priseId());
 
         try {
             adherenceUseCase.enregistrerPrise(toRequest(event, "MANQUEE"));
         } catch (Exception e) {
-            log.error("Erreur PriseManquee priseId={} : {}",
-                    event.priseId(), e.getMessage(), e);
+            log.error("Erreur PriseManquee priseId={} : {}", event.priseId(), e.getMessage(), e);
         }
     }
 
@@ -73,9 +78,19 @@ public class PriseEventConsumer {
                 .priseMedicamentId(event.priseId())
                 .traitementId(event.traitementId())
                 .patientUserId(event.patientUserId())
+                .pharmacienUserId(event.pharmacienUserId())
                 .medicamentNom(event.medicamentNom())
+                .dosage(event.dosage())
+                .heurePrise(event.heurePrevue() != null ? event.heurePrevue().toLocalTime() : null)
+                .heureConfirmation(event.heureReelle() != null ? event.heureReelle().toLocalTime() : null)
+                .delaiMinutes(calculerDelai(event.heurePrevue(), event.heureReelle()))
+                .datePrise(event.heurePrevue() != null ? event.heurePrevue().toLocalDate() : LocalDate.now())
                 .statut(statut)
-                .datePrise(LocalDate.now())  // Déduit de now() — Kafka ne transmet pas la date
                 .build();
+    }
+
+    private Integer calculerDelai(LocalDateTime prevue, LocalDateTime reelle) {
+        if (prevue == null || reelle == null) return null;
+        return (int) java.time.Duration.between(prevue, reelle).toMinutes();
     }
 }

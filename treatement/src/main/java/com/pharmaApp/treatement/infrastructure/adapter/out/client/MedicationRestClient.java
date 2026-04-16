@@ -83,13 +83,16 @@ package com.pharmaApp.treatement.infrastructure.adapter.out.client;
 import com.pharmaApp.treatement.application.port.out.MedicationClientPort;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestTemplate;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
+
 
 /**
  * MedicationClientDev
@@ -99,32 +102,61 @@ import java.util.List;
  * Retourne des données fictives sans appeler medication-service.
  */
 @Component
-@Profile("dev")
-@Primary  // Prioritaire sur MedicationRestClient en mode dev
+@Primary
 public class MedicationRestClient implements MedicationClientPort {
 
     private static final Logger log = LoggerFactory.getLogger(MedicationRestClient.class);
+    private final RestTemplate restTemplate;
+
+    @Value("${pharmaApp.services.medication-service:http://localhost:8088}")
+    private String medicationServiceUrl;
+
+    public MedicationRestClient(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    }
 
     @Override
     public List<String> getContreIndications(String medicamentId) {
-        log.info("🧪 [DEV] Simulation contre-indications pour medicamentId: {}", medicamentId);
+        // ✅ Fail-Open — si medication-service down → liste vide
+        if (medicamentId == null || medicamentId.isBlank()) {
+            return Collections.emptyList();
+        }
 
-        // Simuler différentes réponses selon l'ID du médicament
-        switch (medicamentId) {
-            case "med001":
-            case "PARACETAMOL":
-                return Arrays.asList("Grossesse", "Insuffisance hépatique");
-
-            case "med002":
-            case "IBUPROFENE":
-                return Arrays.asList("Grossesse", "Ulcère gastrique", "Asthme");
-
-            case "med003":
-            case "AMOXICILLINE":
-                return Arrays.asList("Allergie aux pénicillines");
-
-            default:
-                return Collections.emptyList();
+        String url = medicationServiceUrl
+                + "/api/v1/medications/" + medicamentId + "/contre-indications";
+        try {
+            ContreIndicationsResponse response = restTemplate.getForObject(
+                    url, ContreIndicationsResponse.class);
+            return (response != null && response.contreIndications() != null)
+                    ? response.contreIndications()
+                    : Collections.emptyList();
+        } catch (Exception e) {
+            log.warn("medication-service indisponible pour medicamentId={} — Fail-Open. Cause: {}",
+                    medicamentId, e.getMessage());
+            return Collections.emptyList();
         }
     }
+    @Override
+    public Optional<String> getMedicamentIdByNom(String nom) {
+        if (nom == null || nom.isBlank()) return Optional.empty();
+
+        String url = medicationServiceUrl
+                + "/api/v1/medications/search?q="
+                + nom.replace(" ", "%20");
+        try {
+            MedicamentDTO[] results = restTemplate.getForObject(url, MedicamentDTO[].class);
+            if (results != null && results.length > 0) {
+                return Optional.ofNullable(results[0].id());
+            }
+            return Optional.empty();
+        } catch (Exception e) {
+            log.warn("Impossible de résoudre medicamentId pour '{}' — Fail-Open. Cause: {}",
+                    nom, e.getMessage());
+            return Optional.empty();
+        }
+    }
+
+    private record MedicamentDTO(String id, String nom, String principeActif) {}
+
+    private record ContreIndicationsResponse(List<String> contreIndications) {}
 }

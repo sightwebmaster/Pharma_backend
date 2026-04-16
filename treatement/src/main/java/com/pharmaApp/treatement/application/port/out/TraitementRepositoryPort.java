@@ -1,7 +1,11 @@
 package com.pharmaApp.treatement.application.port.out;
 
 
+import com.pharmaApp.treatement.domain.model.PrisePlanifiee;
 import com.pharmaApp.treatement.domain.model.Traitement;
+import com.pharmaApp.treatement.infrastructure.adapter.out.persistence.entity.TraitementEntity;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,8 +17,11 @@ public interface TraitementRepositoryPort {
     /** Persiste un nouveau traitement + ses prises générées */
     Traitement save(Traitement traitement);
 
+    void updatePriseStatut(PrisePlanifiee prise);
+
     /** Charge un traitement par son ID — lance NoSuchElementException si absent */
     Optional<Traitement> findById(String traitementId);
+
 
     /**
      * Retourne les principes actifs de tous les traitements ACTIFS du patient.
@@ -25,4 +32,6 @@ public interface TraitementRepositoryPort {
 
     /** Tous les traitements actifs d'un patient (pour consultation) */
     List<Traitement> findActifsByPatient(String patientUserId);
+
+
 }

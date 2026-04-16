@@ -8,8 +8,8 @@ import java.time.LocalDateTime;
  */
 public record PriseResponse(
         String        id,
+        String        idLigneMedicament,
         String        medicamentNom,
-        LocalDateTime heurePrevue,
         LocalDateTime heureReelle,
         String        statut
 ) {}

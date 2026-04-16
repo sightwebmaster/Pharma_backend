@@ -2,6 +2,8 @@ package com.pharmaApp.adherence.domain.event;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import java.time.LocalDateTime;
+
 /**
  * PriseStatusEvent — event consommé depuis treatment-service
  *
@@ -15,8 +17,12 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public record PriseStatusEvent(
         String priseId,
-        String traitementId,   // ✅ String (UUID) — pas Long
+        String traitementId,
         String patientUserId,
+        String pharmacienUserId,
         String medicamentNom,
-        String statut           // "CONFIRMEE" | "MANQUEE"
+        String dosage,
+        LocalDateTime heurePrevue,
+        LocalDateTime heureReelle,
+        LocalDateTime occurredAt
 ) {}
