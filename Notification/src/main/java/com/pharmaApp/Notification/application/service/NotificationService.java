@@ -1,9 +1,20 @@
 package com.pharmaApp.Notification.application.service;
 
 import com.pharmaApp.Notification.application.dto.FcmResult;
+import com.pharmaApp.Notification.application.dto.ProcheResponse;
 import com.pharmaApp.Notification.application.port.out.FcmClientPort;
-import com.pharmaApp.Notification.infrastructure.adapter.output.persistence.entity.*;
-import com.pharmaApp.Notification.infrastructure.adapter.output.persistence.repository.*;
+import com.pharmaApp.Notification.infrastructure.adapter.output.client.UserServiceClient;
+import com.pharmaApp.Notification.infrastructure.adapter.output.persistence.entity.NotificationEnvoyeeEntity;
+import com.pharmaApp.Notification.infrastructure.adapter.output.persistence.entity.RappelEntity;
+import com.pharmaApp.Notification.infrastructure.adapter.output.persistence.entity.TokenFcmEntity;
+import com.pharmaApp.Notification.infrastructure.adapter.output.persistence.repository.NotificationEnvoyeeJpaRepository;
+import com.pharmaApp.Notification.infrastructure.adapter.output.persistence.repository.RappelJpaRepository;
+import com.pharmaApp.Notification.infrastructure.adapter.output.persistence.repository.TokenFcmJpaRepository;
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
@@ -11,34 +22,17 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.UUID;
-
-/**
- * NotificationService — Phase 2
- * - Planification rappels (Kafka → TraitementCreeConsumer)
- * - Scheduler envoi FCM (toutes les minutes)
- * - Alerte proche (Kafka → PriseManqueeConsumer)
- * - Enregistrement token FCM (REST)
- * - Historique notifications (REST)
- */
 @Slf4j
 @Service
 @RequiredArgsConstructor
 @Transactional
 public class NotificationService {
 
-    private final RappelJpaRepository             rappelRepository;
-    private final TokenFcmJpaRepository           tokenFcmRepository;
+    private final RappelJpaRepository rappelRepository;
+    private final TokenFcmJpaRepository tokenFcmRepository;
     private final NotificationEnvoyeeJpaRepository historiqueRepository;
-    private final FcmClientPort                   fcmClient;
-
-    // =================================================================
-    // UC1 — Planifier rappels (depuis TraitementCreeConsumer)
-    // =================================================================
+    private final FcmClientPort fcmClient;
+    private final UserServiceClient userServiceClient;
 
     public void planifierRappels(
             String traitementId,
@@ -46,14 +40,13 @@ public class NotificationService {
             List<Map<String, Object>> prises) {
 
         if (prises == null || prises.isEmpty()) {
-            log.warn("planifierRappels — aucune prise pour traitementId={}", traitementId);
+            log.warn("planifierRappels - aucune prise pour traitementId={}", traitementId);
             return;
         }
 
-        // Idempotence
         long existants = rappelRepository.countByTraitementId(traitementId);
         if (existants > 0) {
-            log.info("Rappels déjà planifiés pour traitementId={} ({}) — ignoré",
+            log.info("Rappels deja planifies pour traitementId={} ({}) - ignore",
                     traitementId, existants);
             return;
         }
@@ -64,31 +57,26 @@ public class NotificationService {
                 String medicamentNom = (String) prise.get("medicamentNom");
                 String heureEnvoiStr = (String) prise.get("heureEnvoi");
 
-                LocalDateTime heureEnvoi = parseDateTime(heureEnvoiStr);
-
                 RappelEntity rappel = new RappelEntity();
                 rappel.setId(UUID.randomUUID().toString());
                 rappel.setTraitementId(traitementId);
                 rappel.setPatientUserId(patientUserId);
-                rappel.setMedicamentNom(medicamentNom != null ? medicamentNom : "Médicament");
-                rappel.setHeureEnvoi(heureEnvoi);
+                rappel.setMedicamentNom(medicamentNom != null ? medicamentNom : "Medicament");
+                LocalDateTime reference = parseDateTime(heureEnvoiStr);
+                rappel.setHeureEnvoi(reference);
+                rappel.setHeureReference(reference);
                 rappel.setStatut("PLANIFIE");
                 rappel.setNbTentatives(0);
 
                 rappelRepository.save(rappel);
                 count++;
-
             } catch (Exception e) {
-                log.error("Erreur création rappel : {}", e.getMessage());
+                log.error("Erreur creation rappel : {}", e.getMessage());
             }
         }
 
-        log.info("planifierRappels — {} rappels créés pour traitementId={}", count, traitementId);
+        log.info("planifierRappels - {} rappel(s) crees pour traitementId={}", count, traitementId);
     }
-
-    // =================================================================
-    // UC2 — Scheduler envoi FCM (toutes les 60 secondes)
-    // =================================================================
 
     @Scheduled(fixedRate = 60000)
     @Transactional
@@ -97,9 +85,11 @@ public class NotificationService {
         List<RappelEntity> dus = rappelRepository
                 .findByStatutAndHeureEnvoiLessThanEqual("PLANIFIE", maintenant);
 
-        if (dus.isEmpty()) return;
+        if (dus.isEmpty()) {
+            return;
+        }
 
-        log.info("Scheduler — {} rappel(s) dû(s) à envoyer", dus.size());
+        log.info("Scheduler - {} rappel(s) dus a envoyer", dus.size());
 
         for (RappelEntity rappel : dus) {
             try {
@@ -111,72 +101,143 @@ public class NotificationService {
     }
 
     private void envoyerRappelFcm(RappelEntity rappel) {
+        LocalDateTime maintenant = LocalDateTime.now();
+        if (maintenant.isAfter(rappel.getHeureReference().plusMinutes(30))) {
+            rappel.setStatut("EXPIRE");
+            rappelRepository.save(rappel);
+            log.info("Rappel expire sans confirmation id={} patient={}",
+                    rappel.getId(), rappel.getPatientUserId());
+            return;
+        }
+
         Optional<TokenFcmEntity> tokenOpt =
-                tokenFcmRepository.findByUserIdAndActifTrue(rappel.getPatientUserId());
+                tokenFcmRepository.findFirstByUserIdAndActifTrueOrderByUpdatedAtDesc(
+                        rappel.getPatientUserId());
 
         if (tokenOpt.isEmpty()) {
-            log.warn("Token FCM introuvable pour patient={} — rappel id={} marqué ECHEC",
+            log.warn("Token FCM introuvable pour patient={} - rappel id={} marque ECHEC",
                     rappel.getPatientUserId(), rappel.getId());
             rappel.setStatut("ECHEC");
             rappelRepository.save(rappel);
             return;
         }
 
-        String token  = tokenOpt.get().getDeviceToken();
-        String titre  = "Rappel médicament";
-        String corps  = "Il est l'heure de prendre votre " + rappel.getMedicamentNom();
+        String titre = "Rappel medicament";
+        String corps = "Il est l'heure de prendre votre " + rappel.getMedicamentNom();
 
-        FcmResult result = fcmClient.envoyer(token, titre, corps);
+        FcmResult result = fcmClient.envoyer(tokenOpt.get().getDeviceToken(), titre, corps);
 
         if (result.success()) {
-            rappel.setStatut("ENVOYE");
             persisterHistorique(rappel.getPatientUserId(), "RAPPEL_PRISE",
                     titre, corps, "ENVOYE", result.messageId());
+            rappel.setNbTentatives(rappel.getNbTentatives() + 1);
+            LocalDateTime prochaineTentative = maintenant.plusMinutes(1);
+            if (prochaineTentative.isAfter(rappel.getHeureReference().plusMinutes(30))) {
+                rappel.setStatut("TERMINE");
+            } else {
+                rappel.setHeureEnvoi(prochaineTentative);
+                rappel.setStatut("PLANIFIE");
+            }
         } else {
             rappel.setNbTentatives(rappel.getNbTentatives() + 1);
             if (rappel.getNbTentatives() >= 3) {
                 rappel.setStatut("ECHEC");
-                log.error("Rappel id={} — 3 tentatives échouées", rappel.getId());
+                log.error("Rappel id={} - 3 tentatives echouees", rappel.getId());
+            } else {
+                rappel.setHeureEnvoi(maintenant.plusMinutes(1));
             }
-            // Sinon reste PLANIFIE → retry au prochain cycle
         }
 
         rappelRepository.save(rappel);
     }
 
-    // =================================================================
-    // UC3 — Annuler rappel quand prise confirmée
-    // =================================================================
-
-    public void annulerRappelPrise(String priseId) {
-        // La prise confirmée annule le rappel correspondant
-        // On identifie par patientUserId + heure proche — simplification Phase 2
-        log.info("annulerRappelPrise — priseId={}", priseId);
-        // TODO : stocker priseId dans RappelEntity pour annulation précise
+    public void annulerRappelPrise(
+            String patientUserId,
+            String medicamentNom,
+            LocalDateTime heurePrevue) {
+        LocalDateTime windowStart = heurePrevue.minusMinutes(1);
+        LocalDateTime windowEnd = heurePrevue.plusMinutes(30);
+        int updated = rappelRepository.annulerPriseActive(
+                patientUserId,
+                medicamentNom,
+                windowStart,
+                windowEnd);
+        log.info("annulerRappelPrise - patient={} medicament={} heure={} updated={}",
+                patientUserId, medicamentNom, heurePrevue, updated);
     }
-
-    // =================================================================
-    // UC4 — Alerte proche (depuis PriseManqueeConsumer)
-    // =================================================================
 
     public void alerterProcheManquee(
             String patientUserId,
             String medicamentNom,
-            String priseId) {
+            String priseId,
+            LocalDateTime heurePrevue) {
 
-        log.warn("alerterProcheManquee — patient={} medicament={}", patientUserId, medicamentNom);
+        log.warn("alerterProcheManquee - patient={} medicament={} priseId={}",
+                patientUserId, medicamentNom, priseId);
 
-        // TODO : récupérer procheUserId depuis user-service via Feign (Phase 3)
-        // Pour l'instant on logue uniquement
-        log.info("Alerte proche — FCM non envoyé (procheUserId non disponible sans Feign)");
+        annulerRappelPrise(patientUserId, medicamentNom, heurePrevue);
+
+        List<ProcheResponse> followers = userServiceClient.getFollowers(patientUserId);
+        if (followers.isEmpty()) {
+            log.info("Aucun proche suiveur a alerter pour patient={}", patientUserId);
+            return;
+        }
+
+        String titre = "Alerte prise manquee";
+        String corps = "Une prise de " + medicamentNom
+                + " n'a pas ete confirmee depuis plus de 30 minutes.";
+
+        for (ProcheResponse follower : followers) {
+            String followerUserId = follower.getPatientUserId();
+            if (followerUserId == null || followerUserId.isBlank()) {
+                continue;
+            }
+
+            Optional<TokenFcmEntity> tokenOpt =
+                    tokenFcmRepository.findFirstByUserIdAndActifTrueOrderByUpdatedAtDesc(
+                            followerUserId);
+
+            if (tokenOpt.isEmpty()) {
+                log.warn("Token FCM introuvable pour le proche suiveur={} du patient={}",
+                        followerUserId, patientUserId);
+                persisterHistorique(followerUserId, "ALERTE_PROCHE",
+                        titre, corps, "ECHEC", null);
+                continue;
+            }
+
+            FcmResult result = fcmClient.envoyer(tokenOpt.get().getDeviceToken(), titre, corps);
+            if (result.success()) {
+                persisterHistorique(followerUserId, "ALERTE_PROCHE",
+                        titre, corps, "ENVOYE", result.messageId());
+                log.info("Alerte proche envoyee a follower={} pour patient={}",
+                        followerUserId, patientUserId);
+            } else {
+                persisterHistorique(followerUserId, "ALERTE_PROCHE",
+                        titre, corps, "ECHEC", null);
+                log.error("Echec envoi alerte proche a follower={} pour patient={}",
+                        followerUserId, patientUserId);
+            }
+        }
     }
 
-    // =================================================================
-    // UC5 — Enregistrer token FCM (depuis NotificationController)
-    // =================================================================
-
     public void enregistrerToken(String userId, String deviceToken, String plateforme) {
-        // Upsert : si token existe → update, sinon insert
+        if (deviceToken == null || deviceToken.isBlank()) {
+            log.warn("Token FCM vide ignore pour userId={}", userId);
+            return;
+        }
+
+        List<TokenFcmEntity> activeDeviceAssignments =
+                tokenFcmRepository.findAllByDeviceTokenAndActifTrue(deviceToken);
+        for (TokenFcmEntity assignment : activeDeviceAssignments) {
+            if (!userId.equals(assignment.getUserId())) {
+                assignment.setActif(false);
+                assignment.setUpdatedAt(LocalDateTime.now());
+                tokenFcmRepository.save(assignment);
+                log.info("Token FCM transfere deviceToken={} ancienUserId={} nouveauUserId={}",
+                        abbreviateToken(deviceToken), assignment.getUserId(), userId);
+            }
+        }
+
         Optional<TokenFcmEntity> existing =
                 tokenFcmRepository.findByUserIdAndDeviceToken(userId, deviceToken);
 
@@ -186,12 +247,12 @@ public class NotificationService {
             token.setActif(true);
             token.setUpdatedAt(LocalDateTime.now());
         } else {
-            // Désactive les anciens tokens de cet utilisateur
-            tokenFcmRepository.findByUserIdAndActifTrue(userId)
-                    .ifPresent(old -> {
-                        old.setActif(false);
-                        tokenFcmRepository.save(old);
-                    });
+            List<TokenFcmEntity> activeTokens =
+                    tokenFcmRepository.findAllByUserIdAndActifTrue(userId);
+            for (TokenFcmEntity old : activeTokens) {
+                old.setActif(false);
+                tokenFcmRepository.save(old);
+            }
 
             token = new TokenFcmEntity();
             token.setId(UUID.randomUUID().toString());
@@ -202,12 +263,8 @@ public class NotificationService {
         }
 
         tokenFcmRepository.save(token);
-        log.info("Token FCM enregistré pour userId={}", userId);
+        log.info("Token FCM enregistre pour userId={}", userId);
     }
-
-    // =================================================================
-    // UC6 — Historique notifications (depuis NotificationController)
-    // =================================================================
 
     @Transactional(readOnly = true)
     public List<NotificationEnvoyeeEntity> getHistorique(String userId) {
@@ -215,13 +272,13 @@ public class NotificationService {
                 userId, PageRequest.of(0, 50));
     }
 
-    // =================================================================
-    // UTILITAIRES
-    // =================================================================
-
-    private void persisterHistorique(String userId, String type,
-                                     String titre, String corps,
-                                     String statut, String fcmMessageId) {
+    private void persisterHistorique(
+            String userId,
+            String type,
+            String titre,
+            String corps,
+            String statut,
+            String fcmMessageId) {
         NotificationEnvoyeeEntity notif = new NotificationEnvoyeeEntity();
         notif.setId(UUID.randomUUID().toString());
         notif.setUserId(userId);
@@ -235,11 +292,20 @@ public class NotificationService {
     }
 
     private LocalDateTime parseDateTime(String str) {
-        if (str == null) return LocalDateTime.now().plusHours(1);
+        if (str == null) {
+            return LocalDateTime.now().plusHours(1);
+        }
         try {
             return LocalDateTime.parse(str.length() > 19 ? str.substring(0, 19) : str);
         } catch (Exception e) {
             return LocalDateTime.now().plusHours(1);
         }
+    }
+
+    private String abbreviateToken(String deviceToken) {
+        if (deviceToken == null || deviceToken.length() <= 16) {
+            return deviceToken;
+        }
+        return deviceToken.substring(0, 16) + "...";
     }
 }

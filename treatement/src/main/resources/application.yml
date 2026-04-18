@@ -31,10 +31,6 @@ spring:
     baseline-on-migrate: true
 
 
-  pharmaApp:
-    scheduler:
-      detection-interval-ms: 10000
-      tolerance-minutes: 30
   # ── Kafka ──────────────────────────────────────────────────
   kafka:
     bootstrap-servers: ${KAFKA_URL:localhost:9092}
@@ -66,6 +62,9 @@ eureka:
 
 # ── URLs des autres services (Feign fallback) ────────────────
 pharmaApp:
+  scheduler:
+    detection-interval-ms: 10000
+    tolerance-minutes: 30
   services:
     user-service: ${USER_SERVICE_URL:http://localhost:8083}
     adherence-service: ${ADHERENCE_SERVICE_URL:http://localhost:8086}

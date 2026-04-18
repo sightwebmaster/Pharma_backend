@@ -12,6 +12,7 @@ import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
 import java.util.Map;
 
 /**
@@ -37,10 +38,26 @@ public class PriseConfirmeeConsumer {
         log.info("Kafka ← [{}] offset={}", topic, offset);
 
         try {
-            String priseId = (String) payload.get("priseId");
-            notificationService.annulerRappelPrise(priseId);
+            String patientUserId = (String) payload.get("patientUserId");
+            String medicamentNom = (String) payload.get("medicamentNom");
+            LocalDateTime heurePrevue = parseDateTime(payload.get("heurePrevue"));
+            notificationService.annulerRappelPrise(
+                    patientUserId,
+                    medicamentNom,
+                    heurePrevue);
         } catch (Exception e) {
             log.error("Erreur PriseConfirmeeConsumer : {}", e.getMessage(), e);
         }
+    }
+
+    private LocalDateTime parseDateTime(Object value) {
+        if (value == null) {
+            return LocalDateTime.now();
+        }
+        String str = value.toString();
+        if (str.length() > 19) {
+            str = str.substring(0, 19);
+        }
+        return LocalDateTime.parse(str);
     }
 }

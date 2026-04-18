@@ -36,6 +36,9 @@ public class RappelEntity {
     @Column(name = "heure_envoi", nullable = false)
     private LocalDateTime heureEnvoi;
 
+    @Column(name = "heure_reference", nullable = false)
+    private LocalDateTime heureReference;
+
     @Column(name = "statut", length = 20, nullable = false)
     private String statut = "PLANIFIE";
 

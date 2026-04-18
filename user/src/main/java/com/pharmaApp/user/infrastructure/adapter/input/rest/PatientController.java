@@ -126,6 +126,17 @@ public class PatientController {
         return ResponseEntity.ok(patientProfileUseCase.getProches(userId));
     }
 
+    @GetMapping("/{userId}/followers")
+    public ResponseEntity<List<ProcheResponse>> getFollowers(
+            @PathVariable String userId,
+            @RequestHeader(value = "X-Internal-Token", required = false) String providedToken) {
+
+        if (providedToken == null || !providedToken.equals(internalApiToken)) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+        }
+        return ResponseEntity.ok(patientProfileUseCase.getFollowers(userId));
+    }
+
     @GetMapping("/{userId}/proches/{procheId}/profil")
     public ResponseEntity<PatientProfileResponse> getProcheProfile(
             @PathVariable String userId,

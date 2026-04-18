@@ -14,6 +14,7 @@ public interface PatientProfileUseCase {
     ProcheResponse addProcheByEmail(String userId, AddProcheByEmailRequest request);   // ✅
     ProcheResponse addProcheByQrCode(String userId, AddProcheByQrCodeRequest request); // ✅
     List<ProcheResponse> getProches(String userId);
+    List<ProcheResponse> getFollowers(String userId);
     void deleteProche(String userId, String procheId);
     PatientProfileResponse getProcheProfile(String userId, String procheId);           // ✅
 }

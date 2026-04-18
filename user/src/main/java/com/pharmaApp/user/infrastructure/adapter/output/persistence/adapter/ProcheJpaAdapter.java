@@ -35,6 +35,11 @@ public class ProcheJpaAdapter implements ProcheRepositoryPort {
     }
 
     @Override
+    public List<Proche> findAllByProcheUserId(String procheUserId) {
+        return mapper.toDomainList(repo.findByProcheUserId(procheUserId));
+    }
+
+    @Override
     public boolean existsByIdAndPatientUserId(String id, String patientUserId) {
         return repo.existsByIdAndPatientUserId(id, patientUserId);
     }

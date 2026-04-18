@@ -7,7 +7,7 @@ package com.pharmaApp.Notification.infrastructure.adapter.output.fcm;
 import com.pharmaApp.Notification.application.dto.FcmResult;
 import com.pharmaApp.Notification.application.port.out.FcmClientPort;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.annotation.Profile;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;
@@ -19,7 +19,7 @@ import java.util.UUID;
  */
 @Slf4j
 @Component
-@Profile({"default", "dev", "test"})
+@ConditionalOnProperty(value = "pharmaApp.fcm.enabled", havingValue = "false")
 public class MockFcmClientAdapter implements FcmClientPort {
 
     @Override

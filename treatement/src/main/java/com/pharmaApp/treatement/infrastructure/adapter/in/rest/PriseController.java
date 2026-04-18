@@ -1,6 +1,7 @@
 package com.pharmaApp.treatement.infrastructure.adapter.in.rest;
 
 import com.pharmaApp.treatement.application.dto.ConfirmerPriseCommand;
+import com.pharmaApp.treatement.application.dto.PriseResponse;
 import com.pharmaApp.treatement.application.port.in.ConfirmerPriseUseCase;
 import com.pharmaApp.treatement.domain.exception.AccesDeniedDomainException;
 import org.springframework.http.HttpStatus;
@@ -32,7 +33,7 @@ public class PriseController {
     // ================================================================
 
     @PostMapping("/{traitementId}/prises/{priseId}/confirm")
-    public ResponseEntity<Void> confirmerPrise(
+    public ResponseEntity<PriseResponse> confirmerPrise(
             @PathVariable String traitementId,
             @PathVariable String priseId,
             @RequestHeader(value = "X-User-Id", required = false) String userId) {
@@ -41,13 +42,13 @@ public class PriseController {
             return ResponseEntity.status(401).build();
         }
 
-        confirmerUseCase.confirmer(new ConfirmerPriseCommand(
+        PriseResponse response = confirmerUseCase.confirmer(new ConfirmerPriseCommand(
                 traitementId,
                 priseId,
                 userId
         ));
 
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(response);
     }
 
     @ExceptionHandler(AccesDeniedDomainException.class)

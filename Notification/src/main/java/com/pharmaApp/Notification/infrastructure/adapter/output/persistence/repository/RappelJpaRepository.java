@@ -23,6 +23,21 @@ public interface RappelJpaRepository extends JpaRepository<RappelEntity, String>
             String statut, LocalDateTime deadline);
 
     @Modifying
+    @Query("""
+            UPDATE RappelEntity r
+               SET r.statut = 'ANNULE'
+             WHERE r.patientUserId = :patientUserId
+               AND r.medicamentNom = :medicamentNom
+               AND r.heureReference BETWEEN :windowStart AND :windowEnd
+               AND r.statut = 'PLANIFIE'
+            """)
+    int annulerPriseActive(
+            @Param("patientUserId") String patientUserId,
+            @Param("medicamentNom") String medicamentNom,
+            @Param("windowStart") LocalDateTime windowStart,
+            @Param("windowEnd") LocalDateTime windowEnd);
+
+    @Modifying
     @Query("UPDATE RappelEntity r SET r.statut = 'ANNULE' " +
             "WHERE r.traitementId = :traitementId AND r.statut = 'PLANIFIE'")
     int annulerParTraitement(@Param("traitementId") String traitementId);

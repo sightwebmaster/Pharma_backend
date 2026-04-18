@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2026-04-18T03:56:28+0100",
+    date = "2026-04-18T18:41:29+0100",
     comments = "version: 1.6.3, compiler: javac, environment: Java 17.0.17 (Eclipse Adoptium)"
 )
 @Component
@@ -73,7 +73,7 @@ public class AdherenceEntityMapperImpl implements AdherenceEntityMapper {
         historiqueEntry.delaiMinutes( entity.getDelaiMinutes() );
         historiqueEntry.notePatient( entity.getNotePatient() );
 
-        historiqueEntry.statut( com.pharmaApp.adherence.domain.model.StatutPrise.valueOf(entity.getStatut()) );
+        historiqueEntry.statut( normalizeStatut(entity.getStatut()) );
 
         return historiqueEntry.build();
     }

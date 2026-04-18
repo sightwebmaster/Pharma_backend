@@ -8,12 +8,17 @@ import com.pharmaApp.Notification.infrastructure.adapter.output.persistence.enti
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
 public interface TokenFcmJpaRepository extends JpaRepository<TokenFcmEntity, String> {
 
-    Optional<TokenFcmEntity> findByUserIdAndActifTrue(String userId);
+    Optional<TokenFcmEntity> findFirstByUserIdAndActifTrueOrderByUpdatedAtDesc(String userId);
+
+    List<TokenFcmEntity> findAllByUserIdAndActifTrue(String userId);
+
+    List<TokenFcmEntity> findAllByDeviceTokenAndActifTrue(String deviceToken);
 
     Optional<TokenFcmEntity> findByUserIdAndDeviceToken(String userId, String deviceToken);
 }

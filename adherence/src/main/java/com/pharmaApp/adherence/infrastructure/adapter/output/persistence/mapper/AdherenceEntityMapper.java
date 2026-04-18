@@ -17,7 +17,7 @@ public interface AdherenceEntityMapper {
     List<AdherenceRecord> toDomainList(List<AdherenceRecordEntity> entities);
 
     @Mapping(target = "adherenceRecordId", source = "adherenceRecord.id")
-    @Mapping(target = "statut",            expression = "java(com.pharmaApp.adherence.domain.model.StatutPrise.valueOf(entity.getStatut()))")
+    @Mapping(target = "statut",            expression = "java(normalizeStatut(entity.getStatut()))")
     HistoriqueEntry toDomain(HistoriqueEntryEntity entity);
 
     // ── Domain → Entity ────────────────────────────────────────
@@ -30,4 +30,16 @@ public interface AdherenceEntityMapper {
     HistoriqueEntryEntity toEntity(HistoriqueEntry domain);
 
     List<HistoriqueEntryEntity> toEntityList(List<HistoriqueEntry> domains);
+
+    default StatutPrise normalizeStatut(String rawStatut) {
+        if (rawStatut == null || rawStatut.isBlank()) {
+            return StatutPrise.MANQUE;
+        }
+
+        return switch (rawStatut.trim().toUpperCase()) {
+            case "CONFIRME", "CONFIRMEE" -> StatutPrise.CONFIRME;
+            case "MANQUE", "MANQUEE" -> StatutPrise.MANQUE;
+            default -> StatutPrise.valueOf(rawStatut.trim().toUpperCase());
+        };
+    }
 }

@@ -8,6 +8,7 @@ public interface ProcheJpaRepository
         extends JpaRepository<ProcheEntity, String> {
 
     List<ProcheEntity> findByPatientUserId(String patientUserId);
+    List<ProcheEntity> findByProcheUserId(String procheUserId);
     boolean existsByIdAndPatientUserId(String id, String patientUserId);
     boolean existsByPatientUserIdAndProcheUserId(String patientUserId, String procheUserId); // ✅
 }

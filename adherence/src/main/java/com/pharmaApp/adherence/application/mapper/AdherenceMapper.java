@@ -37,7 +37,7 @@ public interface AdherenceMapper {
     default int countByStatut(AdherenceRecord record, StatutPrise statut) {
         if (record.getEntries() == null) return 0;
         return (int) record.getEntries().stream()
-                .filter(e -> e.getStatut() == statut)
+                .filter(e -> e.getStatut() != null && e.getStatut() == statut)
                 .count();
     }
 

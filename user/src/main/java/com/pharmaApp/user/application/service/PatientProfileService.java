@@ -204,6 +204,22 @@ public class PatientProfileService implements PatientProfileUseCase {
     }
 
     @Override
+    public List<ProcheResponse> getFollowers(String userId) {
+        if (!patientProfileRepository.existsByUserId(userId)) {
+            throw new ProfileNotFoundException("Patient introuvable : " + userId);
+        }
+        return procheRepository.findAllByProcheUserId(userId)
+                .stream()
+                .map(proche -> {
+                    PatientProfile followerProfile = patientProfileRepository
+                            .findByUserId(proche.getPatientUserId())
+                            .orElse(null);
+                    return buildProcheResponse(proche, followerProfile);
+                })
+                .toList();
+    }
+
+    @Override
     public PatientProfileResponse getProcheProfile(String userId, String procheId) {
         Proche proche = procheRepository.findById(procheId)
                 .orElseThrow(() -> new ProfileNotFoundException("Proche introuvable"));

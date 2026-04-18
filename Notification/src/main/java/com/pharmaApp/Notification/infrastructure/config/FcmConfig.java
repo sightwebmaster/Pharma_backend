@@ -8,8 +8,8 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
 import org.springframework.core.io.ResourceLoader;
 
 import jakarta.annotation.PostConstruct;
@@ -22,7 +22,7 @@ import java.io.InputStream;
  */
 @Slf4j
 @Configuration
-@Profile("prod")
+@ConditionalOnProperty(value = "pharmaApp.fcm.enabled", havingValue = "true", matchIfMissing = true)
 public class FcmConfig {
 
     @Value("${pharmaApp.fcm.service-account-path}")
