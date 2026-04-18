@@ -8,6 +8,102 @@ version: '3.8'
 
 services:
 
+  recommendation-mongo:
+    image: mongo:7
+    container_name: recommendation-mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - recommendation_mongo_data:/data/db
+    networks:
+      - pharma-net
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 15s
+      timeout: 10s
+      retries: 10
+      start_period: 20s
+
+  recommendation-service:
+    build:
+      context: ./recommendation
+    container_name: recommendation-service
+    ports:
+      - "8095:8095"
+    environment:
+      MONGODB_URI: mongodb://recommendation-mongo:27017
+      MONGODB_DB: pharmacare_reco
+      USER_SERVICE_URL: http://host.docker.internal:8083
+      MEDICATION_SERVICE_URL: http://host.docker.internal:8088
+      INTERNAL_API_TOKEN: local-recommendation-token
+      RECOMMENDATION_BASE_MODEL: distilbert-base-multilingual-cased
+      VECTOR_STORE_DIR: /app/data/vector_store
+    depends_on:
+      recommendation-mongo:
+        condition: service_healthy
+    networks:
+      - pharma-net
+
+  medication-db:
+    image: mysql:8.0
+    container_name: medication-db
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: medication_db
+      MYSQL_USER: pharmacare
+      MYSQL_PASSWORD: secret
+    ports:
+      - "3311:3306"
+    volumes:
+      - medication_db_data:/var/lib/mysql
+    networks:
+      - pharma-net
+
+
+  notification-db:
+    image: mysql:8.0
+    container_name: notification-db
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: notification_db
+      MYSQL_USER: pharmacare
+      MYSQL_PASSWORD: secret
+    ports:
+      - "3310:3306"
+    volumes:
+      - notification-db_data:/var/lib/mysql
+    networks:
+      - pharma-net
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      interval: 15s
+      timeout: 10s
+      retries: 10
+      start_period: 60s
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+
+  adherence-db:
+    image: mysql:8.0
+    container_name: adherence-db
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: adherence_db
+      MYSQL_USER: pharmacare
+      MYSQL_PASSWORD: secret
+    ports:
+      - "3309:3306"
+    volumes:
+      - adherence_db_data:/var/lib/mysql
+    networks:
+      - pharma-net
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      interval: 15s
+      timeout: 10s
+      retries: 10
+      start_period: 60s
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+
   # ── Keycloak DB ─────────────────────────────────────────────
   keycloak-db:
     image: mysql:8.0
@@ -84,7 +180,6 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
-      start_period: 60s
 
   # ── Keycloak ─────────────────────────────────────────────────
   keycloak:
@@ -156,6 +251,10 @@ networks:
     driver: bridge
 
 volumes:
+  recommendation_mongo_data:
   keycloak_db_data:
   user_db_data:
   treatment_db_data:
+  adherence_db_data:
+  notification-db_data:
+  medication_db_data:

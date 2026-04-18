@@ -2,6 +2,7 @@ package com.pharmaApp.user.infrastructure.adapter.input.rest;
 
 import com.pharmaApp.user.application.dto.request.LoginRequest;
 import com.pharmaApp.user.application.dto.request.RegisterPatientRequest;
+import com.pharmaApp.user.application.dto.request.ChangePasswordRequest;
 import com.pharmaApp.user.application.dto.response.AuthResponse;
 import com.pharmaApp.user.application.dto.response.PatientProfileResponse;
 import com.pharmaApp.user.domain.port.input.AuthUseCase;
@@ -35,5 +36,13 @@ public class AuthController {
     public ResponseEntity<PatientProfileResponse> me(
             @RequestHeader("Authorization") String authHeader) {
         return ResponseEntity.ok(authUseCase.getMe(authHeader));
+    }
+
+    @PostMapping("/change-password")
+    public ResponseEntity<Void> changePassword(
+            @RequestHeader("X-User-Id") String userId,
+            @Valid @RequestBody ChangePasswordRequest request) {
+        authUseCase.changePassword(userId, request);
+        return ResponseEntity.noContent().build();
     }
 }

@@ -1,4 +1,4 @@
-package com.pharmacare.gateway.filter;
+package com.pharmaApp.gateway.filter;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
@@ -13,7 +13,7 @@ import java.util.UUID;
 
 @Slf4j
 @Component
-@Order(-3) // S'exécute EN PREMIER dans la chaîne
+@Order(-3) // S'exécute EN PREMIER — avant UserContext et RateLimit
 public class LoggingFilter implements GlobalFilter {
 
     @Override
@@ -23,7 +23,6 @@ public class LoggingFilter implements GlobalFilter {
         String correlationId = UUID.randomUUID().toString();
         long startTime = System.currentTimeMillis();
 
-        // Injecte X-Correlation-Id dans la requête vers les services downstream
         ServerHttpRequest mutatedRequest = exchange.getRequest()
                 .mutate()
                 .header("X-Correlation-Id", correlationId)
@@ -37,7 +36,6 @@ public class LoggingFilter implements GlobalFilter {
                 exchange.getRequest().getMethod(),
                 exchange.getRequest().getURI().getPath());
 
-        // then() s'exécute après que la réponse est revenue
         return chain.filter(mutatedExchange).then(Mono.fromRunnable(() -> {
             long duration = System.currentTimeMillis() - startTime;
             int statusCode = exchange.getResponse().getStatusCode() != null

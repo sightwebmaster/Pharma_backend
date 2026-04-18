@@ -10,15 +10,15 @@ import java.util.List;
 
 @Entity
 @Table(
-    name = "adherence_records",
-    uniqueConstraints = @UniqueConstraint(
-        name = "uk_patient_traitement",
-        columnNames = {"patient_user_id", "traitement_id"}
-    ),
-    indexes = {
-        @Index(name = "idx_patient",    columnList = "patient_user_id"),
-        @Index(name = "idx_pharmacien", columnList = "pharmacien_user_id")
-    }
+        name = "adherence_records",
+        uniqueConstraints = @UniqueConstraint(
+                name = "uk_patient_traitement",
+                columnNames = {"patient_user_id", "traitement_id"}
+        ),
+        indexes = {
+                @Index(name = "idx_patient",    columnList = "patient_user_id"),
+                @Index(name = "idx_pharmacien", columnList = "pharmacien_user_id")
+        }
 )
 @Getter
 @Setter
@@ -34,26 +34,29 @@ public class AdherenceRecordEntity {
     @Column(name = "patient_user_id", nullable = false, length = 100)
     private String patientUserId;
 
-    @Column(name = "traitement_id", nullable = false)
-    private Long traitementId;
+    @Column(name = "traitement_id", nullable = false, length = 36)
+    private String traitementId;  // ✅ String UUID
 
-    @Column(name = "pharmacien_user_id", nullable = false, length = 100)
+    @Column(name = "pharmacien_user_id", length = 100)
     private String pharmacienUserId;
 
-    // ── Taux d'observance ──────────────────────────────────────
-
+    @Builder.Default  // ✅ fix warning
     @Column(name = "taux_7j", nullable = false)
     private double taux7j = 100.0;
 
+    @Builder.Default  // ✅ fix warning
     @Column(name = "taux_30j", nullable = false)
     private double taux30j = 100.0;
 
+    @Builder.Default  // ✅ fix warning
     @Column(name = "taux_90j", nullable = false)
     private double taux90j = 100.0;
 
+    @Builder.Default  // ✅ fix warning
     @Column(name = "taux_global", nullable = false)
     private double tauxGlobal = 100.0;
 
+    @Builder.Default  // ✅ fix warning
     @Column(name = "consecutive_missed", nullable = false)
     private int consecutiveMissed = 0;
 
@@ -61,13 +64,11 @@ public class AdherenceRecordEntity {
     @Column(name = "last_calculated")
     private LocalDate lastCalculated;
 
-    // ── Relation ────────────────────────────────────────────────
-
     @OneToMany(
-        mappedBy = "adherenceRecord",
-        cascade = CascadeType.ALL,
-        orphanRemoval = true,
-        fetch = FetchType.LAZY
+            mappedBy = "adherenceRecord",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            fetch = FetchType.LAZY
     )
     @OrderBy("datePrise ASC, heurePrise ASC")
     @Builder.Default

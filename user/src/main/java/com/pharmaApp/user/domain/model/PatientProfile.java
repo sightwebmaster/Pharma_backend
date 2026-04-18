@@ -20,11 +20,13 @@ public class PatientProfile {
     private String telephone;
     private LocalDate dateNaissance;
     private String groupeSanguin;
+    private Boolean enceinte;
     private List<String> allergies;
     private List<String> maladiesChroniques;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     private String qrCode;
+    private String photoBase64;
 
 
 }

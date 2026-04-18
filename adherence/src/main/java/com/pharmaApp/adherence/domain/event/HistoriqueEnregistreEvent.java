@@ -15,8 +15,8 @@ import java.time.Instant;
 public class HistoriqueEnregistreEvent {
     private String eventId;
     private String patientUserId;
-    private Long   traitementId;
-    private Long   priseMedicamentId;
+    private String   traitementId;
+    private String   priseMedicamentId;
     private String medicamentNom;
     private String statut;   // "CONFIRME" | "MANQUE"
     private double tauxGlobal;

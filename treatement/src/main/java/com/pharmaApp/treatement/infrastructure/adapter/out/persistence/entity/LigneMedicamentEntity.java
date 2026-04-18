@@ -1,53 +1,31 @@
 package com.pharmaApp.treatement.infrastructure.adapter.out.persistence.entity;
 
-
 import jakarta.persistence.*;
 import lombok.*;
-
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-/**
- * Entité JPA — table "ligne_medicament"
- * Une ligne = un médicament prescrit dans un traitement.
- * medicament_nom est dénormalisé (snapshot) : si le catalogue change,
- * l'historique de prescription reste intact.
- */
 @Getter
 @Setter
 @Entity
-@Table(
-        name = "ligne_medicament",
-        indexes = {
-                @Index(name = "idx_ligne_traitement_id", columnList = "traitement_id")
-        }
-)
+@Table(name = "ligne_medicament")
+// ✅ Pas de @IdClass — clé simple
 public class LigneMedicamentEntity {
 
     @Id
     @Column(name = "id", length = 36, nullable = false, updatable = false)
     private String id;
 
-    /**
-     * Relation N..1 vers Traitement.
-     * FetchType.LAZY : on ne charge pas le traitement entier si on interroge
-     * uniquement les lignes.
-     */
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "traitement_id", nullable = false)
     private TraitementEntity traitement;
 
-    /**
-     * Référence vers medication-service — pas de FK inter-services
-     */
-    @Column(name = "medicament_id", length = 36, nullable = false)
+    @Column(name = "medicament_id", length = 36, nullable = true)
     private String medicamentId;
 
-    /**
-     * Snapshot du nom au moment de la prescription
-     */
     @Column(name = "medicament_nom", length = 200, nullable = false)
     private String medicamentNom;
 
@@ -66,25 +44,20 @@ public class LigneMedicamentEntity {
     @Column(name = "instructions", columnDefinition = "TEXT")
     private String instructions;
 
-    @Column(name = "created_at", nullable = false, updatable = false)
+    @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
 
-    /**
-     * Relation 1..N vers les prises planifiées générées pour cette ligne
-     */
-    @OneToMany(
-            mappedBy = "ligneMedicament",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true,
-            fetch = FetchType.LAZY
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(
+            name = "ligne_heures_prise",
+            joinColumns = @JoinColumn(name = "ligne_id")  // ✅ 1 seule FK
     )
-    private List<PrisePlanifieeEntity> prises = new ArrayList<>();
+    @Column(name = "heure_prise")
+    private List<LocalTime> heuresPrise = new ArrayList<>();
 
     @PrePersist
     protected void onCreate() {
-        if (this.id == null) {
-            this.id = UUID.randomUUID().toString();
-        }
+        if (this.id == null) this.id = UUID.randomUUID().toString();
         this.createdAt = LocalDateTime.now();
     }
 }

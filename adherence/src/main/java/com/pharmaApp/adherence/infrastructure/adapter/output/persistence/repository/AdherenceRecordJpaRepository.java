@@ -10,25 +10,25 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface AdherenceRecordJpaRepository extends JpaRepository<AdherenceRecordEntity, Long> {
+public interface AdherenceRecordJpaRepository
+        extends JpaRepository<AdherenceRecordEntity, Long> {
 
+    // ✅ String UUID
     Optional<AdherenceRecordEntity> findByPatientUserIdAndTraitementId(
-            String patientUserId, Long traitementId);
+            String patientUserId, String traitementId);
 
     List<AdherenceRecordEntity> findAllByPatientUserId(String patientUserId);
 
     List<AdherenceRecordEntity> findAllByPharmacienUserId(String pharmacienUserId);
 
-    boolean existsByPatientUserIdAndTraitementId(String patientUserId, Long traitementId);
+    // ✅ String UUID
+    boolean existsByPatientUserIdAndTraitementId(
+            String patientUserId, String traitementId);
 
-    /**
-     * Requête native pour le tableau de bord pharmacien :
-     * retourne les patients avec taux critique (< seuil).
-     */
     @Query("SELECT a FROM AdherenceRecordEntity a " +
-           "WHERE a.pharmacienUserId = :pharmacienId " +
-           "AND a.tauxGlobal < :seuil " +
-           "ORDER BY a.tauxGlobal ASC")
+            "WHERE a.pharmacienUserId = :pharmacienId " +
+            "AND a.tauxGlobal < :seuil " +
+            "ORDER BY a.tauxGlobal ASC")
     List<AdherenceRecordEntity> findCriticalPatients(
             @Param("pharmacienId") String pharmacienId,
             @Param("seuil") double seuil);

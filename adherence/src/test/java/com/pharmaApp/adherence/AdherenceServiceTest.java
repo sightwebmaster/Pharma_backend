@@ -120,8 +120,8 @@ class AdherenceServiceTest {
 
     private EnregistrerPriseRequest buildRequest(String statut) {
         return EnregistrerPriseRequest.builder()
-                .priseMedicamentId(1L)
-                .traitementId(10L)
+                .priseMedicamentId("1L")
+                .traitementId("10L")
                 .patientUserId("patient-1")
                 .pharmacienUserId("pharmacien-1")
                 .medicamentNom("Paracétamol 500mg")
@@ -150,7 +150,7 @@ class AdherenceServiceTest {
                     .statut(StatutPrise.MANQUE).build());
         }
         return AdherenceRecord.builder()
-                .patientUserId("patient-1").traitementId(10L)
+                .patientUserId("patient-1").traitementId("10L")
                 .pharmacienUserId("pharma-1").entries(entries).build();
     }
 
@@ -163,7 +163,7 @@ class AdherenceServiceTest {
                     .statut(StatutPrise.CONFIRME).build());
         }
         return AdherenceRecord.builder()
-                .patientUserId("patient-1").traitementId(10L)
+                .patientUserId("patient-1").traitementId("10L")
                 .pharmacienUserId("pharma-1").entries(entries).build();
     }
 
@@ -177,7 +177,7 @@ class AdherenceServiceTest {
                     .build());
         }
         return AdherenceRecord.builder()
-                .patientUserId("patient-1").traitementId(10L)
+                .patientUserId("patient-1").traitementId("10L")
                 .pharmacienUserId("pharma-1").entries(entries).build();
     }
 }

@@ -1,6 +1,8 @@
 package com.pharmaApp.user.infrastructure.adapter.input.rest;
 
 import com.pharmaApp.user.application.dto.request.CreatePatientByPharmacienRequest;
+import com.pharmaApp.user.application.dto.request.ScanQrCodeRequest;
+import com.pharmaApp.user.application.dto.request.UpdatePharmacienProfileRequest;
 import com.pharmaApp.user.application.dto.response.PatientProfileResponse;
 import com.pharmaApp.user.application.dto.response.PharmacienProfileResponse;
 import com.pharmaApp.user.application.dto.response.ProcheResponse;
@@ -22,101 +24,99 @@ public class PharmacienController {
 
     private final PharmacienProfileUseCase pharmacienProfileUseCase;
 
-    // ─────────────────────────────────────────────────────────────
-    // CRÉATION D'UN PATIENT PAR LE PHARMACIEN
-    // ─────────────────────────────────────────────────────────────
+    // ── Profil pharmacien ────────────────────────────────────────
 
-    /**
-     * POST /api/v1/pharmaciens/create-patient
-     * Pharmacien crée un compte patient complet
-     * (crée dans Keycloak + profil en BDD)
-     *
-     * @param request Les données du patient à créer (contient l'ID du pharmacien)
-     * @return Le profil du patient créé
-     */
+    @GetMapping("/{userId}/profile")
+    public ResponseEntity<PharmacienProfileResponse> getMyProfile(
+            @PathVariable String userId) {
+        log.info("Consultation profil pharmacien: {}", userId);
+        return ResponseEntity.ok(pharmacienProfileUseCase.getMyProfile(userId));
+    }
+
+    @PutMapping("/{userId}/profile")
+    public ResponseEntity<PharmacienProfileResponse> updateMyProfile(
+            @PathVariable String userId,
+            @Valid @RequestBody UpdatePharmacienProfileRequest request) {
+        log.info("Mise à jour profil pharmacien: {}", userId);
+        return ResponseEntity.ok(pharmacienProfileUseCase.updateProfile(userId, request));
+    }
+
+    // ── Créer patient ────────────────────────────────────────────
+
     @PostMapping("/{pharmacienUserId}/create-patient")
     public ResponseEntity<PatientProfileResponse> createPatient(
             @PathVariable String pharmacienUserId,
             @Valid @RequestBody CreatePatientByPharmacienRequest request) {
-
-        PatientProfileResponse response =
-                pharmacienProfileUseCase.createPatient(pharmacienUserId, request);
-
-        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(pharmacienProfileUseCase.createPatient(pharmacienUserId, request));
     }
 
-    // ─────────────────────────────────────────────────────────────
-    // CONSULTATION DU PROFIL PHARMACIEN
-    // ─────────────────────────────────────────────────────────────
+    // ── Scan QR Code ─────────────────────────────────────────────
 
     /**
-     * GET /api/v1/pharmaciens/{userId}/profile
-     * Pharmacien voit son propre profil
-     *
-     * @param userId L'ID du pharmacien dans Keycloak
-     * @return Le profil du pharmacien
+     * POST /api/v1/pharmaciens/{pharmacienId}/scan-qr
+     * Le pharmacien scanne le QR Code d'un patient.
+     * Body : { "patientUserId": "uuid-keycloak-du-patient" }
+     * Retourne le profil du patient + le lie au pharmacien en DB.
      */
-    @GetMapping("/{userId}/profile")
-    public ResponseEntity<PharmacienProfileResponse> getMyProfile(
-            @PathVariable String userId) {
+    @PostMapping("/{pharmacienUserId}/scan-qr")
+    public ResponseEntity<PatientProfileResponse> scanQrCode(
+            @PathVariable String pharmacienUserId,
+            @Valid @RequestBody ScanQrCodeRequest request) {
 
-        log.info("Consultation du profil du pharmacien: {}", userId);
+        log.info("Scan QR — pharmacien={} patient={}",
+                pharmacienUserId, request.getPatientUserId());
 
-        PharmacienProfileResponse response =
-                pharmacienProfileUseCase.getMyProfile(userId);
+        PatientProfileResponse response =
+                pharmacienProfileUseCase.scanQrCode(
+                        pharmacienUserId, request.getPatientUserId());
 
         return ResponseEntity.ok(response);
     }
 
-    // ─────────────────────────────────────────────────────────────
-    // CONSULTATION DES PATIENTS
-    // ─────────────────────────────────────────────────────────────
+    // ── Dashboard — liste des patients ───────────────────────────
 
     /**
-     * GET /api/v1/pharmaciens/patients/{patientUserId}/profile
-     * Pharmacien voit le profil d'un patient
-     *
-     * @param pharmacienUserId L'ID du pharmacien (dans la requête)
-     * @param patientUserId L'ID du patient à consulter
-     * @return Le profil du patient
+     * GET /api/v1/pharmaciens/{pharmacienId}/mes-patients
+     * Retourne tous les patients liés à ce pharmacien.
+     * Utilisé pour charger le dashboard pharmacien.
      */
+    @GetMapping("/{pharmacienUserId}/mes-patients")
+    public ResponseEntity<List<PatientProfileResponse>> getMesPatients(
+            @PathVariable String pharmacienUserId) {
+
+        log.info("Dashboard pharmacien={}", pharmacienUserId);
+
+        return ResponseEntity.ok(
+                pharmacienProfileUseCase.getMesPatients(pharmacienUserId));
+    }
+
+    // ── Consultation patient ─────────────────────────────────────
+
     @GetMapping("/patients/{patientUserId}/profile")
     public ResponseEntity<PatientProfileResponse> getPatientProfile(
             @RequestParam String pharmacienUserId,
             @PathVariable String patientUserId) {
-
-        log.info("Pharmacien {} consulte le profil du patient {}",
-                pharmacienUserId, patientUserId);
-
-        PatientProfileResponse response =
+        return ResponseEntity.ok(
                 pharmacienProfileUseCase.getPatientProfile(
-                        pharmacienUserId, patientUserId
-                );
-
-        return ResponseEntity.ok(response);
+                        pharmacienUserId, patientUserId));
     }
 
-    /**
-     * GET /api/v1/pharmaciens/patients/{patientUserId}/proches
-     * Pharmacien voit les proches d'un patient
-     *
-     * @param pharmacienUserId L'ID du pharmacien (dans la requête)
-     * @param patientUserId L'ID du patient
-     * @return La liste des proches
-     */
+    @GetMapping("/patients/by-email")
+    public ResponseEntity<PatientProfileResponse> getPatientProfileByEmail(
+            @RequestParam String pharmacienUserId,
+            @RequestParam String email) {
+        return ResponseEntity.ok(
+                pharmacienProfileUseCase.getPatientProfileByEmail(
+                        pharmacienUserId, email));
+    }
+
     @GetMapping("/patients/{patientUserId}/proches")
     public ResponseEntity<List<ProcheResponse>> getPatientProches(
             @RequestParam String pharmacienUserId,
             @PathVariable String patientUserId) {
-
-        log.info("Pharmacien {} consulte les proches du patient {}",
-                pharmacienUserId, patientUserId);
-
-        List<ProcheResponse> proches =
+        return ResponseEntity.ok(
                 pharmacienProfileUseCase.getPatientProches(
-                        pharmacienUserId, patientUserId
-                );
-
-        return ResponseEntity.ok(proches);
+                        pharmacienUserId, patientUserId));
     }
 }

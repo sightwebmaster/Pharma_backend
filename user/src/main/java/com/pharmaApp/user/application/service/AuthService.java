@@ -2,14 +2,17 @@ package com.pharmaApp.user.application.service;
 
 import com.pharmaApp.user.application.dto.request.LoginRequest;
 import com.pharmaApp.user.application.dto.request.RegisterPatientRequest;
+import com.pharmaApp.user.application.dto.request.ChangePasswordRequest;
 import com.pharmaApp.user.application.dto.response.AuthResponse;
 import com.pharmaApp.user.application.dto.response.PatientProfileResponse;
 import com.pharmaApp.user.domain.model.PatientProfile;
 import com.pharmaApp.user.domain.port.input.AuthUseCase;
 import com.pharmaApp.user.domain.port.output.KeycloakUserCreationPort;
+import com.pharmaApp.user.domain.port.output.PharmacienProfileRepositoryPort;
 import com.pharmaApp.user.domain.port.output.PatientProfileRepositoryPort;
 import com.pharmaApp.user.domain.port.output.QRCodeGeneratorPort; // ✅
 import com.pharmaApp.user.application.mapper.PatientProfileMapper;
+import com.pharmaApp.user.domain.model.PharmacienProfile;
 import com.pharmaApp.user.infrastructure.adapter.output.keycloak.KeycloakLoginClient;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -26,6 +29,7 @@ public class AuthService implements AuthUseCase {
     private final KeycloakUserCreationPort keycloakUserCreationPort;
     private final KeycloakLoginClient keycloakLoginClient;
     private final PatientProfileRepositoryPort patientProfileRepository;
+    private final PharmacienProfileRepositoryPort pharmacienProfileRepository;
     private final PatientProfileMapper patientProfileMapper;
     private final QRCodeGeneratorPort qrCodeGenerator; // ✅
 
@@ -104,6 +108,31 @@ public class AuthService implements AuthUseCase {
                 .orElseThrow(() -> new RuntimeException("Profil introuvable"));
 
         return patientProfileMapper.toResponse(profile);
+    }
+
+    @Override
+    public void changePassword(String userId, ChangePasswordRequest request) {
+        if (request.getCurrentPassword().equals(request.getNewPassword())) {
+            throw new RuntimeException("Le nouveau mot de passe doit être différent");
+        }
+
+        keycloakLoginClient.login(request.getEmail(), request.getCurrentPassword());
+
+        boolean emailMatchesPatient = patientProfileRepository.findByUserId(userId)
+                .map(PatientProfile::getEmail)
+                .map(request.getEmail()::equalsIgnoreCase)
+                .orElse(false);
+
+        boolean emailMatchesPharmacien = pharmacienProfileRepository.findByUserId(userId)
+                .map(PharmacienProfile::getEmail)
+                .map(request.getEmail()::equalsIgnoreCase)
+                .orElse(false);
+
+        if (!emailMatchesPatient && !emailMatchesPharmacien) {
+            throw new RuntimeException("Email non autorisé pour ce compte");
+        }
+
+        keycloakUserCreationPort.updatePassword(userId, request.getNewPassword());
     }
 
     // ✅ Méthode utilitaire privée

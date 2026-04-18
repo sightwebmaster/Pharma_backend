@@ -8,11 +8,11 @@ import java.time.LocalTime;
 
 @Entity
 @Table(
-    name = "historique_entries",
-    indexes = {
-        @Index(name = "idx_entry_date",   columnList = "date_prise"),
-        @Index(name = "idx_entry_statut", columnList = "statut")
-    }
+        name = "historique_entries",
+        indexes = {
+                @Index(name = "idx_entry_date",   columnList = "date_prise"),
+                @Index(name = "idx_entry_statut", columnList = "statut")
+        }
 )
 @Getter
 @Setter
@@ -29,8 +29,9 @@ public class HistoriqueEntryEntity {
     @JoinColumn(name = "adherence_record_id", nullable = false)
     private AdherenceRecordEntity adherenceRecord;
 
-    @Column(name = "prise_medicament_id", nullable = false)
-    private Long priseMedicamentId;
+    // ✅ String UUID — aligné avec treatment-service
+    @Column(name = "prise_medicament_id", nullable = false, length = 36)
+    private String priseMedicamentId;
 
     @Column(name = "medicament_nom", nullable = false, length = 200)
     private String medicamentNom;
@@ -41,20 +42,15 @@ public class HistoriqueEntryEntity {
     @Column(name = "date_prise", nullable = false)
     private LocalDate datePrise;
 
-    @Column(name = "heure_prise", nullable = false)
+    @Column(name = "heure_prise")
     private LocalTime heurePrise;
 
-    /**
-     * CONFIRME | MANQUE
-     * Stocké en String pour lisibilité directe dans la BDD.
-     */
     @Column(name = "statut", nullable = false, length = 20)
     private String statut;
 
     @Column(name = "heure_confirmation")
     private LocalTime heureConfirmation;
 
-    /** Délai en minutes entre heure prévue et heure réelle */
     @Column(name = "delai_minutes")
     private Integer delaiMinutes;
 

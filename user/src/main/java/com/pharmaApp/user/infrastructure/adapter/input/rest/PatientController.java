@@ -6,13 +6,17 @@ import com.pharmaApp.user.application.dto.request.CreatePatientProfileRequest;
 import com.pharmaApp.user.application.dto.request.UpdatePatientProfileRequest;
 import com.pharmaApp.user.application.dto.response.PatientProfileResponse;
 import com.pharmaApp.user.application.dto.response.ProcheResponse;
+import com.pharmaApp.user.application.dto.response.RecommendationPatientContextResponse;
 import com.pharmaApp.user.domain.port.input.PatientProfileUseCase;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.List;
 
 @RestController
@@ -21,6 +25,9 @@ import java.util.List;
 public class PatientController {
 
     private final PatientProfileUseCase patientProfileUseCase;
+
+    @Value("${internal.api.token}")
+    private String internalApiToken;
 
     // ─────────────────────────────────────────────────────────────
     // PROFIL PATIENT
@@ -50,6 +57,29 @@ public class PatientController {
         PatientProfileResponse response =
                 patientProfileUseCase.getProfile(userId);
         return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/{userId}/recommendation-context")
+    public ResponseEntity<RecommendationPatientContextResponse> getRecommendationContext(
+            @PathVariable String userId,
+            @RequestHeader(value = "X-Internal-Token", required = false) String providedToken) {
+
+        if (providedToken == null || !providedToken.equals(internalApiToken)) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+        }
+        return ResponseEntity.ok(buildRecommendationContext(userId));
+    }
+
+    @GetMapping("/{patientId}/profile-for-reco")
+    public ResponseEntity<RecommendationPatientContextResponse> getProfileForRecommendation(
+            @PathVariable String patientId,
+            @RequestHeader(value = "X-User-Id", required = false) String requesterUserId) {
+
+        if (requesterUserId == null || !requesterUserId.equals(patientId)) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+        }
+
+        return ResponseEntity.ok(buildRecommendationContext(patientId));
     }
 
     @PutMapping("/{userId}/profile")
@@ -109,4 +139,29 @@ public class PatientController {
             @PathVariable String procheId) {
         patientProfileUseCase.deleteProche(userId, procheId);
         return ResponseEntity.noContent().build();
-    }}
+    }
+
+    private Integer calculateAge(LocalDate dateNaissance) {
+        if (dateNaissance == null) {
+            return null;
+        }
+        return Period.between(dateNaissance, LocalDate.now()).getYears();
+    }
+
+    private RecommendationPatientContextResponse buildRecommendationContext(String userId) {
+        PatientProfileResponse profile = patientProfileUseCase.getProfile(userId);
+        List<String> conditions = profile.getMaladiesChroniques() != null
+                ? profile.getMaladiesChroniques()
+                : List.of();
+
+        return RecommendationPatientContextResponse.builder()
+                .userId(profile.getUserId())
+                .age(calculateAge(profile.getDateNaissance()))
+                .pregnant(Boolean.TRUE.equals(profile.getEnceinte()))
+                .allergies(profile.getAllergies() != null ? profile.getAllergies() : List.of())
+                .conditions(conditions)
+                .maladiesChroniques(conditions)
+                .groupeSanguin(profile.getGroupeSanguin())
+                .build();
+    }
+}

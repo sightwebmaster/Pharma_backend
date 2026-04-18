@@ -3,15 +3,17 @@ package com.pharmaApp.treatement.domain.model;
 
 import com.pharmaApp.treatement.domain.event.*;
 import com.pharmaApp.treatement.domain.exception.*;
-import com.pharmaApp.treatement.domain.model.LigneMedicament;
-import com.pharmaApp.treatement.domain.model.TraitementStatut;
+import com.pharmaApp.treatement.infrastructure.adapter.out.persistence.entity.LigneMedicamentEntity;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.*;
+
+
 
 /**
  * Aggregate Root — Traitement (version corrigée)
@@ -22,6 +24,7 @@ import java.util.*;
  *  2. Tous les getters vérifiés et complets
  *  3. Constructeur package-private ajouté pour reconstitution JPA
  */
+@Slf4j
 @Getter
 @Setter
 public class Traitement {
@@ -89,6 +92,7 @@ public class Traitement {
                 new ArrayList<>(lignesAjouter)
         );
 
+
         t.genererToutesLesPrises();
 
         t.domainEvents.add(new TraitementCreeEvent(
@@ -137,11 +141,20 @@ public class Traitement {
         PrisePlanifiee prise = trouverPrise(priseId);
         prise.confirmer(patientIdDemandeur);
 
+        // Retrouver la ligne pour le dosage
+        LigneMedicament ligne = this.lignes.stream()
+                .filter(l -> l.getId().equals(prise.getLigneMedicamentId()))
+                .findFirst()
+                .orElseThrow();
+
         domainEvents.add(new PriseConfirmeeEvent(
                 prise.getId(),
                 this.id,
                 patientIdDemandeur,
+                this.pharmacienUserId,          // ✅
                 prise.getMedicamentNom(),
+                ligne.getDosage(),              // ✅
+                prise.getHeurePrevue(),         // ✅
                 prise.getHeureReelle(),
                 LocalDateTime.now()
         ));
@@ -225,16 +238,15 @@ public class Traitement {
     // =================================================================
     private void genererToutesLesPrises() {
         for (LigneMedicament ligne : this.lignes) {
-            String ligneId = UUID.randomUUID().toString();
             for (int jour = 0; jour < ligne.getDureeJours(); jour++) {
                 LocalDate jourCourant = this.dateDebut.plusDays(jour);
                 for (LocalTime heure : ligne.getHeuresPrise()) {
-                    this.prises.add(new PrisePlanifiee(
-                            this.id,
-                            ligneId,
-                            this.patientUserId,
-                            ligne.getMedicamentNom(),
-                            LocalDateTime.of(jourCourant, heure)
+                    this.prises.add( PrisePlanifiee.creer(
+                            this.id,                    // 1 traitementId
+                            ligne.getId(),              // 2 ligneMedicamentId
+                            this.patientUserId,         // 3 ✅ patientUserId
+                            ligne.getMedicamentNom(),   // 7 ✅ medicamentNom
+                            LocalDateTime.of(jourCourant, heure) // 8
                     ));
                 }
             }

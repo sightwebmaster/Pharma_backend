@@ -1,32 +1,28 @@
 package com.pharmaApp.adherence.domain.event;
 
-import lombok.*;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 
 /**
- * Événement consommé depuis treatment-service.
- * Kafka topic : treatment.prise-confirmee  OU  treatment.prise-manquee
+ * PriseStatusEvent — event consommé depuis treatment-service
  *
- * Ce DTO correspond à ce que le treatment-service publie.
- * Les deux types d'événements ont la même structure.
+ * ⚠️ traitementId est String (UUID) — aligné avec treatment-service.
+ * L'ancien code avait Long — corrigé ici.
+ *
+ * Topics consommés :
+ *   - prise.confirmee  → statut = "CONFIRMEE"
+ *   - prise.manquee    → statut = "MANQUEE"
  */
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
-public class PriseStatusEvent {
-    private Long   priseMedicamentId;
-    private Long   traitementId;
-    private String patientUserId;
-    private String pharmacienUserId;
-    private String medicamentNom;
-    private String dosage;
-    private LocalDate datePrise;
-    private LocalTime heurePrise;
-    private LocalTime heureConfirmation; // null si MANQUE
-    private String statut;               // "CONFIRME" | "MANQUE"
-    private String notePatient;
-}
+@JsonIgnoreProperties(ignoreUnknown = true)
+public record PriseStatusEvent(
+        String priseId,
+        String traitementId,
+        String patientUserId,
+        String pharmacienUserId,
+        String medicamentNom,
+        String dosage,
+        LocalDateTime heurePrevue,
+        LocalDateTime heureReelle,
+        LocalDateTime occurredAt
+) {}

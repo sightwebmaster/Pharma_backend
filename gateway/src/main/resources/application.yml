@@ -1,0 +1,112 @@
+# =============================================================
+# PharmaCare — gateway-service
+# application.yml
+# =============================================================
+
+spring:
+  application:
+    name: gateway-service
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8090/realms/pharma-realm
+          jwk-set-uri: http://localhost:8090/realms/pharma-realm/protocol/openid-connect/certs
+
+  data:
+    redis:
+      host: 127.0.0.1
+      port: 6379
+
+  cloud:
+    gateway:
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin RETAIN_FIRST
+      routes:
+        - id: user-service
+          uri: lb://user-service
+          predicates:
+            - Path=/api/v1/users/**, /api/v1/patients/**, /api/v1/pharmaciens/**, /api/v1/auth/**
+
+        - id: treatment-service
+          uri: lb://treatment-service
+          predicates:
+            - Path=/api/treatments/**, /api/traitements/**, /api/prises/**, /api/v1/treatments/**
+          filters:
+            - TokenRelay
+
+        - id: adherence-service
+          uri: lb://adherence-service
+          predicates:
+            - Path=/api/adherence/**, /api/observance/**
+
+        - id: medication-service
+          uri: lb://medication-service
+          predicates:
+            - Path=/api/v1/medications/**
+
+        - id: recommendation-service
+          uri: ${RECOMMENDATION_SERVICE_URL:http://localhost:8095}
+          predicates:
+            - Path=/api/v1/recommendations/**
+          filters:
+            - StripPrefix=2
+
+        - id: notification-service
+          uri: lb://notification-service
+          predicates:
+            - Path=/api/v1/notifications/**
+      globalcors:
+        add-to-simple-url-handler-mapping: true
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins:
+              - "http://localhost:3000"
+              - "http://localhost:4200"
+              - "http://127.0.0.1:3000"
+              - "http://127.0.0.1:4200"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - OPTIONS
+            allowedHeaders: "*"
+            exposedHeaders: "*"
+            allowCredentials: true
+
+server:
+  port: 8085
+  address: 0.0.0.0
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    healthcheck:
+      enabled: true
+    service-url:
+      defaultZone: ${EUREKA_URL:http://localhost:8761/eureka}
+  instance:
+    instance-id: ${spring.application.name}:${server.port}
+    prefer-ip-address: true
+
+pharmaApp:
+  services:
+    recommendation-service: ${RECOMMENDATION_SERVICE_URL:http://localhost:8095}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info, metrics, gateway
+  endpoint:
+    health:
+      show-details: always
+
+logging:
+  level:
+    org.springframework.cloud.gateway: INFO
+    com.pharmaApp.gateway: DEBUG
+    org.springframework.security: INFO

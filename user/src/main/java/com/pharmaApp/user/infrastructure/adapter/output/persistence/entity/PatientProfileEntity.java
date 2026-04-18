@@ -43,6 +43,9 @@ public class PatientProfileEntity {
     @Column(name = "groupe_sanguin", length = 5)
     private String groupeSanguin;
 
+    @Column(name = "enceinte")
+    private Boolean enceinte;
+
     @JdbcTypeCode(SqlTypes.JSON)
     @Column(columnDefinition = "json")
     private List<String> allergies;
@@ -53,6 +56,9 @@ public class PatientProfileEntity {
 
     @Column(name = "qr_code", columnDefinition = "TEXT")
     private String qrCode;
+
+    @Column(name = "photo_base64", columnDefinition = "LONGTEXT")
+    private String photoBase64;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;

@@ -25,14 +25,13 @@ public class KafkaConfig {
     private String bootstrapServers;
 
     // ── Producer ──────────────────────────────────────────────
-
     @Bean
     public ProducerFactory<String, Object> producerFactory() {
         Map<String, Object> config = new HashMap<>();
-        config.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
-        config.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG,   StringSerializer.class);
-        config.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
-        config.put(JsonSerializer.ADD_TYPE_INFO_HEADERS, false);
+        config.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,          bootstrapServers);
+        config.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG,       StringSerializer.class);
+        config.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,     JsonSerializer.class);
+        config.put(JsonSerializer.ADD_TYPE_INFO_HEADERS,             false);
         return new DefaultKafkaProducerFactory<>(config);
     }
 
@@ -42,41 +41,44 @@ public class KafkaConfig {
     }
 
     // ── Consumer ──────────────────────────────────────────────
-
     @Bean
-    public ConsumerFactory<String, PriseStatusEvent> consumerFactory() {
+    public ConsumerFactory<String, String> consumerFactory() {
         Map<String, Object> config = new HashMap<>();
-        config.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG,  bootstrapServers);
-        config.put(ConsumerConfig.GROUP_ID_CONFIG,           "adherence-service-group");
-        config.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG,  "earliest");
-        config.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG,   StringDeserializer.class);
-        config.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class);
-        config.put(JsonDeserializer.TRUSTED_PACKAGES, "*");
-        config.put(JsonDeserializer.VALUE_DEFAULT_TYPE,
-                   PriseStatusEvent.class.getName());
-        return new DefaultKafkaConsumerFactory<>(config,
-                new StringDeserializer(),
-                new JsonDeserializer<>(PriseStatusEvent.class, false));
+        config.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
+        config.put(ConsumerConfig.GROUP_ID_CONFIG, "adherence-service-group");
+        config.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
+        config.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
+        config.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
+        return new DefaultKafkaConsumerFactory<>(config);
     }
 
     @Bean
-    public ConcurrentKafkaListenerContainerFactory<String, PriseStatusEvent>
-            kafkaListenerContainerFactory() {
-        ConcurrentKafkaListenerContainerFactory<String, PriseStatusEvent> factory =
-                new ConcurrentKafkaListenerContainerFactory<>();
+    public ConcurrentKafkaListenerContainerFactory<String, String>
+    kafkaListenerContainerFactory() {
+        var factory = new ConcurrentKafkaListenerContainerFactory<String, String>();
         factory.setConsumerFactory(consumerFactory());
         return factory;
     }
 
-    // ── Topics (créés automatiquement si inexistants) ─────────
 
-    @Bean public NewTopic topicHistorique()  {
+
+    // ── Topics publiés par adherence-service ──────────────────
+    @Bean public NewTopic topicHistorique() {
         return TopicBuilder.name("adherence.historique-enregistre").partitions(3).replicas(1).build();
     }
-    @Bean public NewTopic topicCritique()    {
+    @Bean public NewTopic topicCritique() {
         return TopicBuilder.name("adherence.alerte-observance-critique").partitions(3).replicas(1).build();
     }
-    @Bean public NewTopic topicConsecutif()  {
+    @Bean public NewTopic topicConsecutif() {
         return TopicBuilder.name("adherence.alerte-consecutive-missed").partitions(3).replicas(1).build();
+    }
+
+    // ── Topics consommés depuis treatment-service ─────────────
+    // ✅ ALIGNÉS avec TraitementKafkaProducer
+    @Bean public NewTopic topicPriseConfirmee() {
+        return TopicBuilder.name("prise.confirmee").partitions(3).replicas(1).build();
+    }
+    @Bean public NewTopic topicPriseManquee() {
+        return TopicBuilder.name("prise.manquee").partitions(3).replicas(1).build();
     }
 }

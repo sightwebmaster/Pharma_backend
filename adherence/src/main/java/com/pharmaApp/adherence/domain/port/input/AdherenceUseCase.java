@@ -10,10 +10,10 @@ import java.util.List;
 /**
  * Port d'entrée — Use Cases du domaine Adherence.
  *
- * Implémenté par AdherenceService dans la couche application.
+ * Implémenté par AdherenceService.
  * Appelé par :
- *   - Le consumer Kafka (événements treatment-service)
- *   - Les contrôleurs REST (lectures patient / pharmacien / proche)
+ *   - PriseEventConsumer (Kafka) → UC1
+ *   - AdherenceController (REST) → UC2 à UC6
  */
 public interface AdherenceUseCase {
 
@@ -25,32 +25,29 @@ public interface AdherenceUseCase {
     AdherenceRecordResponse enregistrerPrise(EnregistrerPriseRequest request);
 
     /**
-     * UC2 — Obtenir le résumé d'observance d'un patient pour un traitement.
-     * Retourne les taux 7j / 30j / 90j + statut courant.
+     * UC2 — Résumé d'observance d'un patient pour un traitement.
+     * traitementId = UUID String (aligné avec treatment-service)
      */
-    AdherenceSummaryResponse getSummary(String patientUserId, Long traitementId);
+    AdherenceSummaryResponse getSummary(String patientUserId, String traitementId);
 
     /**
-     * UC3 — Obtenir l'historique complet des prises d'un patient.
+     * UC3 — Historique complet des prises d'un patient.
      * Accessible par patient, pharmacien ET proche.
      */
-    List<HistoriqueEntryResponse> getHistorique(String patientUserId, Long traitementId);
+    List<HistoriqueEntryResponse> getHistorique(String patientUserId, String traitementId);
 
     /**
-     * UC4 — Obtenir tous les résumés d'observance d'un pharmacien.
-     * Permet au pharmacien de surveiller tous ses patients.
+     * UC4 — Tous les résumés d'observance gérés par un pharmacien.
      */
     List<AdherenceSummaryResponse> getAllSummariesByPharmacien(String pharmacienUserId);
 
     /**
-     * UC5 — Obtenir le résumé global d'un patient (tous traitements).
-     * Utilisé par le tableau de bord patient.
+     * UC5 — Résumé global d'un patient (tous traitements).
      */
     List<AdherenceSummaryResponse> getAllSummariesByPatient(String patientUserId);
 
     /**
      * UC6 — Forcer le recalcul du taux pour un traitement.
-     * Utile en cas de correction ou de test.
      */
-    AdherenceSummaryResponse recalculerTaux(String patientUserId, Long traitementId);
+    AdherenceSummaryResponse recalculerTaux(String patientUserId, String traitementId);
 }

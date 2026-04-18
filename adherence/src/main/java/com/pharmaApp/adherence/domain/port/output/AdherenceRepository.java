@@ -13,11 +13,15 @@ public interface AdherenceRepository {
 
     AdherenceRecord save(AdherenceRecord record);
 
-    Optional<AdherenceRecord> findByPatientAndTraitement(String patientUserId, Long traitementId);
+    // ✅ String UUID
+    Optional<AdherenceRecord> findByPatientAndTraitement(
+            String patientUserId, String traitementId);
 
     List<AdherenceRecord> findAllByPatient(String patientUserId);
 
     List<AdherenceRecord> findAllByPharmacien(String pharmacienUserId);
 
-    boolean existsByPatientAndTraitement(String patientUserId, Long traitementId);
+    // ✅ String UUID
+    boolean existsByPatientAndTraitement(
+            String patientUserId, String traitementId);
 }

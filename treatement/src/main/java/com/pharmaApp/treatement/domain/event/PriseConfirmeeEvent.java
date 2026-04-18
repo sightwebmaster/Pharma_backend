@@ -10,7 +10,10 @@ public record PriseConfirmeeEvent(
         String        priseId,
         String        traitementId,
         String        patientUserId,
+        String        pharmacienUserId,   // ✅ ajouter
         String        medicamentNom,
+        String        dosage,              // ✅ ajouter
+        LocalDateTime heurePrevue,         // ✅ ajouter
         LocalDateTime heureReelle,
         LocalDateTime occurredAt
 ) {}

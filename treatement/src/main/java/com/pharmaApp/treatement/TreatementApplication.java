@@ -2,6 +2,7 @@ package com.pharmaApp.treatement;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
  * PharmaCare — treatment-service
@@ -11,6 +12,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * Architecture : Hexagonale (Ports & Adapters)
  * Base de données : MySQL — treatment_db
  */
+@EnableScheduling  // ← AJOUTER
+
 @SpringBootApplication
 public class TreatementApplication {
 

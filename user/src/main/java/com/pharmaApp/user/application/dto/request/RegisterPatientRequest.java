@@ -27,6 +27,7 @@ public class RegisterPatientRequest {
 
     private LocalDate dateNaissance;
     private String groupeSanguin;
+    private Boolean enceinte;
     private List<String> allergies;
     private List<String> maladiesChroniques;
 }

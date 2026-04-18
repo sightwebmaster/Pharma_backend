@@ -1,5 +1,7 @@
 package com.pharmaApp.user.application.dto.response;
 
+import java.time.LocalDate;
+import java.util.List;
 import lombok.*;
 
 @Data
@@ -19,4 +21,10 @@ public class ProcheResponse {
     private String telephone;
     private String email;
     private String groupeSanguin;
+    private LocalDate dateNaissance;
+    private Boolean enceinte;
+    private List<String> allergies;
+    private List<String> maladiesChroniques;
+    private String photoBase64;
+    private String qrCode;
 }

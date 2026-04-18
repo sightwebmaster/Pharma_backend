@@ -7,4 +7,6 @@ public interface KeycloakUserCreationPort {
                       String nom,
                       String prenom,
                       String role);
+
+    void updatePassword(String userId, String newPassword);
 }

@@ -1,0 +1,70 @@
+{
+  "Hypertension artérielle essentielle": {
+    "medicine": "Vasohypeolol14 20 mg gélule | Tensohypedipine21 2,5 mg solution buvable | Cardiohypeolol13 10 mg comprimé | Coronohypedipine24 20 mg solution buvable",
+    "advice": "Avis initial: réduire le sel, surveiller la tension artérielle, maintenir une activité adaptée après avis médical, consulter en urgence si aggravation brutale."
+  },
+  "Insuffisance cardiaque chronique": {
+    "medicine": "Rythmoinsuolol16 2,5 mg comprimé | Tensoinsuolol15 40 mg solution buvable | Cardioinsudipine19 20 mg comprimé | Rythmoinsusartan10 40 mg comprimé | Rythmoinsudipine22 5 mg comprimé",
+    "advice": "Conduite à tenir: consulter rapidement en cas d'aggravation, réduire le sel, surveiller la tension artérielle."
+  },
+  "Angor stable": {
+    "medicine": "Coronoangosartan12 5 mg solution buvable | Tensoangodipine21 2,5 mg solution buvable | Vasoangosartan08 10 mg gélule | Tensoangosartan09 20 mg solution buvable",
+    "advice": "Conseils: éviter l'automédication cardiovasculaire, réduire le sel, consulter rapidement en cas d'aggravation."
+  },
+  "Fibrillation auriculaire": {
+    "medicine": "Cardiofibrpril01 2,5 mg comprimé | Vasofibrpril02 5 mg gélule | Tensofibrpril03 10 mg solution buvable | Arteriofibrdipine23 10 mg gélule",
+    "advice": "Conduite à tenir: surveiller la tension artérielle, consulter rapidement en cas d'aggravation, éviter l'automédication cardiovasculaire, consulter en urgence si aggravation brutale."
+  },
+  "Cardiomyopathie dilatée": {
+    "medicine": "Rythmocardolol16 2,5 mg comprimé | Tensocardpril03 10 mg solution buvable | Vasocardolol14 20 mg gélule",
+    "advice": "Avis initial: consulter rapidement en cas d'aggravation, réduire le sel, maintenir une activité adaptée après avis médical, consulter en urgence si aggravation brutale."
+  },
+  "Péricardite aiguë": {
+    "medicine": "Cardioperipril01 2,5 mg comprimé | Rythmoperipril04 20 mg comprimé | Tensoperidipine21 2,5 mg solution buvable | Tensoperiolol15 40 mg solution buvable",
+    "advice": "Mesures recommandées: éviter l'automédication cardiovasculaire, surveiller la tension artérielle, maintenir une activité adaptée après avis médical, consulter en urgence si aggravation brutale."
+  },
+  "Myocardite": {
+    "medicine": "Vasomyocpril02 5 mg gélule | Coronomyocdipine24 20 mg solution buvable | Coronomyocpril06 2,5 mg solution buvable",
+    "advice": "Avis initial: éviter l'automédication cardiovasculaire, consulter rapidement en cas d'aggravation, réduire le sel."
+  },
+  "Cardiopathie hypertensive": {
+    "medicine": "Cardiocardpril01 2,5 mg comprimé | Rythmocardpril04 20 mg comprimé | Cardiocardolol13 10 mg comprimé | Rythmocardsartan10 40 mg comprimé | Rythmocardolol16 2,5 mg comprimé",
+    "advice": "Mesures recommandées: éviter l'automédication cardiovasculaire, surveiller la tension artérielle, réduire le sel, consulter en urgence si aggravation brutale."
+  },
+  "Syndrome du QT long": {
+    "medicine": "Coronosyndpril06 2,5 mg solution buvable | Vasosyndolol14 20 mg gélule | Arteriosyndolol17 5 mg gélule",
+    "advice": "Conduite à tenir: maintenir une activité adaptée après avis médical, réduire le sel, surveiller la tension artérielle."
+  },
+  "Hypertension pulmonaire": {
+    "medicine": "Vasohypepril02 5 mg gélule | Arteriohypepril05 40 mg gélule | Rythmohypeolol16 2,5 mg comprimé | Arteriohypedipine23 10 mg gélule | Cardiohypedipine19 20 mg comprimé",
+    "advice": "Conduite à tenir: consulter rapidement en cas d'aggravation, éviter l'automédication cardiovasculaire, surveiller la tension artérielle."
+  },
+  "Asthme persistant": {
+    "medicine": "Ventiasthbutamol06 100 µg poudre inhalée | Thoracoasthfiline17 200 µg aérosol doseur | Bronchoasthsonide07 200 µg sirop",
+    "advice": "Conseils: respecter les traitements inhalés, hydrater correctement, consulter en urgence si gêne respiratoire importante, consulter en urgence si aggravation brutale."
+  },
+  "Bronchite aiguë": {
+    "medicine": "Ventibronbutamol06 100 µg poudre inhalée | Respirabronfiline15 500 mg sirop | Respirabronsonide09 250 mg aérosol doseur",
+    "advice": "Conseils: hydrater correctement, arrêter le tabac, respecter les traitements inhalés, consulter en urgence si aggravation brutale."
+  },
+  "BPCO": {
+    "medicine": "Pulmobpcocort20 500 mg comprimé | Respirabpcofiline15 500 mg sirop | Bronchobpcocort19 250 mg sirop",
+    "advice": "Conseils: aérer le domicile, arrêter le tabac, respecter les traitements inhalés."
+  },
+  "Pneumonie communautaire": {
+    "medicine": "Pulmopneucort20 500 mg comprimé | Bronchopneucort19 250 mg sirop | Pulmopneubutamol02 200 µg poudre inhalée | Respirapneucort21 100 µg aérosol doseur",
+    "advice": "Conduite à tenir: aérer le domicile, arrêter le tabac, consulter en urgence si gêne respiratoire importante, consulter en urgence si aggravation brutale."
+  },
+  "Embolie pulmonaire": {
+    "medicine": "Bronchoembofiline13 400 µg aérosol doseur | Alveoembosonide10 500 mg poudre inhalée | Pulmoembosonide08 400 µg comprimé | Ventiembosonide12 200 µg comprimé",
+    "advice": "Conseils: arrêter le tabac, consulter en urgence si gêne respiratoire importante, aérer le domicile."
+  },
+  "Fibrose pulmonaire idiopathique": {
+    "medicine": "Bronchofibrbutamol01 100 µg aérosol doseur | Pulmofibrcort20 500 mg comprimé | Alveofibrsonide10 500 mg poudre inhalée",
+    "advice": "Conduite à tenir: consulter en urgence si gêne respiratoire importante, hydrater correctement, arrêter le tabac, consulter en urgence si aggravation brutale."
+  },
+  "Bronchectasies": {
+    "medicine": "Pulmobronbutamol02 200 µg poudre inhalée | Thoracobronfiline17 200 µg aérosol doseur | Respirabroncort21 100 µg aérosol doseur | Bronchobronbutamol01 100 µg aérosol doseur",
+    "advice": "Conduite à tenir: respecter les traitements inhalés, aérer le domicile, consulter en urgence si gêne respiratoire importante."
+  }
+}

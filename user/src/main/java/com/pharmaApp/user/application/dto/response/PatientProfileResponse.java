@@ -16,10 +16,13 @@ public class PatientProfileResponse {
     private LocalDate dateNaissance;
     private String telephone;
     private String groupeSanguin;
+    private Boolean enceinte;
     private List<String> allergies;
     private List<String> maladiesChroniques;
     private LocalDateTime createdAt;
     private String qrCode;
+    private String email;
+    private String photoBase64;
 
     // Getters & Setters
 

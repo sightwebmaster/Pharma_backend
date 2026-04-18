@@ -5,12 +5,15 @@ import com.pharmaApp.treatement.application.port.in.*;
 import com.pharmaApp.treatement.domain.exception.AccesDeniedDomainException;
 import com.pharmaApp.treatement.domain.exception.ConflitTraitementException;
 import com.pharmaApp.treatement.domain.exception.TransitionStatutInvalideException;
+import jakarta.validation.Valid;
+import lombok.Getter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 
 /**
@@ -35,14 +38,18 @@ public class TraitementController {
     private final PlanifierTraitementUseCase  planifierUseCase;
     private final ModifierTraitementUseCase   modifierUseCase;
     private final GetTraitementActifUseCase   getActifUseCase;
+    private final GetPrisesAujourdhuiUseCase getPrisesAujourdhuiUseCase;
+
 
     public TraitementController(
             PlanifierTraitementUseCase planifierUseCase,
             ModifierTraitementUseCase  modifierUseCase,
-            GetTraitementActifUseCase  getActifUseCase) {
+            GetTraitementActifUseCase  getActifUseCase,
+            GetPrisesAujourdhuiUseCase    getPrisesAujourdhuiUseCase) {
         this.planifierUseCase = planifierUseCase;
         this.modifierUseCase  = modifierUseCase;
         this.getActifUseCase  = getActifUseCase;
+        this.getPrisesAujourdhuiUseCase = getPrisesAujourdhuiUseCase;
     }
 
     // ================================================================
@@ -52,12 +59,14 @@ public class TraitementController {
 
     @PostMapping
     public ResponseEntity<TraitementResponse> planifier(
-            @RequestBody PlanifierRequest request,
-            Authentication auth) {
+            @RequestBody @Valid PlanifierRequest request,
+            @RequestHeader(value = "X-User-Id",   required = false) String userId,
+            @RequestHeader(value = "X-User-Role", required = false) String userRole) {
 
-        // Extraction du rôle et ID depuis le JWT
-        String acteurId   = auth.getName();
-        String acteurRole = extraireRole(auth);
+        // ✅ Priorité : header X-User-Id (Gateway) → sinon body acteurId
+        String acteurId   = userId    != null ? userId    : request.acteurId();
+        // ✅ Priorité : header X-User-Role (Gateway) → sinon body acteurRole
+        String acteurRole = userRole  != null ? userRole  : request.acteurRole();
 
         PlanifierTraitementCommand command = new PlanifierTraitementCommand(
                 acteurId,
@@ -95,6 +104,9 @@ public class TraitementController {
         return ResponseEntity.ok(modifierUseCase.modifier(command));
     }
 
+
+
+
     // ================================================================
     // GET /api/v1/treatments/patient/{patientId}/active
     // Appelé par recommendation-service pour enrichir contexte IA
@@ -105,6 +117,25 @@ public class TraitementController {
             @PathVariable String patientId) {
         return ResponseEntity.ok(getActifUseCase.getTraitementActif(patientId));
     }
+
+    @GetMapping("/patient/{patientId}/prises/today")
+    public ResponseEntity<List<PriseResponse>> getPrisesAujourdhui(
+            @PathVariable String patientId) {
+        return ResponseEntity.ok(
+                getPrisesAujourdhuiUseCase.getPrisesAujourdhui(patientId)
+        );
+    }
+
+    @GetMapping("/patient/{patientId}/prises")
+    public ResponseEntity<List<PriseResponse>> getToutesLesPrises(
+            @PathVariable String patientId) {
+        return ResponseEntity.ok(
+                ((com.pharmaApp.treatement.application.service.TraitementService) getPrisesAujourdhuiUseCase)
+                        .getToutesLesPrises(patientId)
+        );
+    }
+
+
 
     // ================================================================
     // Gestion des exceptions domaine → HTTP
@@ -156,11 +187,13 @@ public class TraitementController {
     // ================================================================
 
     record PlanifierRequest(
-            String patientUserId,
+            String acteurId,       // ✅ matche "acteurId"
+            String patientUserId,  // ✅ matche "patientUserId"
+            String acteurRole,     // ✅ matche "acteurRole"
             java.time.LocalDate dateDebut,
             java.time.LocalDate dateFin,
             String motif,
-            java.util.List<PlanifierTraitementCommand.LigneCommand> lignes
+            java.util.List<PlanifierTraitementCommand.LigneMedicament> lignes
     ) {}
 
     record ModifierStatutRequest(

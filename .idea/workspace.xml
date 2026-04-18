@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="3be9e4d8-d4bd-45ea-a33a-94e9e97408b3" name="Changes" comment="add adherence changes">
+      <change afterPath="$PROJECT_DIR$/medication/src/main/java/com/pharmaApp/medication/application/dto/request/ContreIndicationRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/medication/src/main/java/com/pharmaApp/medication/application/service/MedicamentService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/medication/src/main/java/com/pharmaApp/medication/infrastructure/config/MedicamentDataInitializer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/medication/src/main/java/com/pharmaApp/medication/infrastructure/config/RedisConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/medication/src/main/java/com/pharmaApp/medication/infrastructure/config/SecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/treatement/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/application/port/in/GetPrisesAujourdhuiUseCase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/infrastructure/adapter/out/persistence/entity/TraitementAuditEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/infrastructure/mapper/PrisePlanifieeMapperManual.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/infrastructure/mapper/TraitementMapperManuel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/treatement/tratement.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/adherence/src/main/java/com/pharmaApp/adherence/application/dto/request/EnregistrerPriseRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/adherence/src/main/java/com/pharmaApp/adherence/application/dto/request/EnregistrerPriseRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/adherence/src/main/java/com/pharmaApp/adherence/domain/event/PriseStatusEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/adherence/src/main/java/com/pharmaApp/adherence/domain/event/PriseStatusEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/adherence/src/main/java/com/pharmaApp/adherence/infrastructure/adapter/input/messaging/PriseEventConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/adherence/src/main/java/com/pharmaApp/adherence/infrastructure/adapter/input/messaging/PriseEventConsumer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/adherence/src/main/java/com/pharmaApp/adherence/infrastructure/config/KafkaConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/adherence/src/main/java/com/pharmaApp/adherence/infrastructure/config/KafkaConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/adherence/target/classes/com/pharmaApp/adherence/application/dto/request/EnregistrerPriseRequest$EnregistrerPriseRequestBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/adherence/target/classes/com/pharmaApp/adherence/application/dto/request/EnregistrerPriseRequest$EnregistrerPriseRequestBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/adherence/target/classes/com/pharmaApp/adherence/application/dto/request/EnregistrerPriseRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/adherence/target/classes/com/pharmaApp/adherence/application/dto/request/EnregistrerPriseRequest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/adherence/target/classes/com/pharmaApp/adherence/domain/event/PriseStatusEvent.class" beforeDir="false" afterPath="$PROJECT_DIR$/adherence/target/classes/com/pharmaApp/adherence/domain/event/PriseStatusEvent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/adherence/target/classes/com/pharmaApp/adherence/infrastructure/adapter/input/messaging/PriseEventConsumer.class" beforeDir="false" afterPath="$PROJECT_DIR$/adherence/target/classes/com/pharmaApp/adherence/infrastructure/adapter/input/messaging/PriseEventConsumer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/adherence/target/classes/com/pharmaApp/adherence/infrastructure/config/KafkaConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/adherence/target/classes/com/pharmaApp/adherence/infrastructure/config/KafkaConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.infra.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.infra.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway/src/main/java/com/pharmaApp/gateway/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/java/com/pharmaApp/gateway/config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/target/classes/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway/target/classes/com/pharmaApp/gateway/config/SecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/target/classes/com/pharmaApp/gateway/config/SecurityConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/medication/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/medication/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/medication/src/main/java/com/pharmaApp/medication/application/dto/request/SymptomesRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/medication/src/main/java/com/pharmaApp/medication/application/dto/response/ContreIndicationRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/medication/src/main/java/com/pharmaApp/medication/application/dto/response/ContreIndicationResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/medication/src/main/java/com/pharmaApp/medication/application/dto/response/ContreIndicationResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/medication/src/main/java/com/pharmaApp/medication/application/dto/response/MedicamentResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/medication/src/main/java/com/pharmaApp/medication/application/dto/response/MedicamentResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/medication/src/main/java/com/pharmaApp/medication/infrastructure/adapter/input/rest/MedicamentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/medication/src/main/java/com/pharmaApp/medication/infrastructure/adapter/input/rest/MedicamentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/medication/src/main/java/com/pharmaApp/medication/infrastructure/adapter/output/openfda/OpenFdaClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/medication/src/main/java/com/pharmaApp/medication/infrastructure/adapter/output/openfda/OpenFdaClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/medication/src/main/java/com/pharmaApp/medication/infrastructure/adapter/output/persistence/entity/MedicamentEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/medication/src/main/java/com/pharmaApp/medication/infrastructure/adapter/output/persistence/entity/MedicamentEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/medication/src/main/java/com/pharmaApp/medication/infrastructure/adapter/output/persistence/repository/MedicamentJpaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/medication/src/main/java/com/pharmaApp/medication/infrastructure/adapter/output/persistence/repository/MedicamentJpaRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/medication/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/medication/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/TreatementApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/TreatementApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/application/dto/PlanifierTraitementCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/application/dto/PlanifierTraitementCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/application/dto/PriseResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/application/dto/PriseResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/application/port/in/ConfirmerPriseUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/application/port/in/ConfirmerPriseUseCase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/application/port/out/MedicationClientPort.java" beforeDir="false" afterPath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/application/port/out/MedicationClientPort.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/application/port/out/PriseRepositoryPort.java" beforeDir="false" afterPath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/application/port/out/PriseRepositoryPort.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/application/port/out/TraitementRepositoryPort.java" beforeDir="false" afterPath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/application/port/out/TraitementRepositoryPort.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/application/service/TraitementService.java" beforeDir="false" afterPath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/application/service/TraitementService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/domain/event/PriseConfirmeeEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/domain/event/PriseConfirmeeEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/domain/model/LigneMedicament.java" beforeDir="false" afterPath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/domain/model/LigneMedicament.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/domain/model/PrisePlanifiee.java" beforeDir="false" afterPath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/domain/model/PrisePlanifiee.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/domain/model/Traitement.java" beforeDir="false" afterPath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/domain/model/Traitement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/infrastructure/adapter/in/rest/PriseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/infrastructure/adapter/in/rest/PriseController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/infrastructure/adapter/in/rest/TraitementController.java" beforeDir="false" afterPath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/infrastructure/adapter/in/rest/TraitementController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/infrastructure/adapter/out/client/MedicationClientAdapter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/infrastructure/adapter/out/client/MedicationRestClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/infrastructure/adapter/out/client/MedicationRestClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/infrastructure/adapter/out/persistence/TraitementJpaAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/infrastructure/adapter/out/persistence/TraitementJpaAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/infrastructure/adapter/out/persistence/entity/LigneMedicamentEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/infrastructure/adapter/out/persistence/entity/LigneMedicamentEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/infrastructure/adapter/out/persistence/entity/PrisePlanifieeEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/infrastructure/adapter/out/persistence/entity/PrisePlanifieeEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/infrastructure/adapter/out/persistence/repository/PrisePlanifieeJpaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/infrastructure/adapter/out/persistence/repository/PrisePlanifieeJpaRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/infrastructure/adapter/out/persistence/repository/TraitementJpaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/infrastructure/adapter/out/persistence/repository/TraitementJpaRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/infrastructure/mapper/TraitementMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/infrastructure/mapper/TraitementMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/infrastructure/messaging/kafka/producer/TraitementKafkaProducer.java" beforeDir="false" afterPath="$PROJECT_DIR$/treatement/src/main/java/com/pharmaApp/treatement/infrastructure/messaging/kafka/producer/TraitementKafkaProducer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treatement/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/treatement/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treatement/src/main/resources/db/migration/V1__init_schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/treatement/src/main/resources/db/migration/V1__init_schema.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treatement/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/treatement/target/classes/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treatement/target/classes/com/pharmaApp/treatement/TreatementApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/treatement/target/classes/com/pharmaApp/treatement/TreatementApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treatement/target/classes/com/pharmaApp/treatement/application/dto/PlanifierTraitementCommand$LigneCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/treatement/target/classes/com/pharmaApp/treatement/application/dto/PlanifierTraitementCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/treatement/target/classes/com/pharmaApp/treatement/application/dto/PlanifierTraitementCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treatement/target/classes/com/pharmaApp/treatement/application/dto/PriseResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/treatement/target/classes/com/pharmaApp/treatement/application/dto/PriseResponse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treatement/target/classes/com/pharmaApp/treatement/application/port/in/ConfirmerPriseUseCase.class" beforeDir="false" afterPath="$PROJECT_DIR$/treatement/target/classes/com/pharmaApp/treatement/application/port/in/ConfirmerPriseUseCase.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treatement/target/classes/com/pharmaApp/treatement/application/port/out/MedicationClientPort.class" beforeDir="false" afterPath="$PROJECT_DIR$/treatement/target/classes/com/pharmaApp/treatement/application/port/out/MedicationClientPort.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treatement/target/classes/com/pharmaApp/treatement/application/port/out/PriseRepositoryPort.class" beforeDir="false" afterPath="$PROJECT_DIR$/treatement/target/classes/com/pharmaApp/treatement/application/port/out/PriseRepositoryPort.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treatement/target/classes/com/pharmaApp/treatement/application/port/out/TraitementRepositoryPort.class" beforeDir="false" afterPath="$PROJECT_DIR$/treatement/target/classes/com/pharmaApp/treatement/application/port/out/TraitementRepositoryPort.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treatement/target/classes/com/pharmaApp/treatement/application/service/TraitementService.class" beforeDir="false" afterPath="$PROJECT_DIR$/treatement/target/classes/com/pharmaApp/treatement/application/service/TraitementService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treatement/target/classes/com/pharmaApp/treatement/domain/event/PriseConfirmeeEvent.class" beforeDir="false" afterPath="$PROJECT_DIR$/treatement/target/classes/com/pharmaApp/treatement/domain/event/PriseConfirmeeEvent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treatement/target/classes/com/pharmaApp/treatement/domain/model/LigneMedicament.class" beforeDir="false" afterPath="$PROJECT_DIR$/treatement/target/classes/com/pharmaApp/treatement/domain/model/LigneMedicament.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treatement/target/classes/com/pharmaApp/treatement/domain/model/PrisePlanifiee.class" beforeDir="false" afterPath="$PROJECT_DIR$/treatement/target/classes/com/pharmaApp/treatement/domain/model/PrisePlanifiee.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treatement/target/classes/com/pharmaApp/treatement/domain/model/Traitement.class" beforeDir="false" afterPath="$PROJECT_DIR$/treatement/target/classes/com/pharmaApp/treatement/domain/model/Traitement.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treatement/target/classes/com/pharmaApp/treatement/infrastructure/adapter/in/rest/PriseController.class" beforeDir="false" afterPath="$PROJECT_DIR$/treatement/target/classes/com/pharmaApp/treatement/infrastructure/adapter/in/rest/PriseController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treatement/target/classes/com/pharmaApp/treatement/infrastructure/adapter/in/rest/TraitementController$ErrorResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/treatement/target/classes/com/pharmaApp/treatement/infrastructure/adapter/in/rest/TraitementController$ErrorResponse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treatement/target/classes/com/pharmaApp/treatement/infrastructure/adapter/in/rest/TraitementController$ModifierStatutRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/treatement/target/classes/com/pharmaApp/treatement/infrastructure/adapter/in/rest/TraitementController$ModifierStatutRequest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treatement/target/classes/com/pharmaApp/treatement/infrastructure/adapter/in/rest/TraitementController$PlanifierRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/treatement/target/classes/com/pharmaApp/treatement/infrastructure/adapter/in/rest/TraitementController$PlanifierRequest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treatement/target/classes/com/pharmaApp/treatement/infrastructure/adapter/in/rest/TraitementController.class" beforeDir="false" afterPath="$PROJECT_DIR$/treatement/target/classes/com/pharmaApp/treatement/infrastructure/adapter/in/rest/TraitementController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treatement/target/classes/com/pharmaApp/treatement/infrastructure/adapter/out/client/MedicationClientAdapter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/treatement/target/classes/com/pharmaApp/treatement/infrastructure/adapter/out/client/MedicationRestClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/treatement/target/classes/com/pharmaApp/treatement/infrastructure/adapter/out/client/MedicationRestClient.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treatement/target/classes/com/pharmaApp/treatement/infrastructure/adapter/out/persistence/TraitementJpaAdapter.class" beforeDir="false" afterPath="$PROJECT_DIR$/treatement/target/classes/com/pharmaApp/treatement/infrastructure/adapter/out/persistence/TraitementJpaAdapter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treatement/target/classes/com/pharmaApp/treatement/infrastructure/adapter/out/persistence/entity/LigneMedicamentEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/treatement/target/classes/com/pharmaApp/treatement/infrastructure/adapter/out/persistence/entity/LigneMedicamentEntity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treatement/target/classes/com/pharmaApp/treatement/infrastructure/adapter/out/persistence/entity/PrisePlanifieeEntity$PriseStatutJpa.class" beforeDir="false" afterPath="$PROJECT_DIR$/treatement/target/classes/com/pharmaApp/treatement/infrastructure/adapter/out/persistence/entity/PrisePlanifieeEntity$PriseStatutJpa.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treatement/target/classes/com/pharmaApp/treatement/infrastructure/adapter/out/persistence/entity/PrisePlanifieeEntity$SourceConfirmationJpa.class" beforeDir="false" afterPath="$PROJECT_DIR$/treatement/target/classes/com/pharmaApp/treatement/infrastructure/adapter/out/persistence/entity/PrisePlanifieeEntity$SourceConfirmationJpa.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treatement/target/classes/com/pharmaApp/treatement/infrastructure/adapter/out/persistence/entity/PrisePlanifieeEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/treatement/target/classes/com/pharmaApp/treatement/infrastructure/adapter/out/persistence/entity/PrisePlanifieeEntity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treatement/target/classes/com/pharmaApp/treatement/infrastructure/adapter/out/persistence/repository/PrisePlanifieeJpaRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/treatement/target/classes/com/pharmaApp/treatement/infrastructure/adapter/out/persistence/repository/PrisePlanifieeJpaRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treatement/target/classes/com/pharmaApp/treatement/infrastructure/mapper/TraitementMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/treatement/target/classes/com/pharmaApp/treatement/infrastructure/mapper/TraitementMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treatement/target/classes/com/pharmaApp/treatement/infrastructure/mapper/TraitementMapperImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/treatement/target/classes/com/pharmaApp/treatement/infrastructure/mapper/TraitementMapperImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treatement/target/classes/com/pharmaApp/treatement/infrastructure/messaging/kafka/producer/TraitementKafkaProducer.class" beforeDir="false" afterPath="$PROJECT_DIR$/treatement/target/classes/com/pharmaApp/treatement/infrastructure/messaging/kafka/producer/TraitementKafkaProducer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treatement/target/classes/db/migration/V1__init_schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/treatement/target/classes/db/migration/V1__init_schema.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treatement/target/generated-sources/annotations/com/pharmaApp/treatement/infrastructure/mapper/TraitementMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/treatement/target/generated-sources/annotations/com/pharmaApp/treatement/infrastructure/mapper/TraitementMapperImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treatement/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/treatement/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treatement/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/treatement/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/target/classes/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/user/target/classes/application.yaml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Dockerfile" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;sightwebmaster&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/sightwebmaster/Pharma_backend.git&quot;,
+    &quot;accountId&quot;: &quot;7b9b2345-aa29-4e7e-a223-0cb491753f17&quot;
+  }
+}</component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="3B25iSo7DySeIPxB10tRmYkAsIU" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="flattenModules" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="false" />
+    <option name="showLibraryContents" value="true" />
+    <option name="showModules" value="false" />
+    <option name="showVisibilityIcons" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Spring Boot.AdherenceServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.GatewayApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.ServiceRegistryApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.TreatementApplication (1).executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.TreatementApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.UserApplication.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;ahmed&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Ahmed/Desktop/Eclips/Microservices/medication/pom.xml&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="ReactorSettings">
+    <option name="notificationShown" value="true" />
+  </component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="KtorApplicationConfigurationType" />
+        <option value="MicronautRunConfigurationType" />
+        <option value="QuarkusRunConfigurationType" />
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+  </component>
+  <component name="RunManager" selected="Spring Boot.UserApplication">
+    <configuration name="AdherenceServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="adherence-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.pharmaApp.adherence.AdherenceServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GatewayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="gateway-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.pharmaApp.gateway.GatewayApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MedicationApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="medication-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.pharmaApp.medication.MedicationApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="NotificationApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="Notification" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.pharmaApp.Notification.NotificationApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ServiceRegistryApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="service-registry" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.pharmaApp.service_registry.ServiceRegistryApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TreatementApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="tratement" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.pharmaApp.treatement.TreatementApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TreatementApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="tratement" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="TreatementApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="user" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.pharmaApp.user.UserApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-125ca727e0f0-intellij.indexing.shared.core-IU-243.24978.46" />
+        <option value="bundled-js-predefined-d6986cc7102b-76f8388c3a79-JavaScript-IU-243.24978.46" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="3be9e4d8-d4bd-45ea-a33a-94e9e97408b3" name="Changes" comment="" />
+      <created>1773674452135</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1773674452135</updated>
+      <workItem from="1773674453524" duration="444000" />
+      <workItem from="1774611192533" duration="114000" />
+      <workItem from="1774886133686" duration="312000" />
+      <workItem from="1774887413254" duration="4418000" />
+      <workItem from="1774892844349" duration="202000" />
+      <workItem from="1774893053823" duration="3709000" />
+      <workItem from="1774900637046" duration="6066000" />
+      <workItem from="1774914698930" duration="934000" />
+      <workItem from="1774959379662" duration="3932000" />
+      <workItem from="1775076476817" duration="1920000" />
+      <workItem from="1775146162324" duration="947000" />
+      <workItem from="1775205079328" duration="1783000" />
+      <workItem from="1775240008873" duration="3859000" />
+      <workItem from="1775387863949" duration="8529000" />
+      <workItem from="1775484901717" duration="8760000" />
+      <workItem from="1775555904403" duration="2243000" />
+      <workItem from="1775582090728" duration="1621000" />
+      <workItem from="1775659951550" duration="22164000" />
+      <workItem from="1775896748182" duration="1181000" />
+      <workItem from="1775989585560" duration="4808000" />
+      <workItem from="1776251140833" duration="76000" />
+      <workItem from="1776251236145" duration="6432000" />
+      <workItem from="1776265814478" duration="1700000" />
+      <workItem from="1776288274557" duration="1263000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/ahmed" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="add adherence changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="add adherence changes" />
+  </component>
+</project>

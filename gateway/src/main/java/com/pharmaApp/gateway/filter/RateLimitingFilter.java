@@ -1,8 +1,9 @@
 package com.pharmaApp.gateway.filter;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
+import org.springframework.cloud.gateway.filter.GlobalFilter;
+import org.springframework.core.annotation.Order;
 import org.springframework.data.redis.core.ReactiveRedisTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
@@ -13,7 +14,8 @@ import java.time.Duration;
 
 @Slf4j
 @Component
-public class RateLimitingFilter implements GatewayFilter {
+@Order(-1) // S'exécute EN DERNIER — après UserContextFilter qui a injecté X-User-Id
+public class RateLimitingFilter implements GlobalFilter {  // ✅ GlobalFilter
 
     private static final int MAX_REQUESTS   = 100;
     private static final int WINDOW_SECONDS = 60;
@@ -32,8 +34,8 @@ public class RateLimitingFilter implements GatewayFilter {
                 .getHeaders()
                 .getFirst("X-User-Id");
 
-        // Si pas de userId (ne devrait pas arriver après SecurityConfig)
-        if (userId == null) {
+        // Route publique sans userId → pas de rate limiting
+        if (userId == null || userId.isBlank()) {
             return chain.filter(exchange);
         }
 
@@ -43,23 +45,27 @@ public class RateLimitingFilter implements GatewayFilter {
                 .increment(redisKey)
                 .flatMap(count -> {
                     if (count == 1) {
-                        // Première requête de la fenêtre → on pose l'expiration
+                        // Première requête → pose l'expiration de la fenêtre
                         return redisTemplate.expire(redisKey, Duration.ofSeconds(WINDOW_SECONDS))
                                 .then(chain.filter(exchange));
                     }
+
                     if (count > MAX_REQUESTS) {
-                        log.warn("Rate limit dépassé pour userId={} count={}", userId, count);
+                        log.warn("Rate limit dépassé → userId={} count={}", userId, count);
                         exchange.getResponse().setStatusCode(HttpStatus.TOO_MANY_REQUESTS);
                         exchange.getResponse().getHeaders()
-                                .add("X-RateLimit-Limit", String.valueOf(MAX_REQUESTS));
+                                .add("X-RateLimit-Limit",     String.valueOf(MAX_REQUESTS));
                         exchange.getResponse().getHeaders()
                                 .add("X-RateLimit-Remaining", "0");
+                        exchange.getResponse().getHeaders()
+                                .add("Retry-After",           String.valueOf(WINDOW_SECONDS));
                         return exchange.getResponse().setComplete();
                     }
-                    // Dans la fenêtre, sous la limite
+
+                    // Sous la limite → continue et informe le client
+                    long remaining = MAX_REQUESTS - count;
                     exchange.getResponse().getHeaders()
-                            .add("X-RateLimit-Remaining",
-                                    String.valueOf(MAX_REQUESTS - count));
+                            .add("X-RateLimit-Remaining", String.valueOf(remaining));
                     return chain.filter(exchange);
                 });
     }

@@ -4,16 +4,14 @@ import lombok.*;
 
 import java.time.LocalDate;
 
-/**
- * Résumé compact — utilisé dans les tableaux de bord patient / pharmacien.
- */
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class AdherenceSummaryResponse {
-    private Long   traitementId;
+
+    private String traitementId;    // ✅ String UUID
     private String patientUserId;
     private String pharmacienUserId;
     private double taux7j;
@@ -25,10 +23,6 @@ public class AdherenceSummaryResponse {
     private int    prisesConfirmees;
     private int    prisesManquees;
     private LocalDate lastCalculated;
-
-    /** Niveau d'alerte : BON / MOYEN / CRITIQUE */
     private String niveauObservance;
-
-    /** true si une alerte a déjà été envoyée pour ce seuil */
     private boolean alerteEnvoyee;
 }

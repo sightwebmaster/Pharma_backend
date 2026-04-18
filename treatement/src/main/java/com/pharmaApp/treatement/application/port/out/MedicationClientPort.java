@@ -4,6 +4,7 @@ package com.pharmaApp.treatement.application.port.out;
 
 
 import java.util.List;
+import java.util.Optional;
 
 public interface MedicationClientPort {
 
@@ -16,4 +17,5 @@ public interface MedicationClientPort {
      * → Ce comportement est documenté et délibéré (choix métier).
      */
     List<String> getContreIndications(String medicamentId);
+    Optional<String> getMedicamentIdByNom(String nom);
 }

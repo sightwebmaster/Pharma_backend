@@ -12,13 +12,6 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * Adaptateur de sortie — traduit les appels du port domaine
- * en opérations JPA sur MySQL.
- *
- * Gère manuellement la relation bidirectionnelle
- * AdherenceRecordEntity ↔ HistoriqueEntryEntity.
- */
 @Component
 @RequiredArgsConstructor
 @Slf4j
@@ -32,7 +25,6 @@ public class AdherenceRepositoryAdapter implements AdherenceRepository {
         AdherenceRecordEntity entity;
 
         if (record.getId() != null) {
-            // Mise à jour : charger l'entité existante
             entity = jpaRepository.findById(record.getId())
                     .orElseThrow(() -> new IllegalStateException(
                             "AdherenceRecord introuvable id=" + record.getId()));
@@ -40,9 +32,8 @@ public class AdherenceRepositoryAdapter implements AdherenceRepository {
             entity = new AdherenceRecordEntity();
         }
 
-        // Copier les champs scalaires
         entity.setPatientUserId(record.getPatientUserId());
-        entity.setTraitementId(record.getTraitementId());
+        entity.setTraitementId(record.getTraitementId());       // ✅ String
         entity.setPharmacienUserId(record.getPharmacienUserId());
         entity.setTaux7j(record.getTaux7j());
         entity.setTaux30j(record.getTaux30j());
@@ -51,13 +42,10 @@ public class AdherenceRepositoryAdapter implements AdherenceRepository {
         entity.setConsecutiveMissed(record.getConsecutiveMissed());
         entity.setLastCalculated(record.getLastCalculated());
 
-        // Synchroniser les entries
         if (record.getEntries() != null) {
-            // Supprimer les entries qui n'existent plus dans le domaine
             entity.getEntries().removeIf(e -> record.getEntries().stream()
                     .noneMatch(d -> d.getId() != null && d.getId().equals(e.getId())));
 
-            // Ajouter les nouvelles entries (id == null)
             for (HistoriqueEntry domainEntry : record.getEntries()) {
                 if (domainEntry.getId() == null) {
                     HistoriqueEntryEntity entryEntity = mapper.toEntity(domainEntry);
@@ -72,8 +60,8 @@ public class AdherenceRepositoryAdapter implements AdherenceRepository {
     }
 
     @Override
-    public Optional<AdherenceRecord> findByPatientAndTraitement(String patientUserId,
-                                                                  Long traitementId) {
+    public Optional<AdherenceRecord> findByPatientAndTraitement(
+            String patientUserId, String traitementId) {   // ✅ String
         return jpaRepository
                 .findByPatientUserIdAndTraitementId(patientUserId, traitementId)
                 .map(mapper::toDomain);
@@ -90,7 +78,9 @@ public class AdherenceRepositoryAdapter implements AdherenceRepository {
     }
 
     @Override
-    public boolean existsByPatientAndTraitement(String patientUserId, Long traitementId) {
-        return jpaRepository.existsByPatientUserIdAndTraitementId(patientUserId, traitementId);
+    public boolean existsByPatientAndTraitement(
+            String patientUserId, String traitementId) {   // ✅ String
+        return jpaRepository.existsByPatientUserIdAndTraitementId(
+                patientUserId, traitementId);
     }
 }

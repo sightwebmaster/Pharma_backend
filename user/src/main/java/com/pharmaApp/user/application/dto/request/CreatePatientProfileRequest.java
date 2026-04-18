@@ -14,6 +14,7 @@ public class CreatePatientProfileRequest {
     private String       telephone;
     @NotNull   private LocalDate    dateNaissance;
     private String       groupeSanguin;
+    private Boolean      enceinte;
     private List<String> allergies;
     private List<String> maladiesChroniques;
     private String qrCode;

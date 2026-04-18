@@ -1,3 +1,7 @@
+
+// ─────────────────────────────────────────────────────────────
+// FICHIER 2 : HistoriqueEntryResponse.java
+// ─────────────────────────────────────────────────────────────
 package com.pharmaApp.adherence.application.dto.response;
 
 import lombok.*;
@@ -12,13 +16,14 @@ import java.time.LocalTime;
 @Builder
 public class HistoriqueEntryResponse {
     private Long   id;
-    private Long   priseMedicamentId;
+    private String priseMedicamentId;  // ✅ String UUID
     private String medicamentNom;
     private String dosage;
     private LocalDate datePrise;
     private LocalTime heurePrise;
-    private String statut;           // "CONFIRME" | "MANQUE"
+    private String statut;
     private LocalTime heureConfirmation;
     private Integer delaiMinutes;
     private String notePatient;
 }
+ 

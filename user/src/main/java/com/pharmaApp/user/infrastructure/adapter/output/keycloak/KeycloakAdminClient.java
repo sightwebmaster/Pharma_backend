@@ -105,6 +105,34 @@ public class KeycloakAdminClient implements KeycloakUserCreationPort {
         }
     }
 
+    @Override
+    public void updatePassword(String userId, String newPassword) {
+        String token = getAdminAccessToken();
+        String url = config.getServerUrl()
+                + "/admin/realms/" + config.getRealm()
+                + "/users/" + userId + "/reset-password";
+
+        HttpHeaders headers = buildHeaders(token);
+        Map<String, Object> body = Map.of(
+                "type", "password",
+                "temporary", false,
+                "value", newPassword
+        );
+
+        try {
+            restTemplate.exchange(
+                    url,
+                    HttpMethod.PUT,
+                    new HttpEntity<>(body, headers),
+                    Void.class
+            );
+            log.info("✅ Mot de passe mis à jour pour {}", userId);
+        } catch (HttpClientErrorException e) {
+            log.error("❌ Reset password error: {}", e.getResponseBodyAsString());
+            throw new RuntimeException("Impossible de changer le mot de passe", e);
+        }
+    }
+
     // ================= ADD ROLE =================
     private void addRoleToUser(String userId, String roleName, String token) {
 

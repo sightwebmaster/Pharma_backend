@@ -1,6 +1,12 @@
 package com.pharmaApp.user.domain.model;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Setter
@@ -10,15 +16,17 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class PharmacienProfile {
 
-
-    private String          id;
-    private String        userId;          // ID venant de auth-service
-    private String        nom;
-    private String        prenom;
-    private String        email;
-    private String        telephone;
-    private String        numeroOrdre;     // numéro ordre pharmacien
-    private String        specialite;
+    private String id;
+    private String userId;
+    private String nom;
+    private String prenom;
+    private String email;
+    private String telephone;
+    private LocalDate dateNaissance;
+    private String numeroOrdre;
+    private String specialite;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
+    private String photoBase64;
+    private String qrCode;
 }

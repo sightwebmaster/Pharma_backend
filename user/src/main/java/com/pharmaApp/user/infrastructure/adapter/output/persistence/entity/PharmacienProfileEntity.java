@@ -1,41 +1,64 @@
-    package com.pharmaApp.user.infrastructure.adapter.output.persistence.entity;
+package com.pharmaApp.user.infrastructure.adapter.output.persistence.entity;
 
-    import jakarta.persistence.*;
-    import lombok.*;
-    import java.time.LocalDateTime;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-    @Entity
-    @Table(name = "pharmacien_profiles")
-    @Getter @Setter @Builder @NoArgsConstructor @AllArgsConstructor
-    public class PharmacienProfileEntity {
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
-        @Id
-        @GeneratedValue(strategy = GenerationType.UUID)
-        private String id;
+@Entity
+@Table(name = "pharmacien_profiles")
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class PharmacienProfileEntity {
 
-        @Column(name = "user_id", unique = true, nullable = false)
-        private String userId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private String id;
 
-        @Column(nullable = false)
-        private String nom;
+    @Column(name = "user_id", unique = true, nullable = false)
+    private String userId;
 
-        @Column(nullable = false)
-        private String prenom;
+    @Column(nullable = false)
+    private String nom;
 
-        @Column(unique = true)
-        private String email;
+    @Column(nullable = false)
+    private String prenom;
 
-        private String telephone;
+    @Column(unique = true)
+    private String email;
 
-        @Column(name = "numero_ordre", unique = true)
-        private String numeroOrdre;
+    private String telephone;
 
-        private String specialite;
+    @Column(name = "date_naissance")
+    private LocalDate dateNaissance;
 
-        @Column(name = "created_at")
-        private LocalDateTime createdAt;
+    @Column(name = "numero_ordre", unique = true)
+    private String numeroOrdre;
 
-        @Column(name = "updated_at")
-        private LocalDateTime updatedAt;
-    }
+    private String specialite;
 
+    @Column(name = "photo_base64", columnDefinition = "LONGTEXT")
+    private String photoBase64;
+
+    @Column(name = "qr_code", columnDefinition = "LONGTEXT")
+    private String qrCode;
+
+    @Column(name = "created_at")
+    private LocalDateTime createdAt;
+
+    @Column(name = "updated_at")
+    private LocalDateTime updatedAt;
+}

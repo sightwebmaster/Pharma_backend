@@ -17,7 +17,7 @@ public class AlerteObservanceCritiqueEvent {
     private String eventId;
     private String patientUserId;
     private String pharmacienUserId;
-    private Long   traitementId;
+    private String   traitementId;
     private double taux7j;
     private double taux30j;
     private double tauxGlobal;

@@ -17,7 +17,7 @@ public class AlerteConsecutiveMissedEvent {
     private String eventId;
     private String patientUserId;
     private String pharmacienUserId;
-    private Long   traitementId;
+    private String   traitementId;
     private int    consecutiveMissed;
     private String dernierMedicamentManque;
     private Instant occurredAt;

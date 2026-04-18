@@ -2,7 +2,8 @@ package com.pharmaApp.treatement.application.port.in;
 
 
 import com.pharmaApp.treatement.application.dto.ConfirmerPriseCommand;
+import com.pharmaApp.treatement.application.dto.PriseResponse;
 
 public interface ConfirmerPriseUseCase {
-    void confirmer(ConfirmerPriseCommand command);
+    PriseResponse confirmer(ConfirmerPriseCommand command);
 }

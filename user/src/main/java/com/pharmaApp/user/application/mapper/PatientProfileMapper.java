@@ -15,6 +15,7 @@ public interface PatientProfileMapper {
     @Mapping(target = "qrCode", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
+    @Mapping(target = "photoBase64", ignore = true)
     PatientProfile toDomain(CreatePatientProfileRequest request);
 
     // ✅ Nouveau — pour AuthService.register()
@@ -23,6 +24,7 @@ public interface PatientProfileMapper {
     @Mapping(target = "qrCode", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
+    @Mapping(target = "photoBase64", ignore = true)
     PatientProfile toDomain(RegisterPatientRequest request);
 
 

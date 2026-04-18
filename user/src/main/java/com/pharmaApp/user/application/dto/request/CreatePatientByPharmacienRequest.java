@@ -33,6 +33,7 @@ public class CreatePatientByPharmacienRequest {
     private LocalDate dateNaissance;
 
     private String groupeSanguin;
+    private Boolean enceinte;
     private List<String> allergies;
     private List<String> maladiesChroniques;
 }

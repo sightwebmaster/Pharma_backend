@@ -8,6 +8,9 @@ import java.time.LocalDateTime;
  */
 public record PriseResponse(
         String        id,
+        String        traitementId,
+        String        patientUserId,
+        String        idLigneMedicament,
         String        medicamentNom,
         LocalDateTime heurePrevue,
         LocalDateTime heureReelle,

@@ -31,12 +31,12 @@
             headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
 
             MultiValueMap<String, String> body = new LinkedMultiValueMap<>();
-            body.add("grant_type",    "password");
-            body.add("client_id",     config.getClientId());
+            body.add("grant_type", "password");
+            body.add("client_id", config.getClientId());
             body.add("client_secret", config.getClientSecret());
-            body.add("username",      email);
-            body.add("password",      password);
-            body.add("scope",         "openid profile email");
+            body.add("username", email);
+            body.add("password", password);
+            body.add("scope", "openid profile email");
 
             try {
                 ResponseEntity<Map> response = restTemplate.exchange(
@@ -46,11 +46,11 @@
                 );
 
                 Map data = response.getBody();
-                String accessToken  = (String) data.get("access_token");
+                String accessToken = (String) data.get("access_token");
                 String refreshToken = (String) data.get("refresh_token");
-                Long expiresIn      = Long.valueOf(data.get("expires_in").toString());
-                String userId       = extractUserId(accessToken);
-                String role         = extractRole(accessToken);
+                Long expiresIn = Long.valueOf(data.get("expires_in").toString());
+                String userId = extractUserId(accessToken);
+                String role = extractRole(accessToken);
 
                 return AuthResponse.builder()
                         .accessToken(accessToken)
@@ -79,24 +79,29 @@
                         (Map<String, Object>) claims.get("realm_access");
                 List<String> roles =
                         (List<String>) realmAccess.get("roles");
-                return roles.stream()
-                        .filter(r -> r.equals("PATIENT") || r.equals("PHARMACIEN"))
-                        .findFirst()
-                        .orElse("PATIENT");
+
+                // ✅ Priorité : PHARMACIEN > PATIENT
+                if (roles.contains("PHARMACIEN")) return "PHARMACIEN";
+                if (roles.contains("PATIENT")) return "PATIENT";
+                if (roles.contains("PROCHE")) return "PROCHE";
+                return "PATIENT";
+
             } catch (Exception e) {
                 return "PATIENT";
             }
         }
 
-        @SuppressWarnings("unchecked")
-        private Map<String, Object> decodeToken(String token) {
-            try {
-                String[] parts   = token.split("\\.");
-                String payload   = new String(Base64.getUrlDecoder().decode(parts[1]));
-                return new com.fasterxml.jackson.databind.ObjectMapper()
-                        .readValue(payload, Map.class);
-            } catch (Exception e) {
-                throw new RuntimeException("Token invalide");
+            @SuppressWarnings("unchecked")
+            private Map<String, Object> decodeToken (String token){
+                try {
+                    String[] parts = token.split("\\.");
+                    String payload = new String(Base64.getUrlDecoder().decode(parts[1]));
+                    return new com.fasterxml.jackson.databind.ObjectMapper()
+                            .readValue(payload, Map.class);
+                } catch (Exception e) {
+                    throw new RuntimeException("Token invalide");
+                }
             }
         }
-    }
+
+

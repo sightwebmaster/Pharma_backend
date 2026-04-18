@@ -5,42 +5,66 @@ import com.pharmaApp.treatement.application.port.out.TraitementRepositoryPort;
 import com.pharmaApp.treatement.domain.model.LigneMedicament;
 import com.pharmaApp.treatement.domain.model.PrisePlanifiee;
 import com.pharmaApp.treatement.domain.model.Traitement;
-import com.pharmaApp.treatement.domain.model.TraitementStatut;
 import com.pharmaApp.treatement.infrastructure.adapter.out.persistence.entity.*;
 import com.pharmaApp.treatement.infrastructure.adapter.out.persistence.repository.*;
+import com.pharmaApp.treatement.infrastructure.mapper.PrisePlanifieeMapperManual;
 import com.pharmaApp.treatement.infrastructure.mapper.TraitementMapper;
+import com.pharmaApp.treatement.infrastructure.mapper.TraitementMapperManuel;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
-/**
- * TraitementJpaAdapter
- *
- * Adaptateur secondaire — implémente les deux ports sortants :
- *   - TraitementRepositoryPort
- *   - PriseRepositoryPort
- *
- * C'est ici que le domaine rencontre JPA.
- * TraitementService ne sait pas que JPA existe — il appelle les ports.
- * Cet adaptateur fait la traduction Domain ↔ Entity via TraitementMapper.
- */
 @Component
 public class TraitementJpaAdapter
         implements TraitementRepositoryPort, PriseRepositoryPort {
 
-    private final TraitementJpaRepository      traitementRepo;
-    private final PrisePlanifieeJpaRepository  priseRepo;
-    private final TraitementMapper             mapper;
+    private static final Logger log = LoggerFactory.getLogger(TraitementJpaAdapter.class);
 
+    private final TraitementJpaRepository traitementRepo;
+    private final PrisePlanifieeJpaRepository priseRepo;
+    private final TraitementMapper mapper;
+    private final PrisePlanifieeMapperManual priseMapper;
+    private final TraitementMapperManuel TraitmentMapper;
+
+    // ✅ Constructeur corrigé - plus de dépendance circulaire
     public TraitementJpaAdapter(
-            TraitementJpaRepository     traitementRepo,
+            TraitementJpaRepository traitementRepo,
             PrisePlanifieeJpaRepository priseRepo,
-            TraitementMapper            mapper) {
+            TraitementMapper mapper,
+            PrisePlanifieeMapperManual priseMapper, TraitementMapperManuel traitmentMapper) {
         this.traitementRepo = traitementRepo;
-        this.priseRepo      = priseRepo;
-        this.mapper         = mapper;
+        this.priseRepo = priseRepo;
+        this.mapper = mapper;
+        this.priseMapper = priseMapper;
+        this.TraitmentMapper = traitmentMapper;
+    }
+
+    @Override
+    public List<PrisePlanifiee> findPrisesAujourdhui(String patientUserId) {
+        LocalDateTime debutJour = LocalDate.now().atStartOfDay();
+        LocalDateTime finJour = LocalDate.now().atTime(23, 59, 59);
+
+        return priseRepo
+                .findByPatientUserIdAndHeurePrevueBetween(
+                        patientUserId, debutJour, finJour)
+                .stream()
+                .map(this::priseEntityToDomain)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<PrisePlanifiee> findToutesLesPrises(String patientUserId) {
+        return priseRepo
+                .findByPatientUserIdOrderByHeurePrevueDesc(patientUserId)
+                .stream()
+                .map(this::priseEntityToDomain)
+                .collect(Collectors.toList());
     }
 
     // ================================================================
@@ -49,54 +73,84 @@ public class TraitementJpaAdapter
 
     @Override
     public Traitement save(Traitement traitement) {
-        // 1. Mapper Domain → Entity principale
+
+        // ── 1. Mapper le traitement et ses lignes ───────────────────
         TraitementEntity entity = mapper.toEntity(traitement);
 
-        // 2. Mapper et rattacher les lignes médicament
+        Map<String, LigneMedicamentEntity> ligneParNom = new LinkedHashMap<>();
         List<LigneMedicamentEntity> lignesEntities = new ArrayList<>();
+
         for (LigneMedicament ligne : traitement.getLignes()) {
             LigneMedicamentEntity ligneEntity = mapper.ligneToEntity(ligne);
-            ligneEntity.setTraitement(entity);          // référence circulaire
+            ligneEntity.setTraitement(entity);
             lignesEntities.add(ligneEntity);
+            ligneParNom.put(ligne.getMedicamentNom(), ligneEntity);
+            log.info("Ligne préparée — id={} nom={}",
+                    ligneEntity.getId(), ligneEntity.getMedicamentNom());
         }
         entity.setLignes(lignesEntities);
 
-        // 3. Mapper et rattacher les prises planifiées
-        List<PrisePlanifieeEntity> prisesEntities = new ArrayList<>();
-        for (PrisePlanifiee prise : traitement.getPrises()) {
-            PrisePlanifieeEntity priseEntity = mapper.priseToEntity(prise);
-            priseEntity.setTraitement(entity);
+        // ── 2. PERSISTER + FLUSH IMMÉDIAT ───────────────────────────
+        // Cela force INSERT traitement + INSERT lignes en DB.
+        // Les lignes deviennent des entités MANAGÉES par Hibernate.
+        TraitementEntity saved = traitementRepo.saveAndFlush(entity);
 
-            // Trouver la ligne correspondante par medicamentId
-            lignesEntities.stream()
-                    .filter(l -> l.getMedicamentId().equals(
-                            trouverMedicamentId(traitement, prise.getLigneMedicamentId())))
-                    .findFirst()
-                    .ifPresent(priseEntity::setLigneMedicament);
-
-            prisesEntities.add(priseEntity);
+        // ── 3. Reconstruire la map à partir des lignes MANAGÉES ─────
+        Map<String, LigneMedicamentEntity> ligneParNomManaged = new LinkedHashMap<>();
+        for (LigneMedicamentEntity l : saved.getLignes()) {
+            ligneParNomManaged.put(l.getMedicamentNom(), l);
+            log.info("Ligne MANAGÉE — id={} nom={}", l.getId(), l.getMedicamentNom());
         }
 
-        // 4. Persister (cascade ALL gère lignes + prises)
-        TraitementEntity saved = traitementRepo.save(entity);
+        // ── 4. Construire les prises avec les lignes managées ───────
+        List<PrisePlanifieeEntity> prisesEntities = new ArrayList<>();
+        for (PrisePlanifiee prise : traitement.getPrises()) {
+            LigneMedicamentEntity ligneEntity = ligneParNomManaged.get(prise.getMedicamentNom());
+            if (ligneEntity == null) {
+                throw new IllegalStateException(
+                        "Aucune ligne managée pour: " + prise.getMedicamentNom());
+            }
+            log.info("Prise → ligne_id={} (managée)", ligneEntity.getId());
 
-        // 5. Persister les prises séparément (pas de cascade sur prise → ligne)
+            PrisePlanifieeEntity priseEntity =
+                    priseMapper.priseToEntity(prise, saved, ligneEntity);
+            prisesEntities.add(priseEntity);
+
+        }
+
+        // ── 5. Persister les prises ─────────────────────────────────
         priseRepo.saveAll(prisesEntities);
 
-        // 6. Retourner le domaine reconstitué depuis l'entity sauvegardée
-        return mapper.toDomain(saved);
+        // ── 6. Retourner le domaine reconstitué ─────────────────────
+        return TraitmentMapper.toDomain(saved);
     }
 
     @Override
-    public Optional<Traitement> findById(String traitementId) {
-        return traitementRepo.findById(traitementId)
-                .map(mapper::toDomain);
+    public void updatePriseStatut(PrisePlanifiee prise) {
+        PrisePlanifieeEntity entity = priseRepo.findById(prise.getId())
+                .orElseThrow(() -> new IllegalStateException(
+                        "Prise introuvable : " + prise.getId()));
+
+        entity.setStatut(PrisePlanifieeEntity.PriseStatutJpa.valueOf(prise.getStatut().name()));
+        entity.setHeureReelle(prise.getHeureReelle());  // null si MANQUEE, sinon timestamp si CONFIRMEE
+
+        priseRepo.save(entity);
+    }
+
+    @Override
+    @Transactional(readOnly = true)  // ← ajoute ça
+    public Optional<Traitement> findById(String id) {
+        return traitementRepo.findById(id)
+                .map(entity -> {
+                    // Force le chargement des collections lazy
+                    entity.getLignes().size();
+                    entity.getPrises().size();
+                    return TraitmentMapper.toDomain(entity);
+                });
     }
 
     @Override
     public Set<String> findPrincipesActifsActifs(String patientUserId) {
-        // Récupère tous les traitements ACTIFS du patient
-        // et extrait les principes actifs de leurs lignes
         return traitementRepo
                 .findByPatientUserIdAndStatut(
                         patientUserId,
@@ -104,6 +158,7 @@ public class TraitementJpaAdapter
                 .stream()
                 .flatMap(t -> t.getLignes().stream())
                 .map(LigneMedicamentEntity::getPrincipeActif)
+                .filter(Objects::nonNull)
                 .collect(Collectors.toSet());
     }
 
@@ -114,7 +169,7 @@ public class TraitementJpaAdapter
                         patientUserId,
                         TraitementEntity.TraitementStatutJpa.ACTIF)
                 .stream()
-                .map(mapper::toDomain)
+                .map(TraitmentMapper::toDomain)
                 .collect(Collectors.toList());
     }
 
@@ -125,16 +180,20 @@ public class TraitementJpaAdapter
     @Override
     public PrisePlanifiee save(PrisePlanifiee prise) {
         PrisePlanifieeEntity entity = priseRepo.findById(prise.getId())
-                .orElse(mapper.priseToEntity(prise));
+                .orElseThrow(() -> new IllegalStateException(
+                        "Prise introuvable [" + prise.getId() + "] — " +
+                                "une prise doit être créée via le Traitement parent"));
 
-        // Met à jour le statut et l'heure réelle
         entity.setStatut(PrisePlanifieeEntity.PriseStatutJpa.valueOf(
                 prise.getStatut().name()));
         if (prise.getHeureReelle() != null) {
             entity.setHeureReelle(prise.getHeureReelle());
         }
+        log.info("ligne-med_id5= {},ligne-med_nom5= {}", entity.getLigneMedicament().getMedicamentId(),entity.getLigneMedicament().getMedicamentNom());
+
 
         priseRepo.save(entity);
+        log.info("prise_entity_ligne-med= {}", entity.getLigneMedicament().getMedicamentNom());
         return prise;
     }
 
@@ -150,28 +209,16 @@ public class TraitementJpaAdapter
     // Utilitaires privés
     // ================================================================
 
-    /**
-     * Reconstitue un objet PrisePlanifiee du domaine depuis une entity.
-     * Utilisé uniquement pour le scheduler (lecture, pas d'écriture complexe).
-     */
     private PrisePlanifiee priseEntityToDomain(PrisePlanifieeEntity e) {
-        PrisePlanifiee prise = new PrisePlanifiee(
+        return PrisePlanifiee.reconstituer(
+                e.getId(),
                 e.getTraitement().getId(),
                 e.getLigneMedicament().getId(),
                 e.getPatientUserId(),
                 e.getLigneMedicament().getMedicamentNom(),
-                e.getHeurePrevue()
+                e.getHeurePrevue(),
+                e.getHeureReelle(),
+                com.pharmaApp.treatement.domain.model.PriseStatut.valueOf(e.getStatut().name())
         );
-        // Restore l'ID original (pas un nouvel UUID)
-        // Note : nécessite un setter d'ID dans PrisePlanifiee pour la reconstitution
-        return prise;
-    }
-
-    private String trouverMedicamentId(Traitement traitement, String ligneMedicamentId) {
-        return traitement.getLignes().stream()
-                .filter(l -> l.getMedicamentId().equals(ligneMedicamentId))
-                .map(LigneMedicament::getMedicamentId)
-                .findFirst()
-                .orElse("");
     }
 }

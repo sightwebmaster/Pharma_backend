@@ -1,0 +1,561 @@
+[
+  {
+    "id": "019642e8-69a9-4222-a5a5-2a9de59d68e8",
+    "name": "Azithromycine",
+    "dci": "Azithromycine",
+    "category": "interne",
+    "dosage": "250mg / 500mg",
+    "frequency": "Comprimé",
+    "form": "Comprimé",
+    "disease": "",
+    "indications": [
+      "infection bactérienne",
+      "pneumonie",
+      "bronchite",
+      "sinusite",
+      "infections peau"
+    ],
+    "contraindications": [
+      "allergie macrolides",
+      "allergie azithromycine",
+      "problèmes cardiaques"
+    ],
+    "side_effects": [
+      "nausées",
+      "diarrhée",
+      "douleurs abdominales",
+      "troubles du rythme cardiaque"
+    ],
+    "allergenes": [
+      "azithromycine",
+      "macrolides"
+    ],
+    "restrictions_age": [],
+    "prescription_required": false,
+    "price_tnd": 7.2,
+    "advice": "",
+    "description": "Antibiotique macrolide",
+    "source": "interne"
+  },
+  {
+    "id": "0c627672-8ce2-441f-8589-50f0d94260c5",
+    "name": "Cetirizine",
+    "dci": "Cétirizine",
+    "category": "interne",
+    "dosage": "10mg",
+    "frequency": "Comprimé",
+    "form": "Comprimé",
+    "disease": "",
+    "indications": [
+      "allergie",
+      "rhinite allergique",
+      "urticaire",
+      "démangeaisons",
+      "yeux qui piquent"
+    ],
+    "contraindications": [
+      "insuffisance rénale sévère",
+      "allergie cétirizine"
+    ],
+    "side_effects": [
+      "somnolence légère",
+      "sécheresse buccale",
+      "céphalées"
+    ],
+    "allergenes": [
+      "cétirizine"
+    ],
+    "restrictions_age": [],
+    "prescription_required": false,
+    "price_tnd": 3.5,
+    "advice": "",
+    "description": "Antihistaminique — traitement des allergies",
+    "source": "interne"
+  },
+  {
+    "id": "1775abe0-bcf9-4ca7-9c39-3506755ec071",
+    "name": "Metformine",
+    "dci": "Metformine",
+    "category": "interne",
+    "dosage": "500mg / 850mg / 1000mg",
+    "frequency": "Comprimé",
+    "form": "Comprimé",
+    "disease": "",
+    "indications": [
+      "hyperglycémie",
+      "diabète type 2"
+    ],
+    "contraindications": [
+      "insuffisance rénale",
+      "insuffisance hépatique",
+      "insuffisance cardiaque",
+      "alcoolisme"
+    ],
+    "side_effects": [
+      "nausées",
+      "diarrhée",
+      "douleurs abdominales",
+      "acidose lactique rare"
+    ],
+    "allergenes": [
+      "metformine"
+    ],
+    "restrictions_age": [],
+    "prescription_required": false,
+    "price_tnd": 3.1,
+    "advice": "",
+    "description": "Antidiabétique oral — traitement du diabète de type 2",
+    "source": "interne"
+  },
+  {
+    "id": "2482a2d3-4d52-40ca-8e46-6335465078bf",
+    "name": "Prednisolone",
+    "dci": "Prednisolone",
+    "category": "interne",
+    "dosage": "5mg / 20mg",
+    "frequency": "Comprimé",
+    "form": "Comprimé",
+    "disease": "",
+    "indications": [
+      "inflammation sévère",
+      "asthme sévère",
+      "allergie sévère",
+      "maladies auto-immunes"
+    ],
+    "contraindications": [
+      "infection non traitée",
+      "ulcère gastrique",
+      "diabète non contrôlé",
+      "ostéoporose"
+    ],
+    "side_effects": [
+      "prise de poids",
+      "hyperglycémie",
+      "ostéoporose",
+      "hypertension",
+      "immunodépression"
+    ],
+    "allergenes": [
+      "corticostéroïdes"
+    ],
+    "restrictions_age": [
+      "grossesse"
+    ],
+    "prescription_required": false,
+    "price_tnd": 4.9,
+    "advice": "",
+    "description": "Corticostéroïde — anti-inflammatoire puissant",
+    "source": "interne"
+  },
+  {
+    "id": "29a3997d-edad-4d55-bc61-8aa01fcd0c1a",
+    "name": "Amlodipine",
+    "dci": "Amlodipine",
+    "category": "interne",
+    "dosage": "5mg / 10mg",
+    "frequency": "Comprimé",
+    "form": "Comprimé",
+    "disease": "",
+    "indications": [
+      "hypertension",
+      "angine de poitrine",
+      "douleur thoracique"
+    ],
+    "contraindications": [
+      "choc cardiogénique",
+      "allergie dihydropyridines",
+      "sténose aortique sévère"
+    ],
+    "side_effects": [
+      "oedèmes chevilles",
+      "flush",
+      "céphalées",
+      "palpitations"
+    ],
+    "allergenes": [
+      "amlodipine",
+      "dihydropyridines"
+    ],
+    "restrictions_age": [
+      "grossesse"
+    ],
+    "prescription_required": false,
+    "price_tnd": 5.1,
+    "advice": "",
+    "description": "Inhibiteur calcique — traitement hypertension et angine",
+    "source": "interne"
+  },
+  {
+    "id": "5bdffcf2-a4a2-42c6-9911-be75f8be4a0d",
+    "name": "Oméprazole",
+    "dci": "Oméprazole",
+    "category": "interne",
+    "dosage": "20mg / 40mg",
+    "frequency": "Gélule",
+    "form": "Gélule",
+    "disease": "",
+    "indications": [
+      "brûlures d'estomac",
+      "reflux gastrique",
+      "ulcère",
+      "gastrite"
+    ],
+    "contraindications": [
+      "allergie oméprazole",
+      "allergie inhibiteurs pompe à protons"
+    ],
+    "side_effects": [
+      "céphalées",
+      "diarrhée",
+      "nausées",
+      "flatulences"
+    ],
+    "allergenes": [
+      "oméprazole"
+    ],
+    "restrictions_age": [],
+    "prescription_required": false,
+    "price_tnd": 4.2,
+    "advice": "",
+    "description": "Inhibiteur de la pompe à protons — traitement de l'ulcère",
+    "source": "interne"
+  },
+  {
+    "id": "776de579-36a0-4120-ad29-b2288f8a7938",
+    "name": "Lisinopril",
+    "dci": "Lisinopril",
+    "category": "interne",
+    "dosage": "5mg / 10mg / 20mg",
+    "frequency": "Comprimé",
+    "form": "Comprimé",
+    "disease": "",
+    "indications": [
+      "hypertension",
+      "insuffisance cardiaque",
+      "protection rénale diabète"
+    ],
+    "contraindications": [
+      "grossesse",
+      "angioedème",
+      "hyperkaliémie",
+      "sténose artère rénale"
+    ],
+    "side_effects": [
+      "toux sèche",
+      "hypotension",
+      "hyperkaliémie",
+      "insuffisance rénale"
+    ],
+    "allergenes": [
+      "IEC",
+      "lisinopril"
+    ],
+    "restrictions_age": [
+      "grossesse"
+    ],
+    "prescription_required": false,
+    "price_tnd": 5.5,
+    "advice": "",
+    "description": "Inhibiteur de l'enzyme de conversion — traitement hypertension",
+    "source": "interne"
+  },
+  {
+    "id": "7a9fde77-e540-430c-b88c-a326a3d9863f",
+    "name": "Loratadine",
+    "dci": "Loratadine",
+    "category": "interne",
+    "dosage": "10mg",
+    "frequency": "Comprimé",
+    "form": "Comprimé",
+    "disease": "",
+    "indications": [
+      "rhinite allergique",
+      "urticaire",
+      "allergie saisonnière",
+      "démangeaisons"
+    ],
+    "contraindications": [
+      "allergie loratadine",
+      "insuffisance hépatique sévère"
+    ],
+    "side_effects": [
+      "céphalées",
+      "somnolence rare",
+      "sécheresse buccale"
+    ],
+    "allergenes": [
+      "loratadine"
+    ],
+    "restrictions_age": [],
+    "prescription_required": false,
+    "price_tnd": 3.8,
+    "advice": "",
+    "description": "Antihistaminique de 2e génération — non sédatif",
+    "source": "interne"
+  },
+  {
+    "id": "7ca0b717-50f5-4ab6-9ca8-91e461fc0165",
+    "name": "Ibuprofène",
+    "dci": "Ibuprofène",
+    "category": "interne",
+    "dosage": "200mg / 400mg",
+    "frequency": "Comprimé",
+    "form": "Comprimé",
+    "disease": "",
+    "indications": [
+      "douleur",
+      "inflammation",
+      "fièvre",
+      "maux de tête",
+      "douleurs musculaires",
+      "douleur thoracique"
+    ],
+    "contraindications": [
+      "ulcère gastroduodénal",
+      "insuffisance rénale",
+      "grossesse 3e trimestre",
+      "allergie AINS"
+    ],
+    "side_effects": [
+      "douleurs gastriques",
+      "nausées",
+      "vertiges",
+      "risque cardiovasculaire"
+    ],
+    "allergenes": [
+      "ibuprofène",
+      "AINS"
+    ],
+    "restrictions_age": [
+      "enfant_moins_12",
+      "grossesse"
+    ],
+    "prescription_required": false,
+    "price_tnd": 3.2,
+    "advice": "",
+    "description": "Anti-inflammatoire non stéroïdien (AINS)",
+    "source": "interne"
+  },
+  {
+    "id": "841a3048-6f86-41ba-9386-c8775788b80e",
+    "name": "Levothyrox",
+    "dci": "Lévothyroxine sodique",
+    "category": "interne",
+    "dosage": "25µg / 50µg / 75µg / 100µg",
+    "frequency": "Comprimé",
+    "form": "Comprimé",
+    "disease": "",
+    "indications": [
+      "hypothyroïdie",
+      "fatigue chronique",
+      "prise de poids inexpliquée"
+    ],
+    "contraindications": [
+      "hyperthyroïdie non traitée",
+      "insuffisance coronarienne non traitée",
+      "insuffisance surrénalienne"
+    ],
+    "side_effects": [
+      "palpitations en surdosage",
+      "insomnie",
+      "perte de poids",
+      "tremblements"
+    ],
+    "allergenes": [
+      "lévothyroxine"
+    ],
+    "restrictions_age": [],
+    "prescription_required": false,
+    "price_tnd": 3.9,
+    "advice": "",
+    "description": "Hormone thyroïdienne de substitution",
+    "source": "interne"
+  },
+  {
+    "id": "9a26b010-c37d-4b7f-9da5-5ebe9340eed0",
+    "name": "Atorvastatine",
+    "dci": "Atorvastatine",
+    "category": "interne",
+    "dosage": "10mg / 20mg / 40mg",
+    "frequency": "Comprimé",
+    "form": "Comprimé",
+    "disease": "",
+    "indications": [
+      "hypercholestérolémie",
+      "prévention cardiovasculaire"
+    ],
+    "contraindications": [
+      "grossesse",
+      "allaitement",
+      "myopathie",
+      "insuffisance hépatique"
+    ],
+    "side_effects": [
+      "douleurs musculaires",
+      "rhabdomyolyse rare",
+      "augmentation enzymes hépatiques"
+    ],
+    "allergenes": [
+      "statines",
+      "atorvastatine"
+    ],
+    "restrictions_age": [
+      "grossesse",
+      "allaitement"
+    ],
+    "prescription_required": false,
+    "price_tnd": 6.8,
+    "advice": "",
+    "description": "Statine — réduction du cholestérol",
+    "source": "interne"
+  },
+  {
+    "id": "acdbe541-988e-4d69-b02e-2e0709b12f9b",
+    "name": "Aspirine",
+    "dci": "Acide acétylsalicylique",
+    "category": "interne",
+    "dosage": "500mg",
+    "frequency": "Comprimé effervescent",
+    "form": "Comprimé effervescent",
+    "disease": "",
+    "indications": [
+      "maux de tête",
+      "fièvre",
+      "douleur",
+      "douleur thoracique"
+    ],
+    "contraindications": [
+      "ulcère gastrique",
+      "grossesse",
+      "allergie aspirine",
+      "hémophilie",
+      "insuffisance rénale"
+    ],
+    "side_effects": [
+      "saignements gastro-intestinaux",
+      "acouphènes",
+      "allergie"
+    ],
+    "allergenes": [
+      "aspirine",
+      "salicylés",
+      "AINS"
+    ],
+    "restrictions_age": [
+      "enfant_moins_12",
+      "grossesse",
+      "allaitement"
+    ],
+    "prescription_required": false,
+    "price_tnd": 2.8,
+    "advice": "",
+    "description": "Antalgique, antipyrétique, anti-inflammatoire, anticoagulant",
+    "source": "interne"
+  },
+  {
+    "id": "b91b90bc-6d64-45fc-b729-7f590c7fc5ec",
+    "name": "Doliprane",
+    "dci": "Paracétamol",
+    "category": "interne",
+    "dosage": "500mg / 1000mg",
+    "frequency": "Comprimé",
+    "form": "Comprimé",
+    "disease": "",
+    "indications": [
+      "maux de tête",
+      "fièvre",
+      "douleur",
+      "migraine"
+    ],
+    "contraindications": [
+      "insuffisance hépatique",
+      "allergie paracétamol"
+    ],
+    "side_effects": [
+      "réactions allergiques rares",
+      "atteinte hépatique en surdosage"
+    ],
+    "allergenes": [
+      "paracétamol"
+    ],
+    "restrictions_age": [],
+    "prescription_required": false,
+    "price_tnd": 2.5,
+    "advice": "",
+    "description": "Antalgique et antipyrétique",
+    "source": "interne"
+  },
+  {
+    "id": "ea2ac208-f3c0-4765-887e-38bf03286beb",
+    "name": "Ventoline",
+    "dci": "Salbutamol",
+    "category": "interne",
+    "dosage": "100µg/dose",
+    "frequency": "Aérosol",
+    "form": "Aérosol",
+    "disease": "",
+    "indications": [
+      "asthme",
+      "dyspnée",
+      "essoufflement",
+      "sifflement respiratoire"
+    ],
+    "contraindications": [
+      "allergie salbutamol",
+      "tachycardie"
+    ],
+    "side_effects": [
+      "tremblements",
+      "tachycardie",
+      "céphalées",
+      "hypokaliémie"
+    ],
+    "allergenes": [
+      "salbutamol"
+    ],
+    "restrictions_age": [],
+    "prescription_required": false,
+    "price_tnd": 5.8,
+    "advice": "",
+    "description": "Bronchodilatateur — traitement de l'asthme",
+    "source": "interne"
+  },
+  {
+    "id": "ec18a564-dc00-49bd-b318-66b4b228906d",
+    "name": "Amoxicilline",
+    "dci": "Amoxicilline",
+    "category": "interne",
+    "dosage": "500mg / 1g",
+    "frequency": "Gélule",
+    "form": "Gélule",
+    "disease": "",
+    "indications": [
+      "infection bactérienne",
+      "angine",
+      "otite",
+      "sinusite",
+      "bronchite"
+    ],
+    "contraindications": [
+      "allergie pénicilline",
+      "mononucléose infectieuse",
+      "insuffisance rénale sévère"
+    ],
+    "side_effects": [
+      "diarrhée",
+      "nausées",
+      "éruption cutanée",
+      "candidose"
+    ],
+    "allergenes": [
+      "pénicilline",
+      "amoxicilline"
+    ],
+    "restrictions_age": [],
+    "prescription_required": false,
+    "price_tnd": 4.5,
+    "advice": "",
+    "description": "Antibiotique de la famille des pénicillines",
+    "source": "interne"
+  }
+]

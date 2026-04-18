@@ -1,8 +1,9 @@
 package com.pharmaApp.gateway.filter;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
+import org.springframework.cloud.gateway.filter.GlobalFilter;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.core.context.ReactiveSecurityContextHolder;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Component;
@@ -11,7 +12,8 @@ import reactor.core.publisher.Mono;
 
 @Slf4j
 @Component
-public class UserContextFilter implements GatewayFilter {
+@Order(-2) // Après LoggingFilter(-3), avant RateLimitingFilter(-1)
+public class UserContextFilter implements GlobalFilter {  // ✅ GlobalFilter, pas GatewayFilter
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange,
@@ -21,29 +23,27 @@ public class UserContextFilter implements GatewayFilter {
                 .map(ctx -> ctx.getAuthentication().getPrincipal())
                 .cast(Jwt.class)
                 .flatMap(jwt -> {
-                    // Extrait les claims du JWT Keycloak
-                    String userId = jwt.getSubject();        // claim "sub" = UUID Keycloak
-                    String role   = extractRole(jwt);        // claim "realm_access.roles"
+                    String userId = jwt.getSubject();
+                    String email  = jwt.getClaimAsString("email");
+                    String role   = extractRole(jwt);
 
                     log.debug("UserContext → userId={} role={}", userId, role);
 
-                    // Injecte les headers vers les services downstream
                     var mutatedRequest = exchange.getRequest()
                             .mutate()
-                            .header("X-User-Id",   userId)
-                            .header("X-User-Role", role)
+                            .header("X-User-Id",    userId != null ? userId : "")
+                            .header("X-User-Email", email  != null ? email  : "")
+                            .header("X-User-Role",  role)
                             .build();
 
                     return chain.filter(
                             exchange.mutate().request(mutatedRequest).build()
                     );
-                });
+                })
+                // Route publique sans JWT — on continue sans header
+                .switchIfEmpty(chain.filter(exchange));
     }
 
-    /**
-     * Extrait le premier rôle métier du JWT.
-     * On ignore les rôles Keycloak système (offline_access, uma_authorization).
-     */
     private String extractRole(Jwt jwt) {
         var realmAccess = jwt.getClaimAsMap("realm_access");
         if (realmAccess == null) return "UNKNOWN";

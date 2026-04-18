@@ -1,7 +1,6 @@
 package com.pharmaApp.adherence.application.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -9,7 +8,12 @@ import java.time.LocalTime;
 
 /**
  * DTO de la requête d'enregistrement d'une prise.
- * Peut venir du consumer Kafka OU d'un appel REST direct (tests).
+ *
+ * Peut venir :
+ *   - Du consumer Kafka (PriseStatusEvent → champs minimaux)
+ *   - D'un appel REST direct (tests pharmacien → champs complets)
+ *
+ * Tous les champs non fournis par Kafka sont optionnels.
  */
 @Getter
 @Setter
@@ -18,35 +22,39 @@ import java.time.LocalTime;
 @Builder
 public class EnregistrerPriseRequest {
 
-    @NotNull
-    private Long priseMedicamentId;
+    /** ID de la prise dans treatment-service (UUID String) */
+    private String priseMedicamentId;   // ✅ String UUID — était Long
 
-    @NotNull
-    private Long traitementId;
+    /** ID du traitement dans treatment-service (UUID String) */
+    private String traitementId;        // ✅ String UUID — était Long
 
     @NotBlank
     private String patientUserId;
 
-    @NotBlank
+    /** Optionnel — non fourni par Kafka, fourni par REST */
     private String pharmacienUserId;
 
     @NotBlank
     private String medicamentNom;
 
+    /** Optionnel */
     private String dosage;
 
-    @NotNull
+    /** Optionnel — déduit de now() si absent */
     private LocalDate datePrise;
 
-    @NotNull
+    /** Optionnel */
     private LocalTime heurePrise;
 
-    /** Null si MANQUE */
+    /** Null si MANQUEE */
     private LocalTime heureConfirmation;
 
-    /** "CONFIRME" ou "MANQUE" */
+    /** "CONFIRMEE" | "MANQUEE" */
     @NotBlank
     private String statut;
 
+    /** Optionnel */
     private String notePatient;
+
+    private Integer  delaiMinutes;
 }

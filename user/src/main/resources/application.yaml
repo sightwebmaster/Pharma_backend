@@ -1,0 +1,71 @@
+server:
+  port: 8083
+  servlet:
+    session:
+      timeout: 8h
+      cookie:
+        max-age: 8h
+
+spring:
+  application:
+    name: user-service
+
+  datasource:
+    url: jdbc:mysql://localhost:3307/pharma_user_db?useSSL=false&serverTimezone=UTC&createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true
+    username: root
+    password: benchahmed123A!
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    open-in-view: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        format_sql: true
+
+keycloak:
+  admin:
+    server-url: http://localhost:8090
+    realm: pharma-realm
+    client-id: pharma-backend
+    client-secret: ${KEYCLOAK_CLIENT_SECRET:pfUOgs7EurOaCH0Pr44SIFXHbcsfPXUm}
+
+internal:
+  api:
+    token: ${INTERNAL_API_TOKEN:local-recommendation-token}
+
+# ── Eureka — MANQUANT, c'est la cause du 500 ──────────────────
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    healthcheck:
+      enabled: true
+    service-url:
+      defaultZone: ${EUREKA_URL:http://localhost:8761/eureka}
+  instance:
+    instance-id: ${spring.application.name}:${server.port}
+    prefer-ip-address: true
+
+pharmaApp:
+  services:
+    recommendation-service: ${RECOMMENDATION_SERVICE_URL:http://localhost:8095}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info, metrics
+  endpoint:
+    health:
+      show-details: always
+
+logging:
+  level:
+    com.pharmaApp.user: DEBUG
+    org.springframework.security: INFO
+    org.hibernate.SQL: DEBUG
+    org.hibernate.orm.jdbc.bind: TRACE

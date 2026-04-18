@@ -12,6 +12,8 @@ public class UpdatePatientProfileRequest {
     private String       telephone;
     private LocalDate    dateNaissance;
     private String       groupeSanguin;
+    private Boolean      enceinte;
     private List<String> allergies;
     private List<String> maladiesChroniques;
+    private String       photoBase64;
 }

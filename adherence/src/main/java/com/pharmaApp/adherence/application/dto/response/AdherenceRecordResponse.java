@@ -1,3 +1,6 @@
+// ─────────────────────────────────────────────────────────────
+// FICHIER 1 : AdherenceRecordResponse.java
+// ─────────────────────────────────────────────────────────────
 package com.pharmaApp.adherence.application.dto.response;
 
 import lombok.*;
@@ -13,7 +16,7 @@ import java.util.List;
 public class AdherenceRecordResponse {
     private Long   id;
     private String patientUserId;
-    private Long   traitementId;
+    private String traitementId;     // ✅ String UUID
     private String pharmacienUserId;
     private double taux7j;
     private double taux30j;
@@ -24,3 +27,4 @@ public class AdherenceRecordResponse {
     private int    totalEntries;
     private List<HistoriqueEntryResponse> entries;
 }
+ 

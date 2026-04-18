@@ -233,9 +233,14 @@ public class PatientProfileService implements PatientProfileUseCase {
             response.setTelephone(procheProfile.getTelephone());
             response.setEmail(procheProfile.getEmail());
             response.setGroupeSanguin(procheProfile.getGroupeSanguin());
+            response.setDateNaissance(procheProfile.getDateNaissance());
+            response.setEnceinte(procheProfile.getEnceinte());
+            response.setAllergies(procheProfile.getAllergies());
+            response.setMaladiesChroniques(procheProfile.getMaladiesChroniques());
+            response.setPhotoBase64(procheProfile.getPhotoBase64());
+            response.setQrCode(procheProfile.getQrCode());
         }
         return response;
     }
 
 }
-

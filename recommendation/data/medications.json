@@ -1,502 +1,2513 @@
 [
   {
-    "id": "med001", "name": "Paracétamol 500mg", "dci": "Paracétamol",
-    "category": "Antalgique / Antipyrétique", "dosage": "500mg",
-    "frequency": "1 comprimé toutes les 6h (max 4/jour)",
-    "indications": ["fièvre", "maux de tête", "céphalée", "douleur légère", "grippe", "rhume", "mal de gorge", "fatigue", "courbatures", "حمى", "صداع"],
-    "contraindications": ["insuffisance hépatique sévère"],
-    "side_effects": ["rare: allergie cutanée"],
-    "prescription_required": false, "price_tnd": 0.800,
-    "description": "Antalgique et antipyrétique de référence palier 1. Premier choix pour fièvre et douleurs légères."
+    "name": "Amlodipine",
+    "dci": "Amlodipine Besylate",
+    "category": "Calcium Channel Blocker",
+    "dosage": "5-10mg",
+    "frequency": "Once daily",
+    "indications": [
+      "high blood pressure",
+      "hypertension",
+      "chest pain",
+      "angina",
+      "dizziness"
+    ],
+    "contraindications": [
+      "Severe hypotension",
+      "Aortic stenosis"
+    ],
+    "side_effects": [
+      "ankle edema",
+      "flushing",
+      "headache",
+      "dizziness"
+    ],
+    "prescription_required": true,
+    "id": "med_amlodipine_besy_0001",
+    "disease": "Hypertension",
+    "source": "Clinical Database",
+    "advice": "Monitor blood pressure daily, reduce salt, exercise regularly.",
+    "price_tnd": 3.6
   },
   {
-    "id": "med002", "name": "Ibuprofène 400mg", "dci": "Ibuprofène",
-    "category": "Anti-inflammatoire AINS", "dosage": "400mg",
-    "frequency": "1 comprimé toutes les 8h avec repas",
-    "indications": ["inflammation", "douleur", "fièvre", "maux de tête", "douleur musculaire", "arthrite", "règles douloureuses", "tendinite"],
-    "contraindications": ["ulcère gastrique", "insuffisance rénale", "grossesse 3e trimestre", "allergie AINS"],
-    "side_effects": ["douleur gastrique", "nausées"],
-    "prescription_required": false, "price_tnd": 1.200,
-    "description": "Anti-inflammatoire non stéroïdien. Efficace contre inflammation, douleur et fièvre."
+    "name": "Lisinopril",
+    "dci": "Lisinopril",
+    "category": "ACE Inhibitor",
+    "dosage": "10-40mg",
+    "frequency": "Once daily",
+    "indications": [
+      "hypertension",
+      "heart failure",
+      "diabetic nephropathy",
+      "headache"
+    ],
+    "contraindications": [
+      "History of angioedema",
+      "Pregnancy",
+      "Bilateral renal artery stenosis"
+    ],
+    "side_effects": [
+      "dry cough",
+      "dizziness",
+      "hyperkalemia",
+      "angioedema"
+    ],
+    "prescription_required": true,
+    "id": "med_lisinopril_0002",
+    "disease": "Hypertension",
+    "source": "Clinical Database",
+    "advice": "Monitor blood pressure daily, reduce salt, exercise regularly.",
+    "price_tnd": 5.7
   },
   {
-    "id": "med003", "name": "Amoxicilline 500mg", "dci": "Amoxicilline",
-    "category": "Antibiotique pénicilline", "dosage": "500mg",
-    "frequency": "1 gélule toutes les 8h pendant 7 jours",
-    "indications": ["infection bactérienne", "angine bactérienne", "otite", "sinusite", "bronchite bactérienne"],
-    "contraindications": ["allergie pénicilline", "allergie amoxicilline"],
-    "side_effects": ["diarrhée", "nausées", "éruption cutanée"],
-    "prescription_required": true, "price_tnd": 2.500,
-    "description": "Antibiotique à large spectre famille pénicillines. Sur ordonnance uniquement."
+    "name": "Losartan",
+    "dci": "Losartan Potassium",
+    "category": "ARB / Angiotensin Receptor Blocker",
+    "dosage": "50-100mg",
+    "frequency": "Once daily",
+    "indications": [
+      "hypertension",
+      "diabetic nephropathy",
+      "heart failure",
+      "stroke prevention"
+    ],
+    "contraindications": [
+      "Pregnancy",
+      "Bilateral renal artery stenosis"
+    ],
+    "side_effects": [
+      "dizziness",
+      "hyperkalemia",
+      "back pain"
+    ],
+    "prescription_required": true,
+    "id": "med_losartan_potass_0003",
+    "disease": "Hypertension",
+    "source": "Clinical Database",
+    "advice": "Monitor blood pressure daily, reduce salt, exercise regularly.",
+    "price_tnd": 7.8
   },
   {
-    "id": "med004", "name": "Oméprazole 20mg", "dci": "Oméprazole",
-    "category": "Inhibiteur pompe à protons", "dosage": "20mg",
-    "frequency": "1 gélule par jour avant repas du matin",
-    "indications": ["brûlures estomac", "reflux gastrique", "acidité", "ulcère gastrique", "gastrite", "douleur épigastrique", "حموضة المعدة"],
-    "contraindications": ["allergie oméprazole"],
-    "side_effects": ["maux de tête", "diarrhée"],
-    "prescription_required": false, "price_tnd": 1.800,
-    "description": "IPP réduisant la sécrétion acide gastrique. Traitement de référence du reflux."
+    "name": "Metformin",
+    "dci": "Metformin Hydrochloride",
+    "category": "Biguanide Antidiabetic",
+    "dosage": "500-1000mg",
+    "frequency": "Twice daily with meals",
+    "indications": [
+      "type 2 diabetes",
+      "high blood sugar",
+      "insulin resistance",
+      "frequent urination",
+      "excessive thirst"
+    ],
+    "contraindications": [
+      "Renal failure eGFR<30",
+      "Hepatic failure",
+      "Contrast dye procedures"
+    ],
+    "side_effects": [
+      "nausea",
+      "diarrhea",
+      "metallic taste",
+      "lactic acidosis rare"
+    ],
+    "prescription_required": true,
+    "id": "med_metformin_hydro_0004",
+    "disease": "Type 2 Diabetes",
+    "source": "Clinical Database",
+    "advice": "Low carb diet, daily glucose monitoring, regular exercise.",
+    "price_tnd": 9.9
   },
   {
-    "id": "med005", "name": "Cétirizine 10mg", "dci": "Cétirizine",
-    "category": "Antihistaminique H1", "dosage": "10mg",
-    "frequency": "1 comprimé par jour le soir",
-    "indications": ["allergie", "rhinite allergique", "urticaire", "démangeaisons", "éternuements", "yeux qui coulent", "حساسية"],
-    "contraindications": ["insuffisance rénale sévère"],
-    "side_effects": ["somnolence légère"],
-    "prescription_required": false, "price_tnd": 1.500,
-    "description": "Antihistaminique 2e génération peu sédatif. Traitement allergies saisonnières."
+    "name": "Sitagliptin",
+    "dci": "Sitagliptin Phosphate",
+    "category": "DPP-4 Inhibitor",
+    "dosage": "100mg",
+    "frequency": "Once daily",
+    "indications": [
+      "type 2 diabetes",
+      "glycemic control",
+      "hyperglycemia"
+    ],
+    "contraindications": [
+      "Type 1 diabetes",
+      "Diabetic ketoacidosis",
+      "Pancreatitis history"
+    ],
+    "side_effects": [
+      "nasopharyngitis",
+      "headache",
+      "pancreatitis rare"
+    ],
+    "prescription_required": true,
+    "id": "med_sitagliptin_pho_0005",
+    "disease": "Type 2 Diabetes",
+    "source": "Clinical Database",
+    "advice": "Low carb diet, daily glucose monitoring, regular exercise.",
+    "price_tnd": 12.0
   },
   {
-    "id": "med006", "name": "Dompéridone 10mg", "dci": "Dompéridone",
-    "category": "Antiémétique prokinétique", "dosage": "10mg",
-    "frequency": "1 comprimé 3 fois par jour avant repas",
-    "indications": ["nausées", "vomissements", "digestion lente", "ballonnements", "غثيان", "قيء"],
-    "contraindications": ["tumeur hypophysaire", "hémorragie gastrique"],
-    "side_effects": ["sécheresse buccale"],
-    "prescription_required": false, "price_tnd": 1.200,
-    "description": "Antiémétique et prokinétique. Réduit nausées et vomissements."
+    "name": "Empagliflozin",
+    "dci": "Empagliflozin",
+    "category": "SGLT-2 Inhibitor",
+    "dosage": "10-25mg",
+    "frequency": "Once daily morning",
+    "indications": [
+      "type 2 diabetes",
+      "cardiovascular disease",
+      "heart failure",
+      "chronic kidney disease"
+    ],
+    "contraindications": [
+      "eGFR<30",
+      "Recurrent UTIs",
+      "Type 1 diabetes"
+    ],
+    "side_effects": [
+      "genital mycotic infections",
+      "UTI",
+      "polyuria",
+      "DKA rare"
+    ],
+    "prescription_required": true,
+    "id": "med_empagliflozin_0006",
+    "disease": "Type 2 Diabetes",
+    "source": "Clinical Database",
+    "advice": "Low carb diet, daily glucose monitoring, regular exercise.",
+    "price_tnd": 14.1
   },
   {
-    "id": "med007", "name": "Smecta 3g", "dci": "Dioctite de smectite",
-    "category": "Antidiarrhéique", "dosage": "3g",
-    "frequency": "1 sachet 3 fois par jour dilué dans eau",
-    "indications": ["diarrhée", "gastroentérite", "selles molles", "douleur intestinale", "إسهال"],
-    "contraindications": ["occlusion intestinale"],
-    "side_effects": ["constipation légère"],
-    "prescription_required": false, "price_tnd": 0.900,
-    "description": "Adsorbant intestinal naturel. Protège muqueuse intestinale."
+    "name": "Salbutamol",
+    "dci": "Albuterol Sulfate",
+    "category": "Short-Acting Beta2-Agonist",
+    "dosage": "100mcg/puff",
+    "frequency": "2 puffs as needed (max 8/day)",
+    "indications": [
+      "asthma",
+      "bronchospasm",
+      "wheezing",
+      "shortness of breath",
+      "chest tightness",
+      "exercise-induced bronchoconstriction"
+    ],
+    "contraindications": [
+      "Hypersensitivity",
+      "Tachyarrhythmias"
+    ],
+    "side_effects": [
+      "tremor",
+      "tachycardia",
+      "palpitations",
+      "headache",
+      "hypokalemia"
+    ],
+    "prescription_required": false,
+    "id": "med_albuterol_sulfa_0007",
+    "disease": "Asthma",
+    "source": "Clinical Database",
+    "advice": "Avoid allergens and smoke, always carry rescue inhaler.",
+    "price_tnd": 16.2
   },
   {
-    "id": "med008", "name": "Spasfon 80mg", "dci": "Phloroglucinol",
-    "category": "Antispasmodique", "dosage": "80mg",
-    "frequency": "2 comprimés 3 fois par jour",
-    "indications": ["crampes abdominales", "spasme digestif", "colon irritable", "douleur intestinale", "coliques", "مغص"],
-    "contraindications": [],
-    "side_effects": ["rare: allergie"],
-    "prescription_required": false, "price_tnd": 1.100,
-    "description": "Antispasmodique musculotrope. Soulage spasmes digestifs."
+    "name": "Fluticasone",
+    "dci": "Fluticasone Propionate",
+    "category": "Inhaled Corticosteroid",
+    "dosage": "100-500mcg",
+    "frequency": "Twice daily",
+    "indications": [
+      "asthma",
+      "allergic rhinitis",
+      "chronic bronchospasm",
+      "wheezing",
+      "airway inflammation"
+    ],
+    "contraindications": [
+      "Active pulmonary TB",
+      "Fungal respiratory infections"
+    ],
+    "side_effects": [
+      "oral candidiasis",
+      "hoarseness",
+      "adrenal suppression high doses"
+    ],
+    "prescription_required": true,
+    "id": "med_fluticasone_pro_0008",
+    "disease": "Asthma",
+    "source": "Clinical Database",
+    "advice": "Avoid allergens and smoke, always carry rescue inhaler.",
+    "price_tnd": 18.3
   },
   {
-    "id": "med009", "name": "Bromhexine 8mg", "dci": "Bromhexine",
-    "category": "Mucolytique", "dosage": "8mg",
-    "frequency": "1 comprimé 3 fois par jour",
-    "indications": ["toux grasse", "bronchite", "mucosités", "toux productive", "encombrement bronchique", "سعال بلغمي"],
-    "contraindications": ["ulcère gastrique"],
-    "side_effects": ["nausées légères"],
-    "prescription_required": false, "price_tnd": 1.300,
-    "description": "Mucolytique fluidifiant les sécrétions bronchiques."
+    "name": "Montelukast",
+    "dci": "Montelukast Sodium",
+    "category": "Leukotriene Receptor Antagonist",
+    "dosage": "10mg",
+    "frequency": "Once daily evening",
+    "indications": [
+      "asthma",
+      "allergic rhinitis",
+      "exercise-induced bronchospasm",
+      "cough"
+    ],
+    "contraindications": [
+      "Phenylketonuria (chewable only)"
+    ],
+    "side_effects": [
+      "headache",
+      "abdominal pain",
+      "neuropsychiatric events"
+    ],
+    "prescription_required": true,
+    "id": "med_montelukast_sod_0009",
+    "disease": "Asthma",
+    "source": "Clinical Database",
+    "advice": "Avoid allergens and smoke, always carry rescue inhaler.",
+    "price_tnd": 20.4
   },
   {
-    "id": "med010", "name": "Fosfomycine 3g", "dci": "Fosfomycine",
-    "category": "Antibiotique urinaire", "dosage": "3g",
-    "frequency": "1 sachet dose unique le soir",
-    "indications": ["cystite", "infection urinaire", "brûlures urinaires", "envie fréquente uriner", "التهاب المثانة"],
-    "contraindications": ["insuffisance rénale sévère"],
-    "side_effects": ["diarrhée", "nausées"],
-    "prescription_required": true, "price_tnd": 5.200,
-    "description": "Antibiotique dose unique pour cystite non compliquée."
+    "name": "Sumatriptan",
+    "dci": "Sumatriptan Succinate",
+    "category": "5-HT1 Agonist / Triptan",
+    "dosage": "50-100mg",
+    "frequency": "At migraine onset, may repeat after 2h",
+    "indications": [
+      "migraine",
+      "cluster headache",
+      "throbbing headache",
+      "nausea light sensitivity",
+      "aura"
+    ],
+    "contraindications": [
+      "Ischemic heart disease",
+      "Uncontrolled hypertension",
+      "Hemiplegic migraine",
+      "MAOIs"
+    ],
+    "side_effects": [
+      "chest tightness",
+      "flushing",
+      "dizziness",
+      "paresthesia",
+      "heaviness"
+    ],
+    "prescription_required": true,
+    "id": "med_sumatriptan_suc_0010",
+    "disease": "Migraine",
+    "source": "Clinical Database",
+    "advice": "Rest in dark quiet room, identify and avoid triggers.",
+    "price_tnd": 22.5
   },
   {
-    "id": "med011", "name": "Sumatriptan 50mg", "dci": "Sumatriptan",
-    "category": "Antimigraineux triptan", "dosage": "50mg",
-    "frequency": "1 comprimé au début de la crise",
-    "indications": ["migraine", "céphalée sévère", "migraine avec aura", "crise migraineuse", "صداع نصفي"],
-    "contraindications": ["maladie coronarienne", "HTA non contrôlée", "grossesse"],
-    "side_effects": ["vertiges", "fatigue"],
-    "prescription_required": true, "price_tnd": 8.500,
-    "description": "Triptan spécifique des crises migraineuses."
+    "name": "Topiramate",
+    "dci": "Topiramate",
+    "category": "Anticonvulsant / Migraine Prophylaxis",
+    "dosage": "25-100mg",
+    "frequency": "Twice daily",
+    "indications": [
+      "migraine prevention",
+      "epilepsy",
+      "headache prophylaxis"
+    ],
+    "contraindications": [
+      "Nephrolithiasis",
+      "Glaucoma",
+      "Pregnancy"
+    ],
+    "side_effects": [
+      "cognitive slowing",
+      "weight loss",
+      "paresthesia",
+      "kidney stones"
+    ],
+    "prescription_required": true,
+    "id": "med_topiramate_0011",
+    "disease": "Migraine",
+    "source": "Clinical Database",
+    "advice": "Rest in dark quiet room, identify and avoid triggers.",
+    "price_tnd": 24.6
   },
   {
-    "id": "med012", "name": "Metformine 500mg", "dci": "Metformine",
-    "category": "Antidiabétique oral", "dosage": "500mg",
-    "frequency": "1 comprimé 2 à 3 fois par jour avec repas",
-    "indications": ["diabète type 2", "hyperglycémie", "glycémie élevée", "سكري النوع الثاني"],
-    "contraindications": ["insuffisance rénale", "insuffisance hépatique"],
-    "side_effects": ["diarrhée", "nausées"],
-    "prescription_required": true, "price_tnd": 1.500,
-    "description": "Antidiabétique oral de référence pour diabète type 2."
+    "name": "Rizatriptan",
+    "dci": "Rizatriptan Benzoate",
+    "category": "Triptan / 5-HT1B/1D Agonist",
+    "dosage": "10mg",
+    "frequency": "At onset, repeat after 2h if needed",
+    "indications": [
+      "acute migraine",
+      "throbbing headache",
+      "photophobia phonophobia",
+      "nausea vomiting"
+    ],
+    "contraindications": [
+      "CAD",
+      "Uncontrolled HTN",
+      "Hemiplegic migraine"
+    ],
+    "side_effects": [
+      "dizziness",
+      "somnolence",
+      "asthenia",
+      "nausea"
+    ],
+    "prescription_required": true,
+    "id": "med_rizatriptan_ben_0012",
+    "disease": "Migraine",
+    "source": "Clinical Database",
+    "advice": "Rest in dark quiet room, identify and avoid triggers.",
+    "price_tnd": 26.7
   },
   {
-    "id": "med013", "name": "Amlodipine 5mg", "dci": "Amlodipine",
-    "category": "Antihypertenseur", "dosage": "5mg",
-    "frequency": "1 comprimé par jour",
-    "indications": ["hypertension artérielle", "tension élevée", "HTA", "ضغط الدم"],
-    "contraindications": ["choc cardiogénique"],
-    "side_effects": ["oedème chevilles", "palpitations"],
-    "prescription_required": true, "price_tnd": 2.200,
-    "description": "Inhibiteur calcique traitement hypertension."
+    "name": "Omeprazole",
+    "dci": "Omeprazole",
+    "category": "Proton Pump Inhibitor",
+    "dosage": "20-40mg",
+    "frequency": "Once daily 30min before breakfast",
+    "indications": [
+      "acid reflux",
+      "GERD",
+      "heartburn",
+      "peptic ulcer",
+      "regurgitation",
+      "epigastric pain"
+    ],
+    "contraindications": [
+      "Hypersensitivity to PPIs",
+      "Co-administration with rilpivirine"
+    ],
+    "side_effects": [
+      "headache",
+      "diarrhea",
+      "nausea",
+      "hypomagnesemia long-term",
+      "C diff risk"
+    ],
+    "prescription_required": false,
+    "id": "med_omeprazole_0013",
+    "disease": "Acid Reflux",
+    "source": "Clinical Database",
+    "advice": "Avoid spicy fatty foods, eat small meals, elevate head of bed.",
+    "price_tnd": 28.8
   },
   {
-    "id": "med014", "name": "Atorvastatine 20mg", "dci": "Atorvastatine",
-    "category": "Hypolipémiant statine", "dosage": "20mg",
-    "frequency": "1 comprimé par jour le soir",
-    "indications": ["cholestérol élevé", "hypercholestérolémie", "triglycérides élevés", "كوليسترول"],
-    "contraindications": ["maladie hépatique active", "grossesse"],
-    "side_effects": ["douleur musculaire"],
-    "prescription_required": true, "price_tnd": 3.500,
-    "description": "Statine réduisant cholestérol LDL."
+    "name": "Pantoprazole",
+    "dci": "Pantoprazole Sodium",
+    "category": "Proton Pump Inhibitor",
+    "dosage": "40mg",
+    "frequency": "Once daily before meal",
+    "indications": [
+      "GERD",
+      "erosive esophagitis",
+      "Zollinger-Ellison",
+      "heartburn",
+      "acid regurgitation"
+    ],
+    "contraindications": [
+      "Rilpivirine co-administration",
+      "Known PPI allergy"
+    ],
+    "side_effects": [
+      "headache",
+      "diarrhea",
+      "abdominal pain",
+      "hyponatremia"
+    ],
+    "prescription_required": true,
+    "id": "med_pantoprazole_so_0014",
+    "disease": "Acid Reflux",
+    "source": "Clinical Database",
+    "advice": "Avoid spicy fatty foods, eat small meals, elevate head of bed.",
+    "price_tnd": 30.9
   },
   {
-    "id": "med015", "name": "Salbutamol inhalateur", "dci": "Salbutamol",
-    "category": "Bronchodilatateur", "dosage": "100mcg/dose",
-    "frequency": "1 à 2 bouffées en cas de crise",
-    "indications": ["asthme", "crise asthme", "essoufflement", "sifflement respiratoire", "ربو"],
-    "contraindications": ["allergie salbutamol"],
-    "side_effects": ["tremblement", "tachycardie"],
-    "prescription_required": true, "price_tnd": 7.500,
-    "description": "Bronchodilatateur de secours pour crises d'asthme."
+    "name": "Ranitidine",
+    "dci": "Ranitidine Hydrochloride",
+    "category": "H2 Receptor Antagonist",
+    "dosage": "150mg",
+    "frequency": "Twice daily or 300mg at night",
+    "indications": [
+      "heartburn",
+      "acid reflux",
+      "GERD",
+      "peptic ulcer",
+      "dyspepsia"
+    ],
+    "contraindications": [
+      "Porphyria",
+      "Phenylketonuria (effervescent)"
+    ],
+    "side_effects": [
+      "headache",
+      "constipation",
+      "diarrhea",
+      "dizziness"
+    ],
+    "prescription_required": false,
+    "id": "med_ranitidine_hydr_0015",
+    "disease": "Acid Reflux",
+    "source": "Clinical Database",
+    "advice": "Avoid spicy fatty foods, eat small meals, elevate head of bed.",
+    "price_tnd": 33.0
   },
   {
-    "id": "med016", "name": "Vitamine D3 1000UI", "dci": "Cholécalciférol",
-    "category": "Supplément vitaminique", "dosage": "1000 UI",
-    "frequency": "1 comprimé par jour avec repas",
-    "indications": ["carence vitamine D", "douleur osseuse", "fatigue", "faiblesse musculaire", "نقص فيتامين د"],
-    "contraindications": ["hypercalcémie"],
-    "side_effects": ["nausées si surdosage"],
-    "prescription_required": false, "price_tnd": 3.500,
-    "description": "Supplément vitamine D3 pour santé osseuse."
+    "name": "Sertraline",
+    "dci": "Sertraline Hydrochloride",
+    "category": "SSRI Antidepressant",
+    "dosage": "50-200mg",
+    "frequency": "Once daily morning",
+    "indications": [
+      "depression",
+      "anxiety",
+      "OCD",
+      "PTSD",
+      "low mood",
+      "anhedonia",
+      "hopelessness"
+    ],
+    "contraindications": [
+      "MAOIs",
+      "Pimozide",
+      "Known SSRI hypersensitivity"
+    ],
+    "side_effects": [
+      "nausea",
+      "insomnia",
+      "sexual dysfunction",
+      "dry mouth",
+      "serotonin syndrome risk"
+    ],
+    "prescription_required": true,
+    "id": "med_sertraline_hydr_0016",
+    "disease": "Depression",
+    "source": "Clinical Database",
+    "advice": "Psychotherapy combined with medication, regular exercise helps.",
+    "price_tnd": 35.1
   },
   {
-    "id": "med017", "name": "Fer + Acide folique", "dci": "Sulfate ferreux",
-    "category": "Supplément hématologique", "dosage": "200mg",
-    "frequency": "1 comprimé par jour à jeun",
-    "indications": ["anémie", "fatigue intense", "manque fer", "pâleur", "grossesse", "فقر الدم"],
-    "contraindications": ["hémochromatose"],
-    "side_effects": ["constipation", "selles noires"],
-    "prescription_required": false, "price_tnd": 2.200,
-    "description": "Supplément fer pour anémie ferriprive."
+    "name": "Escitalopram",
+    "dci": "Escitalopram Oxalate",
+    "category": "SSRI Antidepressant",
+    "dosage": "10-20mg",
+    "frequency": "Once daily",
+    "indications": [
+      "depression",
+      "generalized anxiety",
+      "panic disorder",
+      "low mood",
+      "fatigue"
+    ],
+    "contraindications": [
+      "MAOIs",
+      "QT prolongation",
+      "CYP2C19 inhibitors"
+    ],
+    "side_effects": [
+      "nausea",
+      "insomnia",
+      "sweating",
+      "sexual dysfunction",
+      "QT prolongation"
+    ],
+    "prescription_required": true,
+    "id": "med_escitalopram_ox_0017",
+    "disease": "Depression",
+    "source": "Clinical Database",
+    "advice": "Psychotherapy combined with medication, regular exercise helps.",
+    "price_tnd": 37.2
   },
   {
-    "id": "med018", "name": "Bisacodyl 5mg", "dci": "Bisacodyl",
-    "category": "Laxatif", "dosage": "5mg",
-    "frequency": "1 à 2 comprimés le soir",
-    "indications": ["constipation", "selles dures", "difficulté défécation", "intestin paresseux", "إمساك"],
-    "contraindications": ["occlusion intestinale"],
-    "side_effects": ["crampes abdominales"],
-    "prescription_required": false, "price_tnd": 1.100,
-    "description": "Laxatif stimulant pour constipation occasionnelle."
+    "name": "Venlafaxine",
+    "dci": "Venlafaxine Hydrochloride",
+    "category": "SNRI Antidepressant",
+    "dosage": "75-225mg",
+    "frequency": "Once or twice daily with food",
+    "indications": [
+      "depression",
+      "anxiety",
+      "panic disorder",
+      "chronic pain",
+      "low mood"
+    ],
+    "contraindications": [
+      "MAOIs",
+      "Uncontrolled hypertension"
+    ],
+    "side_effects": [
+      "nausea",
+      "hypertension",
+      "sweating",
+      "sexual dysfunction",
+      "discontinuation syndrome"
+    ],
+    "prescription_required": true,
+    "id": "med_venlafaxine_hyd_0018",
+    "disease": "Depression",
+    "source": "Clinical Database",
+    "advice": "Psychotherapy combined with medication, regular exercise helps.",
+    "price_tnd": 39.3
   },
   {
-    "id": "med019", "name": "Magnésium B6", "dci": "Magnésium + Vitamine B6",
-    "category": "Complément minéral", "dosage": "300mg Mg",
-    "frequency": "2 comprimés par jour avec repas",
-    "indications": ["crampes musculaires", "fatigue chronique", "stress", "anxiété légère", "irritabilité", "إجهاد"],
-    "contraindications": ["insuffisance rénale sévère"],
-    "side_effects": ["diarrhée légère"],
-    "prescription_required": false, "price_tnd": 4.500,
-    "description": "Supplément magnésium. Réduit crampes et fatigue."
+    "name": "Buspirone",
+    "dci": "Buspirone Hydrochloride",
+    "category": "Anxiolytic (non-benzodiazepine)",
+    "dosage": "15-30mg",
+    "frequency": "Twice to three times daily",
+    "indications": [
+      "generalized anxiety",
+      "worry",
+      "tension",
+      "irritability",
+      "concentration problems"
+    ],
+    "contraindications": [
+      "MAOIs",
+      "Severe hepatic impairment"
+    ],
+    "side_effects": [
+      "dizziness",
+      "nausea",
+      "headache",
+      "nervousness",
+      "insomnia"
+    ],
+    "prescription_required": true,
+    "id": "med_buspirone_hydro_0019",
+    "disease": "Anxiety Disorder",
+    "source": "Clinical Database",
+    "advice": "Cognitive behavioral therapy, breathing exercises, limit caffeine.",
+    "price_tnd": 41.4
   },
   {
-    "id": "med020", "name": "Mélatonine 1mg", "dci": "Mélatonine",
-    "category": "Régulateur du sommeil", "dosage": "1mg",
-    "frequency": "1 comprimé 30 minutes avant coucher",
-    "indications": ["insomnie", "troubles du sommeil", "difficulté endormissement", "sommeil perturbé", "أرق"],
-    "contraindications": ["maladies auto-immunes"],
-    "side_effects": ["somnolence matinale"],
-    "prescription_required": false, "price_tnd": 3.200,
-    "description": "Hormone naturelle régulatrice du sommeil."
+    "name": "Lorazepam",
+    "dci": "Lorazepam",
+    "category": "Benzodiazepine",
+    "dosage": "0.5-2mg",
+    "frequency": "Short-term as needed",
+    "indications": [
+      "acute anxiety",
+      "panic attacks",
+      "agitation",
+      "insomnia",
+      "status epilepticus"
+    ],
+    "contraindications": [
+      "Severe respiratory insufficiency",
+      "Sleep apnea",
+      "Alcohol dependence"
+    ],
+    "side_effects": [
+      "sedation",
+      "cognitive impairment",
+      "dependence",
+      "respiratory depression"
+    ],
+    "prescription_required": true,
+    "id": "med_lorazepam_0020",
+    "disease": "Anxiety Disorder",
+    "source": "Clinical Database",
+    "advice": "Cognitive behavioral therapy, breathing exercises, limit caffeine.",
+    "price_tnd": 1.5
   },
   {
-    "id": "med021", "name": "Azithromycine 500mg", "dci": "Azithromycine",
-    "category": "Antibiotique macrolide", "dosage": "500mg",
-    "frequency": "1 comprimé par jour pendant 3 jours",
-    "indications": ["infection respiratoire", "pneumonie", "bronchite bactérienne", "sinusite", "allergie pénicilline avec infection"],
-    "contraindications": ["allergie macrolides"],
-    "side_effects": ["diarrhée", "nausées"],
-    "prescription_required": true, "price_tnd": 6.500,
-    "description": "Antibiotique macrolide courte durée."
+    "name": "Pregabalin",
+    "dci": "Pregabalin",
+    "category": "Gabapentinoid / Anxiolytic",
+    "dosage": "150-600mg",
+    "frequency": "Twice to three times daily",
+    "indications": [
+      "generalized anxiety",
+      "neuropathic pain",
+      "epilepsy",
+      "excessive worry",
+      "tension"
+    ],
+    "contraindications": [
+      "Known hypersensitivity",
+      "Creatinine clearance<30 requires dose adjustment"
+    ],
+    "side_effects": [
+      "dizziness",
+      "somnolence",
+      "weight gain",
+      "blurred vision",
+      "dependence"
+    ],
+    "prescription_required": true,
+    "id": "med_pregabalin_0021",
+    "disease": "Anxiety Disorder",
+    "source": "Clinical Database",
+    "advice": "Cognitive behavioral therapy, breathing exercises, limit caffeine.",
+    "price_tnd": 3.6
   },
   {
-    "id": "med022", "name": "Prednisolone 5mg", "dci": "Prednisolone",
-    "category": "Corticoïde", "dosage": "5mg",
-    "frequency": "Selon prescription médicale",
-    "indications": ["inflammation sévère", "allergie sévère", "asthme sévère", "maladie auto-immune"],
-    "contraindications": ["infection active non traitée", "ulcère gastrique"],
-    "side_effects": ["prise de poids", "hyperglycémie"],
-    "prescription_required": true, "price_tnd": 1.800,
-    "description": "Corticoïde systémique pour inflammations sévères."
+    "name": "Nitrofurantoin",
+    "dci": "Nitrofurantoin Macrocrystalline",
+    "category": "Urinary Antibiotic",
+    "dosage": "100mg",
+    "frequency": "Twice daily with food for 5-7 days",
+    "indications": [
+      "urinary tract infection",
+      "cystitis",
+      "dysuria",
+      "frequency",
+      "burning urination"
+    ],
+    "contraindications": [
+      "eGFR<45",
+      "Pregnancy at term",
+      "G6PD deficiency"
+    ],
+    "side_effects": [
+      "nausea",
+      "headache",
+      "pulmonary reactions",
+      "peripheral neuropathy"
+    ],
+    "prescription_required": true,
+    "id": "med_nitrofurantoin__0022",
+    "disease": "Urinary Tract Infection",
+    "source": "Clinical Database",
+    "advice": "Drink 2L water daily, urinate after sex, complete antibiotic course.",
+    "price_tnd": 5.7
   },
   {
-    "id": "med023", "name": "Tramadol 50mg", "dci": "Tramadol",
-    "category": "Antalgique opioïde", "dosage": "50mg",
-    "frequency": "1 gélule toutes les 6h",
-    "indications": ["douleur modérée à sévère", "douleur chronique intense", "lombalgie sévère"],
-    "contraindications": ["épilepsie", "insuffisance respiratoire", "grossesse"],
-    "side_effects": ["nausées", "somnolence", "risque dépendance"],
-    "prescription_required": true, "price_tnd": 3.800,
-    "description": "Opioïde faible pour douleurs modérées à sévères."
+    "name": "Trimethoprim",
+    "dci": "Trimethoprim",
+    "category": "Antibacterial",
+    "dosage": "200mg",
+    "frequency": "Twice daily for 7 days",
+    "indications": [
+      "UTI",
+      "cystitis",
+      "dysuria",
+      "urinary frequency",
+      "burning urination"
+    ],
+    "contraindications": [
+      "Blood dyscrasias",
+      "Folate deficiency",
+      "Severe renal impairment"
+    ],
+    "side_effects": [
+      "rash",
+      "nausea",
+      "vomiting",
+      "elevated creatinine"
+    ],
+    "prescription_required": true,
+    "id": "med_trimethoprim_0023",
+    "disease": "Urinary Tract Infection",
+    "source": "Clinical Database",
+    "advice": "Drink 2L water daily, urinate after sex, complete antibiotic course.",
+    "price_tnd": 7.8
   },
   {
-    "id": "med024", "name": "Colchicine 1mg", "dci": "Colchicine",
-    "category": "Antigoutteux", "dosage": "1mg",
-    "frequency": "1mg puis 0.5mg 1h après",
-    "indications": ["crise de goutte", "arthrite goutteuse", "douleur articulaire cristaux", "نقرس"],
-    "contraindications": ["insuffisance rénale sévère"],
-    "side_effects": ["diarrhée", "nausées"],
-    "prescription_required": true, "price_tnd": 2.900,
-    "description": "Traitement de référence des crises de goutte."
+    "name": "Fosfomycin",
+    "dci": "Fosfomycin Trometamol",
+    "category": "Phosphonic Acid Antibiotic",
+    "dosage": "3g sachet",
+    "frequency": "Single dose (uncomplicated UTI)",
+    "indications": [
+      "acute uncomplicated cystitis",
+      "UTI",
+      "dysuria",
+      "urinary frequency"
+    ],
+    "contraindications": [
+      "Severe renal impairment",
+      "Fructose intolerance"
+    ],
+    "side_effects": [
+      "diarrhea",
+      "nausea",
+      "headache",
+      "vaginitis"
+    ],
+    "prescription_required": true,
+    "id": "med_fosfomycin_trom_0024",
+    "disease": "Urinary Tract Infection",
+    "source": "Clinical Database",
+    "advice": "Drink 2L water daily, urinate after sex, complete antibiotic course.",
+    "price_tnd": 9.9
   },
   {
-    "id": "med025", "name": "Sérum physiologique", "dci": "Chlorure sodium 0.9%",
-    "category": "Solution isotonique", "dosage": "0.9%",
-    "frequency": "Rinçage nasal 2 à 3 fois par jour",
-    "indications": ["congestion nasale", "nez bouché", "rhinite", "rhume", "nez sec", "احتقان الأنف"],
-    "contraindications": [],
-    "side_effects": [],
-    "prescription_required": false, "price_tnd": 0.500,
-    "description": "Solution saline pour lavage nasal."
+    "name": "Methotrexate",
+    "dci": "Methotrexate",
+    "category": "DMARD / Disease-Modifying Antirheumatic",
+    "dosage": "7.5-25mg",
+    "frequency": "Once weekly with folic acid",
+    "indications": [
+      "rheumatoid arthritis",
+      "psoriatic arthritis",
+      "joint inflammation",
+      "swelling stiffness"
+    ],
+    "contraindications": [
+      "Pregnancy",
+      "Significant hepatic disease",
+      "Immunodeficiency",
+      "Renal impairment"
+    ],
+    "side_effects": [
+      "hepatotoxicity",
+      "pneumonitis",
+      "myelosuppression",
+      "nausea",
+      "stomatitis"
+    ],
+    "prescription_required": true,
+    "id": "med_methotrexate_0025",
+    "disease": "Rheumatoid Arthritis",
+    "source": "Clinical Database",
+    "advice": "Joint protection, gentle exercise, avoid joint overload.",
+    "price_tnd": 12.0
   },
   {
-    "id": "med026", "name": "Diclofénac 50mg", "dci": "Diclofénac sodique",
-    "category": "Anti-inflammatoire AINS puissant", "dosage": "50mg",
-    "frequency": "1 comprimé 2 à 3 fois par jour avec repas",
-    "indications": ["douleur inflammatoire", "arthrose", "lombalgie", "sciatique", "tendinite sévère", "rhumatisme"],
-    "contraindications": ["ulcère gastrique", "insuffisance cardiaque", "grossesse 3e trimestre"],
-    "side_effects": ["ulcère gastrique", "risque cardiovasculaire"],
-    "prescription_required": true, "price_tnd": 1.900,
-    "description": "AINS puissant pour douleurs rhumatismales."
+    "name": "Hydroxychloroquine",
+    "dci": "Hydroxychloroquine Sulfate",
+    "category": "Antimalarial / DMARD",
+    "dosage": "200-400mg",
+    "frequency": "Once or twice daily with food",
+    "indications": [
+      "rheumatoid arthritis",
+      "lupus",
+      "joint pain swelling",
+      "inflammatory arthritis"
+    ],
+    "contraindications": [
+      "Retinopathy",
+      "G6PD deficiency",
+      "Porphyria"
+    ],
+    "side_effects": [
+      "retinopathy",
+      "nausea",
+      "rash",
+      "cardiomyopathy rare"
+    ],
+    "prescription_required": true,
+    "id": "med_hydroxychloroqu_0026",
+    "disease": "Rheumatoid Arthritis",
+    "source": "Clinical Database",
+    "advice": "Joint protection, gentle exercise, avoid joint overload.",
+    "price_tnd": 14.1
   },
   {
-    "id": "med027", "name": "Gabapentine 300mg", "dci": "Gabapentine",
-    "category": "Antiépileptique antialgique", "dosage": "300mg",
-    "frequency": "1 gélule 3 fois par jour",
-    "indications": ["douleur neuropathique", "névralgie", "zona douloureux", "sciatique chronique", "douleur nerveuse"],
-    "contraindications": ["insuffisance rénale"],
-    "side_effects": ["somnolence", "vertiges"],
-    "prescription_required": true, "price_tnd": 5.500,
-    "description": "Efficace contre douleurs neuropathiques."
+    "name": "Prednisolone",
+    "dci": "Prednisolone",
+    "category": "Corticosteroid",
+    "dosage": "5-60mg",
+    "frequency": "Once daily morning",
+    "indications": [
+      "rheumatoid arthritis",
+      "inflammatory conditions",
+      "acute joint flare",
+      "autoimmune disease"
+    ],
+    "contraindications": [
+      "Systemic fungal infections",
+      "Live vaccines contraindicated"
+    ],
+    "side_effects": [
+      "osteoporosis",
+      "weight gain",
+      "hyperglycemia",
+      "adrenal suppression",
+      "hypertension"
+    ],
+    "prescription_required": true,
+    "id": "med_prednisolone_0027",
+    "disease": "Rheumatoid Arthritis",
+    "source": "Clinical Database",
+    "advice": "Joint protection, gentle exercise, avoid joint overload.",
+    "price_tnd": 16.2
   },
   {
-    "id": "med028", "name": "Vitamine C 500mg", "dci": "Acide ascorbique",
-    "category": "Supplément vitaminique", "dosage": "500mg",
-    "frequency": "1 comprimé par jour",
-    "indications": ["carence vitamine C", "immunité faible", "fatigue", "convalescence", "نقص فيتامين سي"],
-    "contraindications": ["lithiase rénale"],
-    "side_effects": ["diarrhée si fortes doses"],
-    "prescription_required": false, "price_tnd": 1.800,
-    "description": "Antioxydant essentiel immunité et cicatrisation."
+    "name": "Melatonin",
+    "dci": "Melatonin",
+    "category": "Circadian Rhythm Agent",
+    "dosage": "2-5mg",
+    "frequency": "30-60 min before bedtime",
+    "indications": [
+      "insomnia",
+      "jet lag",
+      "circadian rhythm disorders",
+      "sleep onset difficulty"
+    ],
+    "contraindications": [
+      "Autoimmune conditions",
+      "Severe hepatic impairment"
+    ],
+    "side_effects": [
+      "drowsiness",
+      "headache",
+      "dizziness",
+      "nausea"
+    ],
+    "prescription_required": false,
+    "id": "med_melatonin_0028",
+    "disease": "Insomnia",
+    "source": "Clinical Database",
+    "advice": "Consistent sleep schedule, limit screens before bed, sleep hygiene.",
+    "price_tnd": 18.3
   },
   {
-    "id": "med029", "name": "Zinc 15mg", "dci": "Gluconate de zinc",
-    "category": "Oligo-élément", "dosage": "15mg",
-    "frequency": "1 comprimé par jour",
-    "indications": ["déficit immunitaire", "cicatrisation lente", "perte goût", "acné", "convalescence", "نقص الزنك"],
-    "contraindications": [],
-    "side_effects": ["nausées si pris à jeun"],
-    "prescription_required": false, "price_tnd": 2.800,
-    "description": "Oligo-élément essentiel immunité."
+    "name": "Zolpidem",
+    "dci": "Zolpidem Tartrate",
+    "category": "Non-Benzodiazepine Hypnotic",
+    "dosage": "5-10mg",
+    "frequency": "Immediately before sleep (short-term only)",
+    "indications": [
+      "acute insomnia",
+      "sleep onset difficulty",
+      "waking frequently"
+    ],
+    "contraindications": [
+      "Sleep apnea",
+      "Severe hepatic impairment",
+      "Myasthenia gravis",
+      "Pregnancy"
+    ],
+    "side_effects": [
+      "somnolence",
+      "headache",
+      "dizziness",
+      "complex sleep behaviors",
+      "dependence"
+    ],
+    "prescription_required": true,
+    "id": "med_zolpidem_tartra_0029",
+    "disease": "Insomnia",
+    "source": "Clinical Database",
+    "advice": "Consistent sleep schedule, limit screens before bed, sleep hygiene.",
+    "price_tnd": 20.4
   },
   {
-    "id": "med030", "name": "Probiotiques Lactobacillus", "dci": "Lactobacillus acidophilus",
-    "category": "Probiotique", "dosage": "10 milliards UFC",
-    "frequency": "1 gélule par jour",
-    "indications": ["diarrhée sous antibiotiques", "déséquilibre flore", "ballonnements", "colon irritable", "توازن الأمعاء"],
-    "contraindications": ["immunodépression sévère"],
-    "side_effects": ["flatulences légères"],
-    "prescription_required": false, "price_tnd": 8.500,
-    "description": "Probiotique restaurant la flore intestinale."
+    "name": "Trazodone",
+    "dci": "Trazodone Hydrochloride",
+    "category": "Serotonin Antagonist / Antidepressant",
+    "dosage": "50-100mg",
+    "frequency": "At bedtime",
+    "indications": [
+      "insomnia",
+      "depression-related sleep disturbance",
+      "anxiety insomnia"
+    ],
+    "contraindications": [
+      "MAOIs",
+      "Recent MI",
+      "QT prolongation"
+    ],
+    "side_effects": [
+      "sedation",
+      "orthostatic hypotension",
+      "priapism",
+      "dizziness"
+    ],
+    "prescription_required": true,
+    "id": "med_trazodone_hydro_0030",
+    "disease": "Insomnia",
+    "source": "Clinical Database",
+    "advice": "Consistent sleep schedule, limit screens before bed, sleep hygiene.",
+    "price_tnd": 22.5
   },
   {
-    "id": "med031", "name": "Clotrimazole crème 1%", "dci": "Clotrimazole",
-    "category": "Antifongique topique", "dosage": "1%",
-    "frequency": "Appliquer 2 fois par jour",
-    "indications": ["mycose cutanée", "pied athlète", "intertrigo", "champignon peau", "فطريات الجلد"],
-    "contraindications": ["allergie imidazolés"],
-    "side_effects": ["irritation locale"],
-    "prescription_required": false, "price_tnd": 2.500,
-    "description": "Antifongique topique pour mycoses cutanées."
+    "name": "Levothyroxine",
+    "dci": "Levothyroxine Sodium",
+    "category": "Thyroid Hormone Replacement",
+    "dosage": "25-200mcg",
+    "frequency": "Once daily on empty stomach 30min before food",
+    "indications": [
+      "hypothyroidism",
+      "elevated TSH",
+      "fatigue",
+      "weight gain",
+      "cold intolerance",
+      "constipation"
+    ],
+    "contraindications": [
+      "Untreated adrenal insufficiency",
+      "Acute MI",
+      "Thyrotoxicosis"
+    ],
+    "side_effects": [
+      "palpitations",
+      "tremor",
+      "weight loss if overdosed",
+      "insomnia",
+      "heat intolerance"
+    ],
+    "prescription_required": true,
+    "id": "med_levothyroxine_s_0031",
+    "disease": "Hypothyroidism",
+    "source": "Clinical Database",
+    "advice": "Take levothyroxine on empty stomach, regular TSH monitoring.",
+    "price_tnd": 24.6
   },
   {
-    "id": "med032", "name": "Acétylcystéine 600mg", "dci": "N-Acétylcystéine",
-    "category": "Mucolytique puissant", "dosage": "600mg",
-    "frequency": "1 sachet par jour",
-    "indications": ["toux grasse sévère", "bronchite chronique", "mucosités épaisses", "BPCO", "سعال مزمن"],
-    "contraindications": ["ulcère gastrique actif"],
-    "side_effects": ["nausées"],
-    "prescription_required": false, "price_tnd": 3.200,
-    "description": "Mucolytique puissant double action."
+    "name": "Amoxicillin",
+    "dci": "Amoxicillin Trihydrate",
+    "category": "Aminopenicillin Antibiotic",
+    "dosage": "500mg-1g",
+    "frequency": "Three times daily for 5-7 days",
+    "indications": [
+      "pneumonia",
+      "chest infection",
+      "fever cough sputum",
+      "community acquired pneumonia"
+    ],
+    "contraindications": [
+      "Penicillin allergy",
+      "Infectious mononucleosis"
+    ],
+    "side_effects": [
+      "diarrhea",
+      "nausea",
+      "rash",
+      "allergic reactions"
+    ],
+    "prescription_required": true,
+    "id": "med_amoxicillin_tri_0032",
+    "disease": "Pneumonia",
+    "source": "Clinical Database",
+    "advice": "Complete full antibiotic course, rest, adequate hydration.",
+    "price_tnd": 26.7
   },
   {
-    "id": "med033", "name": "Furosémide 40mg", "dci": "Furosémide",
-    "category": "Diurétique", "dosage": "40mg",
-    "frequency": "1 comprimé le matin",
-    "indications": ["oedème", "rétention eau", "insuffisance cardiaque", "gonflements membres"],
-    "contraindications": ["anurie", "déshydratation"],
-    "side_effects": ["hypokaliémie", "crampes"],
-    "prescription_required": true, "price_tnd": 0.800,
-    "description": "Diurétique puissant pour oedèmes."
+    "name": "Azithromycin",
+    "dci": "Azithromycin Dihydrate",
+    "category": "Macrolide Antibiotic",
+    "dosage": "500mg day 1, 250mg days 2-5",
+    "frequency": "Once daily for 5 days",
+    "indications": [
+      "atypical pneumonia",
+      "community acquired pneumonia",
+      "chest infection",
+      "respiratory infections"
+    ],
+    "contraindications": [
+      "QT prolongation",
+      "Myasthenia gravis",
+      "Known macrolide allergy"
+    ],
+    "side_effects": [
+      "GI upset",
+      "QT prolongation",
+      "hepatotoxicity rare",
+      "diarrhea"
+    ],
+    "prescription_required": true,
+    "id": "med_azithromycin_di_0033",
+    "disease": "Pneumonia",
+    "source": "Clinical Database",
+    "advice": "Complete full antibiotic course, rest, adequate hydration.",
+    "price_tnd": 28.8
   },
   {
-    "id": "med034", "name": "Aciclovir 400mg", "dci": "Aciclovir",
-    "category": "Antiviral", "dosage": "400mg",
-    "frequency": "1 comprimé 3 fois par jour pendant 5 jours",
-    "indications": ["herpès", "bouton fièvre", "zona", "varicelle adulte", "هرپس"],
-    "contraindications": ["insuffisance rénale sévère"],
-    "side_effects": ["nausées", "céphalées"],
-    "prescription_required": true, "price_tnd": 7.200,
-    "description": "Antiviral spécifique herpès et zona."
+    "name": "Levofloxacin",
+    "dci": "Levofloxacin",
+    "category": "Fluoroquinolone Antibiotic",
+    "dosage": "500-750mg",
+    "frequency": "Once daily for 7-14 days",
+    "indications": [
+      "pneumonia",
+      "severe respiratory infections",
+      "atypical pathogens",
+      "chest infection fever"
+    ],
+    "contraindications": [
+      "QT prolongation",
+      "Myasthenia gravis",
+      "Children",
+      "Tendinopathy history"
+    ],
+    "side_effects": [
+      "tendinitis",
+      "QT prolongation",
+      "CNS effects",
+      "C diff",
+      "photosensitivity"
+    ],
+    "prescription_required": true,
+    "id": "med_levofloxacin_0034",
+    "disease": "Pneumonia",
+    "source": "Clinical Database",
+    "advice": "Complete full antibiotic course, rest, adequate hydration.",
+    "price_tnd": 30.9
   },
   {
-    "id": "med035", "name": "Hydroxyzine 25mg", "dci": "Hydroxyzine",
-    "category": "Anxiolytique", "dosage": "25mg",
-    "frequency": "1 comprimé 3 fois par jour",
-    "indications": ["anxiété", "tension nerveuse", "insomnie légère", "stress sévère", "قلق"],
-    "contraindications": ["grossesse", "glaucome"],
-    "side_effects": ["somnolence", "sécheresse buccale"],
-    "prescription_required": true, "price_tnd": 1.700,
-    "description": "Anxiolytique non benzodiazépine."
+    "name": "Hydrocortisone Cream",
+    "dci": "Hydrocortisone",
+    "category": "Mild Topical Corticosteroid",
+    "dosage": "1% cream",
+    "frequency": "Twice daily to affected area",
+    "indications": [
+      "eczema",
+      "atopic dermatitis",
+      "itchy skin",
+      "dry patches",
+      "skin inflammation",
+      "contact dermatitis"
+    ],
+    "contraindications": [
+      "Infected skin",
+      "Rosacea",
+      "Perioral dermatitis",
+      "Face (prolonged)"
+    ],
+    "side_effects": [
+      "skin thinning",
+      "telangiectasia",
+      "striae",
+      "depigmentation"
+    ],
+    "prescription_required": false,
+    "id": "med_hydrocortisone_0035",
+    "disease": "Eczema",
+    "source": "Clinical Database",
+    "advice": "Moisturize frequently, avoid irritants and scratching, lukewarm baths.",
+    "price_tnd": 33.0
   },
   {
-    "id": "med036", "name": "Lévothyroxine 50mcg", "dci": "Lévothyroxine",
-    "category": "Hormone thyroïdienne", "dosage": "50mcg",
-    "frequency": "1 comprimé par jour à jeun",
-    "indications": ["hypothyroïdie", "thyroïde lente", "fatigue thyroïdienne", "prise de poids inexpliquée", "قصور الغدة الدرقية"],
-    "contraindications": ["hyperthyroïdie"],
-    "side_effects": ["palpitations si surdosage"],
-    "prescription_required": true, "price_tnd": 2.800,
-    "description": "Hormone thyroïdienne de substitution."
+    "name": "Tacrolimus Ointment",
+    "dci": "Tacrolimus",
+    "category": "Topical Calcineurin Inhibitor",
+    "dosage": "0.03-0.1%",
+    "frequency": "Twice daily",
+    "indications": [
+      "eczema",
+      "atopic dermatitis",
+      "face eczema",
+      "calcineurin inhibitor"
+    ],
+    "contraindications": [
+      "Active skin infections",
+      "Netherton syndrome",
+      "Immunocompromised"
+    ],
+    "side_effects": [
+      "burning sensation",
+      "pruritus",
+      "skin infections",
+      "lymphoma risk theoretical"
+    ],
+    "prescription_required": true,
+    "id": "med_tacrolimus_0036",
+    "disease": "Eczema",
+    "source": "Clinical Database",
+    "advice": "Moisturize frequently, avoid irritants and scratching, lukewarm baths.",
+    "price_tnd": 35.1
   },
   {
-    "id": "med037", "name": "Chlorhexidine buccale", "dci": "Chlorhexidine 0.12%",
-    "category": "Antiseptique buccal", "dosage": "0.12%",
-    "frequency": "Gargarisme 2 fois par jour",
-    "indications": ["gingivite", "infection buccale", "aphte", "mal de dents", "douleur gencive", "التهاب اللثة"],
-    "contraindications": ["allergie chlorhexidine"],
-    "side_effects": ["coloration dents si usage prolongé"],
-    "prescription_required": false, "price_tnd": 3.200,
-    "description": "Antiseptique buccal pour gingivites."
+    "name": "Cetirizine",
+    "dci": "Cetirizine Hydrochloride",
+    "category": "Second-Generation Antihistamine",
+    "dosage": "10mg",
+    "frequency": "Once daily",
+    "indications": [
+      "allergic eczema",
+      "urticaria",
+      "itching",
+      "allergic rhinitis",
+      "hay fever",
+      "pruritus"
+    ],
+    "contraindications": [
+      "Severe renal impairment",
+      "Phenylketonuria"
+    ],
+    "side_effects": [
+      "sedation",
+      "dry mouth",
+      "headache",
+      "fatigue"
+    ],
+    "prescription_required": false,
+    "id": "med_cetirizine_hydr_0037",
+    "disease": "Eczema",
+    "source": "Clinical Database",
+    "advice": "Moisturize frequently, avoid irritants and scratching, lukewarm baths.",
+    "price_tnd": 37.2
   },
   {
-    "id": "med038", "name": "Codéine 30mg", "dci": "Phosphate codéine",
-    "category": "Antitussif opioïde", "dosage": "30mg",
-    "frequency": "1 comprimé toutes les 6h",
-    "indications": ["toux sèche sévère", "toux irritative", "toux nocturne", "toux rebelle"],
-    "contraindications": ["enfant moins 12 ans", "asthme", "grossesse"],
-    "side_effects": ["constipation", "somnolence"],
-    "prescription_required": true, "price_tnd": 2.100,
-    "description": "Antitussif opioïde pour toux sèche sévère."
+    "name": "Latanoprost",
+    "dci": "Latanoprost",
+    "category": "Prostaglandin Analogue",
+    "dosage": "0.005% eye drops",
+    "frequency": "One drop once nightly",
+    "indications": [
+      "open angle glaucoma",
+      "ocular hypertension",
+      "elevated eye pressure"
+    ],
+    "contraindications": [
+      "Active uveitis",
+      "Macular edema risk"
+    ],
+    "side_effects": [
+      "iris pigmentation",
+      "eyelash growth",
+      "conjunctival hyperemia",
+      "periorbital fat atrophy"
+    ],
+    "prescription_required": true,
+    "id": "med_latanoprost_0038",
+    "disease": "Glaucoma",
+    "source": "Clinical Database",
+    "advice": "Regular eye pressure monitoring, never stop drops suddenly.",
+    "price_tnd": 39.3
   },
   {
-    "id": "med039", "name": "Fluconazole 150mg", "dci": "Fluconazole",
-    "category": "Antifongique systémique", "dosage": "150mg",
-    "frequency": "1 comprimé dose unique",
-    "indications": ["mycose vaginale", "candidose", "champignon", "infection fongique"],
-    "contraindications": ["grossesse"],
-    "side_effects": ["nausées", "céphalées"],
-    "prescription_required": true, "price_tnd": 4.800,
-    "description": "Antifongique dose unique pour candidose."
+    "name": "Timolol Eye Drops",
+    "dci": "Timolol Maleate",
+    "category": "Beta-Blocker Ophthalmic",
+    "dosage": "0.25-0.5%",
+    "frequency": "Twice daily",
+    "indications": [
+      "glaucoma",
+      "ocular hypertension",
+      "elevated IOP"
+    ],
+    "contraindications": [
+      "Asthma",
+      "COPD",
+      "Heart block",
+      "Bradycardia"
+    ],
+    "side_effects": [
+      "systemic beta-blockade",
+      "bronchospasm",
+      "bradycardia",
+      "corneal anesthesia"
+    ],
+    "prescription_required": true,
+    "id": "med_timolol_maleate_0039",
+    "disease": "Glaucoma",
+    "source": "Clinical Database",
+    "advice": "Regular eye pressure monitoring, never stop drops suddenly.",
+    "price_tnd": 41.4
   },
   {
-    "id": "med040", "name": "Pantoprazole 40mg", "dci": "Pantoprazole",
-    "category": "Inhibiteur pompe à protons fort", "dosage": "40mg",
-    "frequency": "1 comprimé par jour avant repas",
-    "indications": ["ulcère gastrique", "reflux sévère", "oesophagite", "brûlures estomac sévères"],
-    "contraindications": ["allergie IPP"],
-    "side_effects": ["céphalées", "diarrhée"],
-    "prescription_required": true, "price_tnd": 2.500,
-    "description": "IPP puissant pour ulcères et reflux sévères."
+    "name": "Brimonidine",
+    "dci": "Brimonidine Tartrate",
+    "category": "Alpha-2 Adrenergic Agonist",
+    "dosage": "0.2%",
+    "frequency": "Three times daily",
+    "indications": [
+      "glaucoma",
+      "ocular hypertension",
+      "elevated eye pressure",
+      "IOP reduction"
+    ],
+    "contraindications": [
+      "MAOIs",
+      "Neonates infants",
+      "Severe cardiovascular disease"
+    ],
+    "side_effects": [
+      "ocular allergy",
+      "dry mouth",
+      "fatigue",
+      "ocular hyperemia"
+    ],
+    "prescription_required": true,
+    "id": "med_brimonidine_tar_0040",
+    "disease": "Glaucoma",
+    "source": "Clinical Database",
+    "advice": "Regular eye pressure monitoring, never stop drops suddenly.",
+    "price_tnd": 1.5
   },
   {
-    "id": "med041", "name": "Ibuprofène gel 5%", "dci": "Ibuprofène topique",
-    "category": "Anti-inflammatoire topique", "dosage": "5%",
-    "frequency": "Appliquer 3 à 4 fois par jour",
-    "indications": ["douleur musculaire locale", "entorse", "contusion", "tendinite", "muscle contracturé"],
-    "contraindications": ["plaie ouverte", "allergie AINS"],
-    "side_effects": ["irritation cutanée"],
-    "prescription_required": false, "price_tnd": 3.800,
-    "description": "Anti-inflammatoire topique sans effets systémiques."
+    "name": "Isoniazid",
+    "dci": "Isoniazid",
+    "category": "Antitubercular First-Line",
+    "dosage": "300mg",
+    "frequency": "Once daily for 6 months",
+    "indications": [
+      "tuberculosis",
+      "TB prophylaxis",
+      "latent TB",
+      "pulmonary TB"
+    ],
+    "contraindications": [
+      "Active hepatic disease",
+      "Previous isoniazid hepatitis"
+    ],
+    "side_effects": [
+      "hepatotoxicity",
+      "peripheral neuropathy give pyridoxine",
+      "rash",
+      "lupus-like syndrome"
+    ],
+    "prescription_required": true,
+    "id": "med_isoniazid_0041",
+    "disease": "Tuberculosis",
+    "source": "Clinical Database",
+    "advice": "Complete 6-month treatment, isolate until non-infectious.",
+    "price_tnd": 3.6
   },
   {
-    "id": "med042", "name": "Loratadine 10mg", "dci": "Loratadine",
-    "category": "Antihistaminique non sédatif", "dosage": "10mg",
-    "frequency": "1 comprimé par jour",
-    "indications": ["rhinite allergique", "urticaire", "allergie chronique", "démangeaisons"],
-    "contraindications": ["insuffisance hépatique sévère"],
-    "side_effects": ["céphalées"],
-    "prescription_required": false, "price_tnd": 1.400,
-    "description": "Antihistaminique non sédatif longue durée."
+    "name": "Rifampicin",
+    "dci": "Rifampicin",
+    "category": "Antitubercular First-Line / Rifamycin",
+    "dosage": "600mg",
+    "frequency": "Once daily fasting for 6 months",
+    "indications": [
+      "tuberculosis",
+      "TB treatment",
+      "mycobacterial infections"
+    ],
+    "contraindications": [
+      "Severe hepatic disease",
+      "Jaundice",
+      "Drug interactions many"
+    ],
+    "side_effects": [
+      "orange urine saliva",
+      "hepatotoxicity",
+      "drug interactions",
+      "flu syndrome",
+      "thrombocytopenia"
+    ],
+    "prescription_required": true,
+    "id": "med_rifampicin_0042",
+    "disease": "Tuberculosis",
+    "source": "Clinical Database",
+    "advice": "Complete 6-month treatment, isolate until non-infectious.",
+    "price_tnd": 5.7
   },
   {
-    "id": "med043", "name": "Ciprofloxacine 500mg", "dci": "Ciprofloxacine",
-    "category": "Antibiotique fluoroquinolone", "dosage": "500mg",
-    "frequency": "1 comprimé 2 fois par jour pendant 7 jours",
-    "indications": ["infection urinaire compliquée", "prostatite", "infection digestive", "diarrhée bactérienne"],
-    "contraindications": ["grossesse", "enfant moins 18 ans"],
-    "side_effects": ["tendinite", "photosensibilité"],
-    "prescription_required": true, "price_tnd": 4.200,
-    "description": "Fluoroquinolone pour infections modérées à sévères."
+    "name": "Pyrazinamide",
+    "dci": "Pyrazinamide",
+    "category": "Antitubercular First-Line",
+    "dosage": "1.5-2g",
+    "frequency": "Once daily for first 2 months",
+    "indications": [
+      "tuberculosis",
+      "short-course TB therapy"
+    ],
+    "contraindications": [
+      "Severe hepatic disease",
+      "Gout",
+      "Hyperuricemia"
+    ],
+    "side_effects": [
+      "hepatotoxicity",
+      "gout",
+      "arthralgia",
+      "nausea",
+      "photosensitivity"
+    ],
+    "prescription_required": true,
+    "id": "med_pyrazinamide_0043",
+    "disease": "Tuberculosis",
+    "source": "Clinical Database",
+    "advice": "Complete 6-month treatment, isolate until non-infectious.",
+    "price_tnd": 7.8
   },
   {
-    "id": "med044", "name": "Ondansétron 4mg", "dci": "Ondansétron",
-    "category": "Antiémétique puissant", "dosage": "4mg",
-    "frequency": "1 comprimé 3 fois par jour",
-    "indications": ["nausées chimio", "vomissements post-opératoires", "nausées sévères"],
-    "contraindications": ["QT long congénital"],
-    "side_effects": ["céphalées", "constipation"],
-    "prescription_required": true, "price_tnd": 12.500,
-    "description": "Antiémétique puissant pour nausées chimio."
+    "name": "Colchicine",
+    "dci": "Colchicine",
+    "category": "Antigout / Mitotic Inhibitor",
+    "dosage": "500mcg-1mg",
+    "frequency": "At acute attack onset, then 500mcg 2-3 times daily",
+    "indications": [
+      "acute gout",
+      "gout prophylaxis",
+      "big toe pain",
+      "acute monoarthritis",
+      "hyperuricemia"
+    ],
+    "contraindications": [
+      "Severe renal impairment",
+      "Severe hepatic impairment",
+      "Blood dyscrasias",
+      "Strong CYP3A4 inhibitors"
+    ],
+    "side_effects": [
+      "diarrhea",
+      "nausea",
+      "vomiting",
+      "abdominal cramps",
+      "myopathy high doses"
+    ],
+    "prescription_required": true,
+    "id": "med_colchicine_0044",
+    "disease": "Gout",
+    "source": "Clinical Database",
+    "advice": "Avoid red meat, organ meat, alcohol; increase water intake.",
+    "price_tnd": 9.9
   },
   {
-    "id": "med045", "name": "Ibuprofène pédiatrique 200mg", "dci": "Ibuprofène pédiatrique",
-    "category": "Antalgique pédiatrique", "dosage": "200mg",
-    "frequency": "Selon poids enfant toutes les 6-8h",
-    "indications": ["fièvre enfant", "douleur enfant", "otite enfant", "poussée dentaire"],
-    "contraindications": ["moins de 3 mois", "allergie AINS"],
-    "side_effects": ["douleur gastrique"],
-    "prescription_required": false, "price_tnd": 1.500,
-    "description": "Ibuprofène dose pédiatrique pour enfants."
+    "name": "Allopurinol",
+    "dci": "Allopurinol",
+    "category": "Xanthine Oxidase Inhibitor",
+    "dosage": "100-300mg",
+    "frequency": "Once daily with food",
+    "indications": [
+      "chronic gout prevention",
+      "hyperuricemia",
+      "recurrent gout attacks",
+      "uric acid reduction"
+    ],
+    "contraindications": [
+      "Acute gout attack",
+      "HLA-B*5801 carriers (Asian patients)"
+    ],
+    "side_effects": [
+      "rash",
+      "Stevens-Johnson syndrome rare",
+      "hepatotoxicity",
+      "hypersensitivity syndrome"
+    ],
+    "prescription_required": true,
+    "id": "med_allopurinol_0045",
+    "disease": "Gout",
+    "source": "Clinical Database",
+    "advice": "Avoid red meat, organ meat, alcohol; increase water intake.",
+    "price_tnd": 12.0
   },
   {
-    "id": "med046", "name": "Insuline rapide", "dci": "Insuline humaine",
-    "category": "Antidiabétique insuline", "dosage": "100 UI/ml",
-    "frequency": "Selon glycémie et protocole médical",
-    "indications": ["diabète type 1", "diabète insulino-requérant", "hyperglycémie urgente", "السكري بالأنسولين"],
-    "contraindications": ["hypoglycémie"],
-    "side_effects": ["hypoglycémie"],
-    "prescription_required": true, "price_tnd": 12.000,
-    "description": "Insuline rapide pour diabète type 1."
+    "name": "Indomethacin",
+    "dci": "Indomethacin",
+    "category": "NSAID",
+    "dosage": "50mg",
+    "frequency": "Three times daily for acute attack (5-7 days)",
+    "indications": [
+      "acute gout",
+      "inflammatory arthritis",
+      "joint pain swelling",
+      "acute monoarthritis"
+    ],
+    "contraindications": [
+      "Peptic ulcer",
+      "Renal impairment",
+      "Aspirin allergy",
+      "Heart failure"
+    ],
+    "side_effects": [
+      "GI bleeding",
+      "peptic ulcer",
+      "renal impairment",
+      "headache",
+      "dizziness"
+    ],
+    "prescription_required": true,
+    "id": "med_indomethacin_0046",
+    "disease": "Gout",
+    "source": "Clinical Database",
+    "advice": "Avoid red meat, organ meat, alcohol; increase water intake.",
+    "price_tnd": 14.1
   },
   {
-    "id": "med047", "name": "Acide acétylsalicylique 100mg", "dci": "Aspirine faible dose",
-    "category": "Antiagrégant plaquettaire", "dosage": "100mg",
-    "frequency": "1 comprimé par jour avec repas",
-    "indications": ["prévention cardiovasculaire", "antécédent AVC", "antécédent infarctus", "stent coronaire"],
-    "contraindications": ["ulcère gastrique", "allergie aspirine", "grossesse"],
-    "side_effects": ["saignement gastrique"],
-    "prescription_required": true, "price_tnd": 0.600,
-    "description": "Aspirine faible dose antiagrégant cardiovasculaire."
+    "name": "Furosemide",
+    "dci": "Furosemide",
+    "category": "Loop Diuretic",
+    "dosage": "20-80mg",
+    "frequency": "Once or twice daily",
+    "indications": [
+      "heart failure",
+      "edema",
+      "fluid overload",
+      "ankle swelling",
+      "breathlessness",
+      "pulmonary edema"
+    ],
+    "contraindications": [
+      "Anuria",
+      "Hypokalemia",
+      "Hypovolemia",
+      "Sulfonamide allergy"
+    ],
+    "side_effects": [
+      "hypokalemia",
+      "hyponatremia",
+      "dehydration",
+      "ototoxicity high doses",
+      "hyperglycemia"
+    ],
+    "prescription_required": true,
+    "id": "med_furosemide_0047",
+    "disease": "Heart Failure",
+    "source": "Clinical Database",
+    "advice": "Restrict fluids and salt, monitor daily weight, avoid NSAIDs.",
+    "price_tnd": 16.2
   },
   {
-    "id": "med048", "name": "Hyoscine 10mg", "dci": "Hyoscine butylbromure",
-    "category": "Antispasmodique fort", "dosage": "10mg",
-    "frequency": "1 comprimé 3 fois par jour",
-    "indications": ["colique biliaire", "colique rénale", "spasme digestif sévère", "crampe intestinale intense"],
-    "contraindications": ["glaucome", "rétention urinaire"],
-    "side_effects": ["sécheresse buccale", "tachycardie"],
-    "prescription_required": false, "price_tnd": 2.100,
-    "description": "Antispasmodique puissant pour coliques."
+    "name": "Carvedilol",
+    "dci": "Carvedilol",
+    "category": "Alpha-Beta Blocker",
+    "dosage": "3.125-25mg",
+    "frequency": "Twice daily with food",
+    "indications": [
+      "heart failure",
+      "hypertension",
+      "post-MI",
+      "reduced ejection fraction"
+    ],
+    "contraindications": [
+      "Decompensated heart failure",
+      "Severe bradycardia",
+      "Asthma",
+      "Cardiogenic shock"
+    ],
+    "side_effects": [
+      "bradycardia",
+      "hypotension",
+      "fatigue",
+      "dizziness",
+      "worsening HF initially"
+    ],
+    "prescription_required": true,
+    "id": "med_carvedilol_0048",
+    "disease": "Heart Failure",
+    "source": "Clinical Database",
+    "advice": "Restrict fluids and salt, monitor daily weight, avoid NSAIDs.",
+    "price_tnd": 18.3
   },
   {
-    "id": "med049", "name": "Diazépam 5mg", "dci": "Diazépam",
-    "category": "Anxiolytique benzodiazépine", "dosage": "5mg",
-    "frequency": "1 comprimé 2 à 3 fois par jour",
-    "indications": ["anxiété sévère", "trouble anxieux sévère", "contracture musculaire", "insomnie sévère"],
-    "contraindications": ["insuffisance respiratoire", "grossesse", "apnée du sommeil"],
-    "side_effects": ["somnolence", "dépendance"],
-    "prescription_required": true, "price_tnd": 1.200,
-    "description": "Benzodiazépine anxiolytique. Risque dépendance."
+    "name": "Enalapril",
+    "dci": "Enalapril Maleate",
+    "category": "ACE Inhibitor",
+    "dosage": "2.5-20mg",
+    "frequency": "Twice daily",
+    "indications": [
+      "heart failure",
+      "hypertension",
+      "reduced ejection fraction",
+      "post-MI",
+      "edema"
+    ],
+    "contraindications": [
+      "Angioedema history",
+      "Pregnancy",
+      "Bilateral renal artery stenosis"
+    ],
+    "side_effects": [
+      "dry cough",
+      "hypotension first dose",
+      "hyperkalemia",
+      "angioedema",
+      "renal impairment"
+    ],
+    "prescription_required": true,
+    "id": "med_enalapril_malea_0049",
+    "disease": "Heart Failure",
+    "source": "Clinical Database",
+    "advice": "Restrict fluids and salt, monitor daily weight, avoid NSAIDs.",
+    "price_tnd": 20.4
   },
   {
-    "id": "med050", "name": "Paracétamol 1000mg", "dci": "Paracétamol fort",
-    "category": "Antalgique fort", "dosage": "1000mg",
-    "frequency": "1 comprimé toutes les 8h (max 3/jour)",
-    "indications": ["douleur modérée", "fièvre élevée", "douleur post-opératoire", "migraine légère", "mal de dos"],
-    "contraindications": ["insuffisance hépatique"],
-    "side_effects": ["hépatotoxicité si surdosage"],
-    "prescription_required": false, "price_tnd": 1.200,
-    "description": "Paracétamol forte dose pour douleurs modérées."
+    "name": "Diclofenac",
+    "dci": "Diclofenac Sodium",
+    "category": "NSAID",
+    "dosage": "50mg",
+    "frequency": "Two to three times daily with food",
+    "indications": [
+      "osteoarthritis",
+      "joint pain",
+      "rheumatoid arthritis",
+      "musculoskeletal pain",
+      "inflammation"
+    ],
+    "contraindications": [
+      "Peptic ulcer",
+      "Aspirin hypersensitivity",
+      "Heart failure",
+      "Third trimester pregnancy"
+    ],
+    "side_effects": [
+      "GI upset",
+      "peptic ulcer",
+      "cardiovascular risk",
+      "renal impairment",
+      "hepatotoxicity"
+    ],
+    "prescription_required": true,
+    "id": "med_diclofenac_sodi_0050",
+    "disease": "Osteoarthritis",
+    "source": "Clinical Database",
+    "advice": "Weight reduction, low-impact exercise, joint support devices.",
+    "price_tnd": 22.5
+  },
+  {
+    "name": "Celecoxib",
+    "dci": "Celecoxib",
+    "category": "COX-2 Inhibitor NSAID",
+    "dosage": "100-200mg",
+    "frequency": "Twice daily",
+    "indications": [
+      "osteoarthritis",
+      "rheumatoid arthritis",
+      "joint pain stiffness",
+      "acute pain"
+    ],
+    "contraindications": [
+      "Sulfonamide allergy",
+      "Post-CABG",
+      "Severe heart failure",
+      "Peptic ulcer active"
+    ],
+    "side_effects": [
+      "abdominal pain",
+      "cardiovascular risk",
+      "renal impairment",
+      "edema",
+      "hypertension"
+    ],
+    "prescription_required": true,
+    "id": "med_celecoxib_0051",
+    "disease": "Osteoarthritis",
+    "source": "Clinical Database",
+    "advice": "Weight reduction, low-impact exercise, joint support devices.",
+    "price_tnd": 24.6
+  },
+  {
+    "name": "Paracetamol",
+    "dci": "Acetaminophen",
+    "category": "Analgesic / Antipyretic",
+    "dosage": "500-1000mg",
+    "frequency": "Up to 4 times daily (max 4g/day)",
+    "indications": [
+      "mild to moderate pain",
+      "osteoarthritis",
+      "fever",
+      "headache",
+      "back pain",
+      "joint pain"
+    ],
+    "contraindications": [
+      "Severe hepatic impairment",
+      "Alcohol dependence"
+    ],
+    "side_effects": [
+      "hepatotoxicity overdose",
+      "rash",
+      "thrombocytopenia rare"
+    ],
+    "prescription_required": false,
+    "id": "med_acetaminophen_0052",
+    "disease": "Osteoarthritis",
+    "source": "Clinical Database",
+    "advice": "Weight reduction, low-impact exercise, joint support devices.",
+    "price_tnd": 26.7
+  },
+  {
+    "name": "Mebeverine",
+    "dci": "Mebeverine Hydrochloride",
+    "category": "Antispasmodic",
+    "dosage": "135mg",
+    "frequency": "Three times daily 20 min before meals",
+    "indications": [
+      "IBS",
+      "abdominal cramps",
+      "bowel spasm",
+      "bloating",
+      "colon spasm"
+    ],
+    "contraindications": [
+      "Paralytic ileus",
+      "Porphyria"
+    ],
+    "side_effects": [
+      "allergic reactions",
+      "urticaria rare"
+    ],
+    "prescription_required": false,
+    "id": "med_mebeverine_hydr_0053",
+    "disease": "Irritable Bowel Syndrome",
+    "source": "Clinical Database",
+    "advice": "High fiber diet, stress management, identify food triggers.",
+    "price_tnd": 28.8
+  },
+  {
+    "name": "Loperamide",
+    "dci": "Loperamide Hydrochloride",
+    "category": "Antidiarrheal",
+    "dosage": "2mg",
+    "frequency": "After each loose stool (max 16mg/day)",
+    "indications": [
+      "diarrhea predominant IBS",
+      "acute diarrhea",
+      "chronic diarrhea"
+    ],
+    "contraindications": [
+      "Bloody diarrhea",
+      "Pseudomembranous colitis",
+      "Children under 12 (low dose)"
+    ],
+    "side_effects": [
+      "constipation",
+      "abdominal distension",
+      "nausea",
+      "dizziness"
+    ],
+    "prescription_required": false,
+    "id": "med_loperamide_hydr_0054",
+    "disease": "Irritable Bowel Syndrome",
+    "source": "Clinical Database",
+    "advice": "High fiber diet, stress management, identify food triggers.",
+    "price_tnd": 30.9
+  },
+  {
+    "name": "Hyoscine Butylbromide",
+    "dci": "Hyoscine Butylbromide",
+    "category": "Anticholinergic Antispasmodic",
+    "dosage": "10mg",
+    "frequency": "Three to four times daily",
+    "indications": [
+      "IBS",
+      "abdominal cramps",
+      "bowel spasm",
+      "gastrointestinal spasm"
+    ],
+    "contraindications": [
+      "Glaucoma",
+      "Myasthenia gravis",
+      "Tachycardia",
+      "Pyloric stenosis"
+    ],
+    "side_effects": [
+      "dry mouth",
+      "urinary retention",
+      "tachycardia",
+      "blurred vision"
+    ],
+    "prescription_required": false,
+    "id": "med_hyoscine_butylb_0055",
+    "disease": "Irritable Bowel Syndrome",
+    "source": "Clinical Database",
+    "advice": "High fiber diet, stress management, identify food triggers.",
+    "price_tnd": 33.0
+  },
+  {
+    "name": "Apixaban",
+    "dci": "Apixaban",
+    "category": "Direct Factor Xa Inhibitor / Anticoagulant",
+    "dosage": "5mg",
+    "frequency": "Twice daily",
+    "indications": [
+      "atrial fibrillation",
+      "stroke prevention",
+      "DVT",
+      "pulmonary embolism",
+      "irregular heartbeat"
+    ],
+    "contraindications": [
+      "Active major bleeding",
+      "Severe hepatic impairment",
+      "Prosthetic heart valves"
+    ],
+    "side_effects": [
+      "bleeding",
+      "bruising",
+      "anemia",
+      "GI bleeding",
+      "intracranial hemorrhage rare"
+    ],
+    "prescription_required": true,
+    "id": "med_apixaban_0056",
+    "disease": "Atrial Fibrillation",
+    "source": "Clinical Database",
+    "advice": "Avoid alcohol and caffeine, anticoagulation important for stroke prevention.",
+    "price_tnd": 35.1
+  },
+  {
+    "name": "Metoprolol",
+    "dci": "Metoprolol Tartrate",
+    "category": "Cardioselective Beta-1 Blocker",
+    "dosage": "25-100mg",
+    "frequency": "Twice daily",
+    "indications": [
+      "atrial fibrillation",
+      "hypertension",
+      "heart failure",
+      "angina",
+      "palpitations",
+      "rate control"
+    ],
+    "contraindications": [
+      "Cardiogenic shock",
+      "Severe bradycardia",
+      "Decompensated HF",
+      "Uncontrolled HF"
+    ],
+    "side_effects": [
+      "bradycardia",
+      "fatigue",
+      "cold extremities",
+      "dizziness",
+      "bronchospasm"
+    ],
+    "prescription_required": true,
+    "id": "med_metoprolol_tart_0057",
+    "disease": "Atrial Fibrillation",
+    "source": "Clinical Database",
+    "advice": "Avoid alcohol and caffeine, anticoagulation important for stroke prevention.",
+    "price_tnd": 37.2
+  },
+  {
+    "name": "Digoxin",
+    "dci": "Digoxin",
+    "category": "Cardiac Glycoside",
+    "dosage": "62.5-250mcg",
+    "frequency": "Once daily",
+    "indications": [
+      "atrial fibrillation",
+      "heart failure rate control",
+      "palpitations irregular heartbeat"
+    ],
+    "contraindications": [
+      "Ventricular fibrillation",
+      "Hypertrophic cardiomyopathy",
+      "WPW syndrome"
+    ],
+    "side_effects": [
+      "nausea",
+      "bradycardia",
+      "visual disturbance",
+      "toxicity narrow therapeutic window"
+    ],
+    "prescription_required": true,
+    "id": "med_digoxin_0058",
+    "disease": "Atrial Fibrillation",
+    "source": "Clinical Database",
+    "advice": "Avoid alcohol and caffeine, anticoagulation important for stroke prevention.",
+    "price_tnd": 39.3
+  },
+  {
+    "name": "Oseltamivir",
+    "dci": "Oseltamivir Phosphate",
+    "category": "Neuraminidase Inhibitor Antiviral",
+    "dosage": "75mg",
+    "frequency": "Twice daily for 5 days (start within 48h)",
+    "indications": [
+      "influenza",
+      "flu",
+      "fever body aches",
+      "influenza prophylaxis"
+    ],
+    "contraindications": [
+      "Severe renal impairment requires dose adjustment"
+    ],
+    "side_effects": [
+      "nausea",
+      "vomiting",
+      "headache",
+      "neuropsychiatric events rare"
+    ],
+    "prescription_required": true,
+    "id": "med_oseltamivir_pho_0059",
+    "disease": "Influenza",
+    "source": "Clinical Database",
+    "advice": "Rest, fluids, annual flu vaccination recommended.",
+    "price_tnd": 41.4
+  },
+  {
+    "name": "Ibuprofen",
+    "dci": "Ibuprofen",
+    "category": "NSAID Analgesic/Antipyretic",
+    "dosage": "400mg",
+    "frequency": "Three times daily with food",
+    "indications": [
+      "flu symptoms",
+      "fever",
+      "body aches",
+      "headache",
+      "muscle pain",
+      "inflammation"
+    ],
+    "contraindications": [
+      "Peptic ulcer",
+      "Aspirin allergy",
+      "Third trimester pregnancy",
+      "Renal impairment"
+    ],
+    "side_effects": [
+      "GI upset",
+      "peptic ulcer",
+      "renal impairment",
+      "cardiovascular risk",
+      "platelet inhibition"
+    ],
+    "prescription_required": false,
+    "id": "med_ibuprofen_0060",
+    "disease": "Influenza",
+    "source": "Clinical Database",
+    "advice": "Rest, fluids, annual flu vaccination recommended.",
+    "price_tnd": 1.5
+  },
+  {
+    "name": "Levetiracetam",
+    "dci": "Levetiracetam",
+    "category": "Antiepileptic SV2A Ligand",
+    "dosage": "250-1500mg",
+    "frequency": "Twice daily",
+    "indications": [
+      "epilepsy",
+      "focal seizures",
+      "generalized seizures",
+      "myoclonic seizures"
+    ],
+    "contraindications": [
+      "Hypersensitivity to levetiracetam"
+    ],
+    "side_effects": [
+      "somnolence",
+      "behavioral changes",
+      "irritability",
+      "dizziness",
+      "headache"
+    ],
+    "prescription_required": true,
+    "id": "med_levetiracetam_0061",
+    "disease": "Epilepsy",
+    "source": "Clinical Database",
+    "advice": "Never miss medication, avoid seizure triggers, do not drive alone.",
+    "price_tnd": 3.6
+  },
+  {
+    "name": "Valproate",
+    "dci": "Valproic Acid",
+    "category": "Antiepileptic GABA Modulator",
+    "dosage": "500-2000mg",
+    "frequency": "Twice to three times daily",
+    "indications": [
+      "epilepsy",
+      "generalized seizures",
+      "absence seizures",
+      "bipolar disorder",
+      "migraine prevention"
+    ],
+    "contraindications": [
+      "Pregnancy (teratogenic)",
+      "Hepatic disease",
+      "Urea cycle disorders",
+      "Mitochondrial disease"
+    ],
+    "side_effects": [
+      "hepatotoxicity",
+      "teratogenicity",
+      "weight gain",
+      "tremor",
+      "hair loss",
+      "pancreatitis"
+    ],
+    "prescription_required": true,
+    "id": "med_valproic_acid_0062",
+    "disease": "Epilepsy",
+    "source": "Clinical Database",
+    "advice": "Never miss medication, avoid seizure triggers, do not drive alone.",
+    "price_tnd": 5.7
+  },
+  {
+    "name": "Carbamazepine",
+    "dci": "Carbamazepine",
+    "category": "Antiepileptic Sodium Channel Blocker",
+    "dosage": "200-400mg",
+    "frequency": "Twice daily",
+    "indications": [
+      "focal seizures",
+      "trigeminal neuralgia",
+      "bipolar disorder",
+      "epilepsy"
+    ],
+    "contraindications": [
+      "AV block",
+      "Bone marrow depression",
+      "MAOIs",
+      "HLA-B*1502 (Asian SJS risk)"
+    ],
+    "side_effects": [
+      "drowsiness",
+      "ataxia",
+      "diplopia",
+      "hyponatremia",
+      "Stevens-Johnson rare"
+    ],
+    "prescription_required": true,
+    "id": "med_carbamazepine_0063",
+    "disease": "Epilepsy",
+    "source": "Clinical Database",
+    "advice": "Never miss medication, avoid seizure triggers, do not drive alone.",
+    "price_tnd": 7.8
+  },
+  {
+    "name": "Erythropoietin",
+    "dci": "Epoetin Alfa",
+    "category": "Erythropoiesis-Stimulating Agent",
+    "dosage": "Weight-based SC or IV",
+    "frequency": "1-3 times weekly",
+    "indications": [
+      "anemia CKD",
+      "dialysis anemia",
+      "low hemoglobin renal failure"
+    ],
+    "contraindications": [
+      "Uncontrolled hypertension",
+      "Pure red cell aplasia"
+    ],
+    "side_effects": [
+      "hypertension",
+      "thrombosis",
+      "flu-like symptoms",
+      "stroke risk"
+    ],
+    "prescription_required": true,
+    "id": "med_epoetin_alfa_0064",
+    "disease": "Chronic Kidney Disease",
+    "source": "Clinical Database",
+    "advice": "Low protein diet, avoid nephrotoxic drugs, regular nephrology follow-up.",
+    "price_tnd": 9.9
+  },
+  {
+    "name": "Sevelamer",
+    "dci": "Sevelamer Carbonate",
+    "category": "Phosphate Binder",
+    "dosage": "800mg",
+    "frequency": "Three times daily with meals",
+    "indications": [
+      "hyperphosphatemia CKD",
+      "dialysis phosphorus control",
+      "renal bone disease"
+    ],
+    "contraindications": [
+      "Bowel obstruction",
+      "Hypophosphatemia"
+    ],
+    "side_effects": [
+      "GI upset",
+      "nausea",
+      "constipation",
+      "diarrhea"
+    ],
+    "prescription_required": true,
+    "id": "med_sevelamer_carbo_0065",
+    "disease": "Chronic Kidney Disease",
+    "source": "Clinical Database",
+    "advice": "Low protein diet, avoid nephrotoxic drugs, regular nephrology follow-up.",
+    "price_tnd": 12.0
+  },
+  {
+    "name": "Betamethasone",
+    "dci": "Betamethasone Dipropionate",
+    "category": "Potent Topical Corticosteroid",
+    "dosage": "0.05% cream/ointment",
+    "frequency": "Once to twice daily",
+    "indications": [
+      "psoriasis",
+      "eczema",
+      "inflammatory skin conditions",
+      "scaly plaques"
+    ],
+    "contraindications": [
+      "Facial use prolonged",
+      "Infected skin",
+      "Rosacea",
+      "Perioral dermatitis"
+    ],
+    "side_effects": [
+      "skin thinning",
+      "striae",
+      "telangiectasia",
+      "adrenal suppression extensive use"
+    ],
+    "prescription_required": true,
+    "id": "med_betamethasone_d_0066",
+    "disease": "Psoriasis",
+    "source": "Clinical Database",
+    "advice": "Avoid triggers, moisturize daily, phototherapy available.",
+    "price_tnd": 14.1
+  },
+  {
+    "name": "Calcipotriol",
+    "dci": "Calcipotriol",
+    "category": "Vitamin D3 Analogue",
+    "dosage": "50mcg/g ointment",
+    "frequency": "Twice daily to plaques",
+    "indications": [
+      "plaque psoriasis",
+      "scalp psoriasis",
+      "silvery plaques",
+      "psoriatic lesions"
+    ],
+    "contraindications": [
+      "Calcium metabolism disorders",
+      "Hypercalcemia",
+      "Severe renal disease"
+    ],
+    "side_effects": [
+      "local irritation",
+      "hypercalcemia systemic absorption",
+      "facial dermatitis"
+    ],
+    "prescription_required": true,
+    "id": "med_calcipotriol_0067",
+    "disease": "Psoriasis",
+    "source": "Clinical Database",
+    "advice": "Avoid triggers, moisturize daily, phototherapy available.",
+    "price_tnd": 16.2
+  },
+  {
+    "name": "Ferrous Sulfate",
+    "dci": "Ferrous Sulfate",
+    "category": "Iron Supplement",
+    "dosage": "200mg (65mg elemental iron)",
+    "frequency": "Three times daily between meals",
+    "indications": [
+      "iron deficiency anemia",
+      "low hemoglobin",
+      "fatigue pallor",
+      "microcytic anemia"
+    ],
+    "contraindications": [
+      "Hemochromatosis",
+      "Hemolytic anemia",
+      "Repeated blood transfusions"
+    ],
+    "side_effects": [
+      "nausea",
+      "constipation",
+      "dark stools",
+      "epigastric pain",
+      "diarrhea"
+    ],
+    "prescription_required": false,
+    "id": "med_ferrous_sulfate_0068",
+    "disease": "Anaemia",
+    "source": "Clinical Database",
+    "advice": "Iron-rich diet, treat underlying cause, regular blood count.",
+    "price_tnd": 18.3
+  },
+  {
+    "name": "Folic Acid",
+    "dci": "Folic Acid",
+    "category": "B-Vitamin Supplement",
+    "dosage": "5mg",
+    "frequency": "Once daily",
+    "indications": [
+      "folate deficiency anemia",
+      "pregnancy",
+      "macrocytic anemia",
+      "megaloblastic anemia"
+    ],
+    "contraindications": [
+      "Vitamin B12 deficiency untreated",
+      "B12 deficiency neuropathy"
+    ],
+    "side_effects": [
+      "generally well tolerated",
+      "nausea",
+      "anorexia",
+      "rare hypersensitivity"
+    ],
+    "prescription_required": false,
+    "id": "med_folic_acid_0069",
+    "disease": "Anaemia",
+    "source": "Clinical Database",
+    "advice": "Iron-rich diet, treat underlying cause, regular blood count.",
+    "price_tnd": 20.4
+  },
+  {
+    "name": "Vitamin B12 (Cyanocobalamin)",
+    "dci": "Cyanocobalamin",
+    "category": "Vitamin B12 Supplement",
+    "dosage": "1000mcg",
+    "frequency": "IM monthly or oral daily",
+    "indications": [
+      "B12 deficiency",
+      "pernicious anemia",
+      "macrocytic anemia",
+      "neuropathy fatigue"
+    ],
+    "contraindications": [
+      "Leber's disease",
+      "Hypersensitivity",
+      "Cobalt allergy"
+    ],
+    "side_effects": [
+      "injection site pain",
+      "hypokalemia",
+      "fluid retention",
+      "acne"
+    ],
+    "prescription_required": false,
+    "id": "med_cyanocobalamin_0070",
+    "disease": "Anaemia",
+    "source": "Clinical Database",
+    "advice": "Iron-rich diet, treat underlying cause, regular blood count.",
+    "price_tnd": 22.5
+  },
+  {
+    "name": "Levodopa",
+    "dci": "Levodopa with Carbidopa",
+    "category": "Dopamine Precursor",
+    "dosage": "25/100mg to 25/250mg",
+    "frequency": "Three to four times daily",
+    "indications": [
+      "Parkinson disease",
+      "bradykinesia",
+      "tremor",
+      "rigidity",
+      "motor symptoms"
+    ],
+    "contraindications": [
+      "MAOIs non-selective",
+      "Narrow angle glaucoma",
+      "Psychotic disorders"
+    ],
+    "side_effects": [
+      "nausea",
+      "orthostatic hypotension",
+      "dyskinesia",
+      "on-off fluctuations",
+      "hallucinations"
+    ],
+    "prescription_required": true,
+    "id": "med_levodopa_with_c_0071",
+    "disease": "Parkinson's Disease",
+    "source": "Clinical Database",
+    "advice": "Physical therapy essential, regular neurological follow-up.",
+    "price_tnd": 24.6
+  },
+  {
+    "name": "Pramipexole",
+    "dci": "Pramipexole Dihydrochloride",
+    "category": "Dopamine D3 Agonist",
+    "dosage": "0.125-4.5mg",
+    "frequency": "Three times daily",
+    "indications": [
+      "Parkinson disease",
+      "restless legs syndrome",
+      "tremor",
+      "bradykinesia"
+    ],
+    "contraindications": [
+      "Severe renal impairment",
+      "Impulse control risk"
+    ],
+    "side_effects": [
+      "somnolence",
+      "hallucinations",
+      "orthostatic hypotension",
+      "impulse control disorders"
+    ],
+    "prescription_required": true,
+    "id": "med_pramipexole_dih_0072",
+    "disease": "Parkinson's Disease",
+    "source": "Clinical Database",
+    "advice": "Physical therapy essential, regular neurological follow-up.",
+    "price_tnd": 26.7
+  },
+  {
+    "name": "Rasagiline",
+    "dci": "Rasagiline Mesylate",
+    "category": "MAO-B Inhibitor",
+    "dosage": "1mg",
+    "frequency": "Once daily",
+    "indications": [
+      "Parkinson disease",
+      "adjunct levodopa",
+      "early Parkinson",
+      "motor fluctuations"
+    ],
+    "contraindications": [
+      "Severe hepatic impairment",
+      "Other MAOIs",
+      "Meperidine",
+      "SSRIs"
+    ],
+    "side_effects": [
+      "headache",
+      "arthralgia",
+      "dyspepsia",
+      "fall risk",
+      "melanoma association"
+    ],
+    "prescription_required": true,
+    "id": "med_rasagiline_mesy_0073",
+    "disease": "Parkinson's Disease",
+    "source": "Clinical Database",
+    "advice": "Physical therapy essential, regular neurological follow-up.",
+    "price_tnd": 28.8
+  },
+  {
+    "name": "Amoxicillin-Clavulanate",
+    "dci": "Co-Amoxiclav",
+    "category": "Beta-Lactam/Beta-Lactamase Inhibitor",
+    "dosage": "625mg",
+    "frequency": "Three times daily for 7-14 days",
+    "indications": [
+      "bacterial sinusitis",
+      "maxillary sinusitis",
+      "facial pain discharge fever"
+    ],
+    "contraindications": [
+      "Penicillin allergy",
+      "Cholestatic jaundice history",
+      "Hepatic impairment"
+    ],
+    "side_effects": [
+      "diarrhea",
+      "nausea",
+      "rash",
+      "hepatotoxicity",
+      "Clostridium difficile"
+    ],
+    "prescription_required": true,
+    "id": "med_co_amoxiclav_0074",
+    "disease": "Sinusitis",
+    "source": "Clinical Database",
+    "advice": "Steam inhalation, saline rinse, stay hydrated, complete antibiotics.",
+    "price_tnd": 30.9
+  },
+  {
+    "name": "Xylometazoline",
+    "dci": "Xylometazoline Hydrochloride",
+    "category": "Alpha-Adrenergic Nasal Decongestant",
+    "dosage": "0.1% nasal spray",
+    "frequency": "2-3 times daily (max 7 days)",
+    "indications": [
+      "nasal congestion",
+      "sinusitis",
+      "rhinitis",
+      "blocked nose"
+    ],
+    "contraindications": [
+      "Atrophic rhinitis",
+      "Narrow angle glaucoma",
+      "MAOIs"
+    ],
+    "side_effects": [
+      "rebound congestion (rhinitis medicamentosa)",
+      "local irritation",
+      "cardiovascular effects systemic"
+    ],
+    "prescription_required": false,
+    "id": "med_xylometazoline__0075",
+    "disease": "Sinusitis",
+    "source": "Clinical Database",
+    "advice": "Steam inhalation, saline rinse, stay hydrated, complete antibiotics.",
+    "price_tnd": 33.0
+  },
+  {
+    "name": "Mometasone Nasal Spray",
+    "dci": "Mometasone Furoate",
+    "category": "Intranasal Corticosteroid",
+    "dosage": "50mcg/spray",
+    "frequency": "2 sprays each nostril once daily",
+    "indications": [
+      "allergic rhinitis",
+      "sinusitis",
+      "nasal polyps",
+      "nasal congestion"
+    ],
+    "contraindications": [
+      "Untreated nasal infections",
+      "Nasal surgery recent"
+    ],
+    "side_effects": [
+      "nasal irritation",
+      "epistaxis",
+      "headache",
+      "candidiasis rare"
+    ],
+    "prescription_required": true,
+    "id": "med_mometasone_furo_0076",
+    "disease": "Sinusitis",
+    "source": "Clinical Database",
+    "advice": "Steam inhalation, saline rinse, stay hydrated, complete antibiotics.",
+    "price_tnd": 35.1
+  },
+  {
+    "name": "Clarithromycin",
+    "dci": "Clarithromycin",
+    "category": "Macrolide Antibiotic",
+    "dosage": "500mg",
+    "frequency": "Twice daily for 7-14 days (H pylori triple therapy)",
+    "indications": [
+      "H pylori eradication",
+      "peptic ulcer",
+      "respiratory infections",
+      "H pylori positive"
+    ],
+    "contraindications": [
+      "QT prolongation",
+      "Statins metabolism",
+      "Ergot alkaloids",
+      "Cisapride"
+    ],
+    "side_effects": [
+      "metallic taste",
+      "nausea",
+      "diarrhea",
+      "QT prolongation",
+      "hepatotoxicity"
+    ],
+    "prescription_required": true,
+    "id": "med_clarithromycin_0077",
+    "disease": "Peptic Ulcer",
+    "source": "Clinical Database",
+    "advice": "Avoid NSAIDs and alcohol, H. pylori eradication therapy.",
+    "price_tnd": 37.2
+  },
+  {
+    "name": "Sucralfate",
+    "dci": "Sucralfate",
+    "category": "Mucosal Protective Agent",
+    "dosage": "1g",
+    "frequency": "Four times daily on empty stomach",
+    "indications": [
+      "peptic ulcer",
+      "gastric ulcer",
+      "duodenal ulcer",
+      "mucosal protection"
+    ],
+    "contraindications": [
+      "Renal failure (aluminum accumulation)",
+      "Dysphagia"
+    ],
+    "side_effects": [
+      "constipation",
+      "dry mouth",
+      "aluminum toxicity renal failure",
+      "bezoar formation"
+    ],
+    "prescription_required": true,
+    "id": "med_sucralfate_0078",
+    "disease": "Peptic Ulcer",
+    "source": "Clinical Database",
+    "advice": "Avoid NSAIDs and alcohol, H. pylori eradication therapy.",
+    "price_tnd": 39.3
+  },
+  {
+    "name": "Loratadine",
+    "dci": "Loratadine",
+    "category": "Non-Sedating Antihistamine",
+    "dosage": "10mg",
+    "frequency": "Once daily",
+    "indications": [
+      "allergic rhinitis",
+      "hay fever",
+      "urticaria",
+      "sneezing",
+      "watery eyes",
+      "nasal congestion"
+    ],
+    "contraindications": [
+      "Known hypersensitivity",
+      "Hepatic impairment requires dose reduction"
+    ],
+    "side_effects": [
+      "headache",
+      "dry mouth",
+      "fatigue",
+      "generally well-tolerated",
+      "minimal sedation"
+    ],
+    "prescription_required": false,
+    "id": "med_loratadine_0079",
+    "disease": "Allergic Rhinitis",
+    "source": "Clinical Database",
+    "advice": "Avoid allergens, antihistamines, nasal corticosteroid spray.",
+    "price_tnd": 41.4
+  },
+  {
+    "name": "Fexofenadine",
+    "dci": "Fexofenadine Hydrochloride",
+    "category": "Non-Sedating H1 Antihistamine",
+    "dosage": "180mg",
+    "frequency": "Once daily",
+    "indications": [
+      "allergic rhinitis",
+      "chronic urticaria",
+      "hay fever",
+      "seasonal allergies",
+      "sneezing"
+    ],
+    "contraindications": [
+      "Severe renal impairment",
+      "Fruit juice reduces absorption"
+    ],
+    "side_effects": [
+      "headache",
+      "nausea",
+      "dizziness",
+      "back pain",
+      "non-sedating"
+    ],
+    "prescription_required": false,
+    "id": "med_fexofenadine_hy_0080",
+    "disease": "Allergic Rhinitis",
+    "source": "Clinical Database",
+    "advice": "Avoid allergens, antihistamines, nasal corticosteroid spray.",
+    "price_tnd": 1.5
+  },
+  {
+    "name": "Duloxetine",
+    "dci": "Duloxetine Hydrochloride",
+    "category": "SNRI / Pain Modulator",
+    "dosage": "30-60mg",
+    "frequency": "Once daily",
+    "indications": [
+      "fibromyalgia",
+      "neuropathic pain",
+      "depression",
+      "anxiety",
+      "widespread pain",
+      "musculoskeletal pain"
+    ],
+    "contraindications": [
+      "MAOIs",
+      "Uncontrolled narrow-angle glaucoma",
+      "Severe hepatic impairment"
+    ],
+    "side_effects": [
+      "nausea",
+      "dry mouth",
+      "somnolence",
+      "constipation",
+      "sweating",
+      "hypertension"
+    ],
+    "prescription_required": true,
+    "id": "med_duloxetine_hydr_0081",
+    "disease": "Fibromyalgia",
+    "source": "Clinical Database",
+    "advice": "Gentle aerobic exercise, sleep hygiene, stress management.",
+    "price_tnd": 3.6
+  },
+  {
+    "name": "Amitriptyline",
+    "dci": "Amitriptyline Hydrochloride",
+    "category": "Tricyclic Antidepressant / Pain Modulator",
+    "dosage": "10-75mg",
+    "frequency": "Low dose at bedtime",
+    "indications": [
+      "fibromyalgia",
+      "neuropathic pain",
+      "insomnia",
+      "depression",
+      "chronic pain"
+    ],
+    "contraindications": [
+      "Recent MI",
+      "Arrhythmias",
+      "MAOIs",
+      "Narrow angle glaucoma",
+      "Urinary retention"
+    ],
+    "side_effects": [
+      "anticholinergic effects",
+      "sedation",
+      "weight gain",
+      "cardiac arrhythmia",
+      "orthostatic hypotension"
+    ],
+    "prescription_required": true,
+    "id": "med_amitriptyline_h_0082",
+    "disease": "Fibromyalgia",
+    "source": "Clinical Database",
+    "advice": "Gentle aerobic exercise, sleep hygiene, stress management.",
+    "price_tnd": 5.7
   }
 ]

@@ -49,6 +49,8 @@ public class PrisePlanifieeEntity {
     @Column(name = "patient_user_id", length = 36, nullable = false)
     private String patientUserId;
 
+
+
     @Column(name = "heure_prevue", nullable = false)
     private LocalDateTime heurePrevue;
 
